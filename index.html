@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frontend Interactive Lab</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+.active-btn {
+    background-color: #2563eb !important;
+    color: white !important;
+}
+
+.code-box {
+    background: #0f172a;
+    color: #22c55e;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+/* BEFORE CSS */
+.before-style {
+    background: white;
+    border: 2px dashed gray;
+}
+
+.after-style {
+    background: #dbeafe;
+    border: 3px solid #2563eb;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-radius: 16px;
+    transform: scale(1.05);
+    opacity: 0.95;
+    letter-spacing: 1px;
+}
+
+</style>
+</head>
+
+<body class="bg-gray-100 font-sans text-gray-800">
+
+<!-- ================= HEADER ================= -->
+
+<header id="header"
+class="bg-white shadow p-4 transition-all duration-300">
+
+<div class="max-w-6xl mx-auto flex justify-between items-center">
+<h1 class="font-bold text-xl">Frontend Lab</h1>
+
+<a href="homework/" class="text-blue-600 hover:underline">Homework</a>
+
+<nav class="flex gap-4 text-sm ">
+    <a class="hover:text-blue-500" href="#tags">Tags</a>
+<a class="hover:text-blue-500" href="#flexbox">Flexbox</a>
+<a class="hover:text-blue-500" href="#spacing">Spacing</a>
+<a class="hover:text-blue-500" href="#form">Form</a>
+<a class="hover:text-blue-500" href="#responsive">Responsive</a>
+<a class="hover:text-blue-500" href="#css">CSS</a>
+</nav>
+</div>
+
+</header>
+
+
+
+
+<!-- ================= HEADER CONTROLS ================= -->
+
+<section id="tags" class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-4">Header Position Types</h2>
+
+<div class="flex gap-3">
+<button onclick="setHeader('static', this)" class="header-btn bg-gray-200 px-4 py-2 rounded">Static</button>
+<button onclick="setHeader('sticky', this)" class="header-btn bg-gray-200 px-4 py-2 rounded">Sticky</button>
+<button onclick="setHeader('fixed', this)" class="header-btn bg-gray-200 px-4 py-2 rounded">Fixed</button>
+</div>
+
+<div class="code-box mt-4" id="headerCode"></div>
+</section>
+
+
+<section class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded-2xl shadow-lg">
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">HTML Tag Explainer</h2>
+
+  <!-- Scrollable Buttons -->
+  <div class="overflow-x-auto mb-6">
+    <div class="flex gap-3 min-w-max">
+      <button onclick="showTag('h1', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">h1</button>
+      <button onclick="showTag('p', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">p</button>
+      <button onclick="showTag('a', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">a</button>
+      <button onclick="showTag('img', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">img</button>
+      <button onclick="showTag('span', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">span</button>
+      <button onclick="showTag('div', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">div</button>
+      <button onclick="showTag('ul', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">ul</button>
+      <button onclick="showTag('li', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">li</button>
+      <button onclick="showTag('strong', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">strong</button>
+      <button onclick="showTag('em', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">em</button>
+      <button onclick="showTag('button', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">button</button>
+      <button onclick="showTag('input', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">input</button>
+      <button onclick="showTag('textarea', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">textarea</button>
+      <button onclick="showTag('select', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">select</button>
+      <button onclick="showTag('label', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">label</button>
+      <button onclick="showTag('table', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">table</button>
+      <button onclick="showTag('tr', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">tr</button>
+      <button onclick="showTag('td', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">td</button>
+      <button onclick="showTag('th', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">th</button>
+      <button onclick="showTag('header', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">header</button>
+      <button onclick="showTag('footer', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">footer</button>
+      <button onclick="showTag('nav', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">nav</button>
+      <button onclick="showTag('section', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">section</button>
+      <button onclick="showTag('article', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">article</button>
+      <button onclick="showTag('main', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">main</button>
+      <button onclick="showTag('aside', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">aside</button>
+      <button onclick="showTag('iframe', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">iframe</button>
+      <button onclick="showTag('br', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">br</button>
+      <button onclick="showTag('hr', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">hr</button>
+      <button onclick="showTag('video', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">video</button>
+      <button onclick="showTag('audio', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">audio</button>
+      <button onclick="showTag('canvas', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">canvas</button>
+      <button onclick="showTag('svg', this)" class="tag-btn bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition">svg</button>
+    </div>
+  </div>
+
+  <!-- Tag Preview -->
+  <div id="tagPreview" class="mb-6 p-6 bg-gray-50 rounded-xl shadow-inner transition-all"></div>
+
+  <!-- Tag Explanation -->
+  <div id="tagExplanation" class="mb-4 text-gray-700 text-lg"></div>
+
+  <!-- Code Box -->
+  <div id="tagCode" class="code-box bg-gray-900 text-green-400 rounded-xl p-4 shadow-lg"></div>
+</section>
+
+
+<!-- ================= CSS BEFORE AFTER ================= -->
+<section id="css" class="p-6 bg-white m-10 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-6">Before vs After CSS</h2>
+
+<div class="flex gap-10">
+
+<div>
+<h3 class="font-semibold mb-2">Before</h3>
+<div class="before-style p-6">
+Simple box with basic border.
+</div>
+</div>
+
+<div>
+<h3 class="font-semibold mb-2">After</h3>
+<div class="after-style p-6">
+Styled with shadow, radius, transform, opacity, spacing.
+</div>
+</div>
+
+</div>
+
+<div class="code-box mt-6">
+border:2px dashed gray;
+
+
+border:3px solid blue;
+<br/>
+box-shadow:0 10px 25px rgba(0,0,0,0.2);<br/>
+border-radius:16px;<br/>
+transform:scale(1.05);<br/>
+opacity:0.95;<br/>
+letter-spacing:1px;
+</div>
+
+</section>
+
+<!-- ================= FLEXBOX ================= -->
+
+<section id="flexbox" class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-4">Flexbox Interactive</h2>
+
+<h3 class="font-semibold">Justify</h3>
+<div class="flex gap-2 mb-4">
+<button onclick="setJustify('justify-start', this)" class="flex-btn bg-gray-200 px-3 py-1 rounded">Start</button>
+<button onclick="setJustify('justify-center', this)" class="flex-btn bg-gray-200 px-3 py-1 rounded">Center</button>
+<button onclick="setJustify('justify-between', this)" class="flex-btn bg-gray-200 px-3 py-1 rounded">Between</button>
+<button onclick="setJustify('justify-evenly', this)"
+class="flex-btn bg-gray-200 px-3 py-1 rounded">
+Evenly
+</button>
+<button onclick="setJustify('justify-end', this)" class="flex-btn bg-gray-200 px-3 py-1 rounded">End</button>
+</div>
+
+<h3 class="font-semibold">Align Items</h3>
+<div class="flex gap-2 mb-4">
+<button onclick="setAlign('items-start', this)" class="align-btn bg-gray-200 px-3 py-1 rounded">Start</button>
+<button onclick="setAlign('items-center', this)" class="align-btn bg-gray-200 px-3 py-1 rounded">Center</button>
+<button onclick="setAlign('items-end', this)" class="align-btn bg-gray-200 px-3 py-1 rounded">End</button>
+</div>
+
+<h3 class="font-semibold">Direction</h3>
+<div class="flex gap-2 mb-6">
+<button onclick="setDirection('flex-row', this)" class="dir-btn bg-gray-200 px-3 py-1 rounded">Row</button>
+<button onclick="setDirection('flex-col', this)" class="dir-btn bg-gray-200 px-3 py-1 rounded">Column</button>
+</div>
+
+<div id="flexContainer"
+class="flex justify-start items-start flex-row gap-4 bg-gray-200 h-56 p-4 rounded">
+<div class="w-16 h-16 bg-red-400"></div>
+<div class="w-16 h-16 bg-blue-400"></div>
+<div class="w-16 h-16 bg-green-400"></div>
+</div>
+
+<div class="code-box mt-6" id="flexCode"></div>
+</section>
+<section id="spacing" class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-6">Spacing: Margin vs Padding</h2>
+
+<h3 class="font-semibold mb-4">Padding (Inside Space)</h3>
+
+<div class="bg-purple-300 p-6 mb-6">
+    <!-- Purple area = padding -->
+    <div class="bg-blue-500 text-white p-4 text-center">
+        CONTENT
+    </div>
+</div>
+
+<p class=" code-box mt-6">
+Purple area = padding (space INSIDE the element)
+</p>
+
+
+<h3 class="font-semibold mb-4">Margin (Outside Space)</h3>
+
+<div class="bg-gray-200 p-4">
+    <div class="bg-red-500 text-white m-6 p-4 text-center">
+        CONTENT
+    </div>
+</div>
+
+<p class=" code-box mt-6">
+Gray area = parent  <br/>
+Purple space outside<br/>
+ red box = margin (space OUTSIDE element)
+</p>
+
+<h3 class="font-semibold mt-8 mb-4">Gap (Space Between Flex Items)</h3>
+
+<div class="flex gap-8 bg-purple-200 p-6">
+    <div class="w-16 h-16 bg-green-500"></div>
+    <div class="w-16 h-16 bg-green-500"></div>
+    <div class="w-16 h-16 bg-green-500"></div>
+</div>
+
+<div class="code-box mt-6">
+Padding → space inside element  <br/>
+Margin → space outside element  <br/>
+Gap → space between flex/grid items  <br/>
+</div>
+
+</section>
+
+<!-- ================= FORM SECTION ================= -->
+
+<section id="form" class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-4">Form Inputs</h2>
+
+<form class="grid gap-4 max-w-md bg-gray-100 p-6 rounded">
+<input type="text" placeholder="Please enter your name" class="border p-2 rounded">
+<input type="email" placeholder="Email input" class="border p-2 rounded">
+<input type="password" placeholder="Password input" class="border p-2 rounded">
+<input type="number" placeholder="Number input" class="border p-2 rounded">
+<input type="date" class="border p-2 rounded">
+<input type="file" class="border p-2 rounded">
+<input type="checkbox"> Checkbox
+<input type="radio" name="gender"> Radio
+
+<textarea placeholder="Textarea..." class="border p-2 rounded"></textarea>
+
+<button class="bg-blue-500 text-white py-2 rounded">Submit</button>
+
+</form>
+
+<div class="code-box mt-4">
+&lt;input type="text" placeholder="Please enter your name"&gt;<br/>
+
+&lt;input type="email" placeholder="Email input"&gt;<br/>
+
+&lt;input type="password" placeholder="Password input"&gt;<br/>
+
+&lt;input type="number" placeholder="Number input"&gt;<br/>
+
+&lt;input type="date"&gt;<br/>
+
+&lt;input type="file"&gt;<br/>
+
+&lt;input type="checkbox"&gt;<br/>
+
+&lt;input type="radio"&gt;<br/>
+
+&lt;textarea placeholder="Textarea..."&gt;&lt;/textarea&gt;
+</div>
+</section>
+
+<!-- ================= RESPONSIVE ================= -->
+<section id="responsive" class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-4">Interactive Responsive Simulation</h2>
+
+<div class="flex gap-3 mb-6">
+    <button onclick="setScreen('sm', this)" class="bg-gray-200 px-4 py-2 rounded">Mobile (sm)</button>
+    <button onclick="setScreen('md', this)" class="bg-gray-200 px-4 py-2 rounded">Tablet (md)</button>
+    <button onclick="setScreen('lg', this)" class="bg-gray-200 px-4 py-2 rounded">Desktop (lg)</button>
+    <button onclick="setScreen('xl', this)" class="bg-gray-200 px-4 py-2 rounded">Extra Large (xl)</button>
+</div>
+
+<div id="screenBox"
+class="transition-all duration-500 border p-6 w-64 mx-auto">
+
+<div id="responsiveGrid"
+class="flex flex-wrap gap-4 mb-6 sm:grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+<div class="bg-purple-500 h-20 rounded"></div>
+<div class="bg-purple-500 h-20 rounded"></div>
+<div class="bg-purple-500 h-20 rounded"></div>
+<div class="bg-purple-500 h-20 rounded"></div>
+
+</div>
+
+</div>
+
+<div class="code-box mt-6 " id="responsiveCode"></div>
+</section>
+
+
+<footer class="bg-gray-900 text-white text-center p-4">
+© 2026 Frontend Lab
+</footer>
+
+<script>
+
+function clearActive(className){
+document.querySelectorAll(className).forEach(btn=>{
+btn.classList.remove("active-btn");
+});
+}
+
+/* HEADER */
+function setHeader(type, el){
+clearActive(".header-btn");
+el.classList.add("active-btn");
+const header = document.getElementById("header");
+const code = document.getElementById("headerCode");
+
+header.classList.remove("sticky","fixed","top-0","w-full");
+
+if(type==="sticky"){
+header.classList.add("sticky","top-0");
+}
+if(type==="fixed"){
+header.classList.add("fixed","top-0","w-full");
+}
+code.innerText = `header { position: ${type}; }`;
+}
+
+/* FLEXBOX */
+let justify="justify-start";
+let align="items-start";
+let direction="flex-row";
+
+function updateFlex(){
+const container=document.getElementById("flexContainer");
+const code=document.getElementById("flexCode");
+
+container.className=`flex ${justify} ${align} ${direction} gap-4 bg-gray-200 h-56 p-4 rounded`;
+
+code.innerText=`<div class="flex ${justify} ${align} ${direction}">
+    <div class="w-16 h-16 bg-red-400"></div>
+<div class="w-16 h-16 bg-blue-400"></div>
+<div class="w-16 h-16 bg-green-400"></div>
+</div>`;
+}
+
+function setJustify(val,el){
+clearActive(".flex-btn");
+el.classList.add("active-btn");
+justify=val;
+updateFlex();
+}
+
+function setAlign(val,el){
+clearActive(".align-btn");
+el.classList.add("active-btn");
+align=val;
+updateFlex();
+}
+
+function setDirection(val,el){
+clearActive(".dir-btn");
+el.classList.add("active-btn");
+direction=val;
+updateFlex();
+}
+
+updateFlex();
+
+/* RESPONSIVE */
+function setScreen(type, el){
+    clearActiveResponsive();
+    if(el) el.classList.add("active-btn");
+
+    const box = document.getElementById("screenBox");
+    const grid = document.getElementById("responsiveGrid");
+    const code = document.getElementById("responsiveCode");
+
+    grid.className = "grid gap-4";
+
+    switch(type){
+        case "sm":
+            box.className = "transition-all duration-500 border p-6 w-64 mx-auto";
+            grid.classList.add("grid-cols-1");
+            code.innerText = "sm:grid-cols-1 (mobile)";
+            break;
+        case "md":
+            box.className = "transition-all duration-500 border p-6 w-96 mx-auto";
+            grid.classList.add("grid-cols-2");
+            code.innerText = "md:grid-cols-2 (tablet)";
+            break;
+        case "lg":
+            box.className = "transition-all duration-500 border p-6 w-full";
+            grid.classList.add("grid-cols-3");
+            code.innerText = "lg:grid-cols-3 (desktop)";
+            break;
+        case "xl":
+            box.className = "transition-all duration-500 border p-6 w-full ";
+            grid.classList.add("grid-cols-4");
+            code.innerText = "xl:grid-cols-4 (extra large)";
+            break;
+    }
+}
+/* ================= HTML TAG EXPLAINER ================= */
+function showTag(tag, element){
+    clearActive(".tag-btn");
+
+    if(element){
+        element.classList.add("active-btn");
+    }
+
+    const preview = document.getElementById("tagPreview");
+    const explanation = document.getElementById("tagExplanation");
+    const code = document.getElementById("tagCode");
+
+    switch(tag){
+
+        case "h1":
+            preview.innerHTML = `<h1 class="text-3xl font-bold text-gray-800">This is H1 Heading</h1>`;
+            explanation.innerText = "h1 is the main heading of the page.";
+            code.innerText = `<h1>This is H1 Heading</h1>`;
+            break;
+
+        case "p":
+            preview.innerHTML = `<p class="text-gray-700">This is a paragraph text.</p>`;
+            explanation.innerText = "p tag is used for paragraphs.";
+            code.innerText = `<p>This is a paragraph</p>`;
+            break;
+
+        case "img":
+            preview.innerHTML = `<img src="https://www.infinite.mn/_next/image?url=%2Fimages%2Fcompany%2Fnest%2F1.jpg&w=2048&q=75" class="rounded shadow-lg">`;
+            explanation.innerText = "img tag displays images. It is self-closing.";
+            code.innerText = `<img src="image.jpg" alt="description">`;
+            break;
+
+        case "a":
+            preview.innerHTML = `<a href="#" class="text-blue-600 underline hover:text-blue-800">Click me</a>`;
+            explanation.innerText = "a tag creates a hyperlink.";
+            code.innerText = `<a href="https://example.com">Click me</a>\nInline element\nhref = link destination`;
+            break;
+
+        case "span":
+            preview.innerHTML = `<span class="text-red-500 font-semibold">This is a span text</span>`;
+            explanation.innerText = "span is an inline container used for styling parts of text.";
+            code.innerText = `<span>This is a span text</span>`;
+            break;
+
+        case "div":
+            preview.innerHTML = `<div class="p-4 bg-gray-200 rounded shadow">This is a div container</div>`;
+            explanation.innerText = "div is a block container used to group elements.";
+            code.innerText = `<div>This is a div container</div>`;
+            break;
+
+        case "ul":
+            preview.innerHTML = `<ul class="list-disc pl-6"><li>Item 1</li><li>Item 2</li></ul>`;
+            explanation.innerText = "ul is an unordered list. Use li for list items.";
+            code.innerText = `<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>`;
+            break;
+
+        case "ol":
+            preview.innerHTML = `<ol class="list-decimal pl-6"><li>First</li><li>Second</li></ol>`;
+            explanation.innerText = "ol is an ordered list. Use li for list items.";
+            code.innerText = `<ol>\n  <li>First</li>\n  <li>Second</li>\n</ol>`;
+            break;
+
+        case "li":
+            preview.innerHTML = `<li class="list-disc">List Item Example</li>`;
+            explanation.innerText = "li defines a single list item inside ul or ol.";
+            code.innerText = `<li>List Item Example</li>`;
+            break;
+
+        case "strong":
+            preview.innerHTML = `<strong class="font-bold">Bold Text</strong>`;
+            explanation.innerText = "strong tag makes text bold and semantically important.";
+            code.innerText = `<strong>Bold Text</strong>`;
+            break;
+
+        case "em":
+            preview.innerHTML = `<em class="italic">Italic Text</em>`;
+            explanation.innerText = "em tag emphasizes text, usually italic.";
+            code.innerText = `<em>Italic Text</em>`;
+            break;
+
+        case "button":
+            preview.innerHTML = `<button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Click Me</button>`;
+            explanation.innerText = "button creates a clickable button.";
+            code.innerText = `<button>Click Me</button>`;
+            break;
+
+        case "input":
+            preview.innerHTML = `<input type="text" placeholder="Enter text" class="border p-2 rounded w-full">`;
+            explanation.innerText = "input is used for user input. Type can be text, email, number, etc.";
+            code.innerText = `<input type="text" placeholder="Enter text">`;
+            break;
+
+        case "textarea":
+            preview.innerHTML = `<textarea placeholder="Write something..." class="border p-2 rounded w-full"></textarea>`;
+            explanation.innerText = "textarea is for multi-line text input.";
+            code.innerText = `<textarea placeholder="Write something..."></textarea>`;
+            break;
+
+        case "select":
+            preview.innerHTML = `<select class="border p-2 rounded"><option>Option 1</option><option>Option 2</option></select>`;
+            explanation.innerText = "select creates a dropdown list with option tags.";
+            code.innerText = `<select>\n  <option>Option 1</option>\n  <option>Option 2</option>\n</select>`;
+            break;
+
+        case "label":
+            preview.innerHTML = `<label for="name" class="block mb-1 font-semibold">Name:</label><input id="name" type="text" class="border p-2 rounded w-full">`;
+            explanation.innerText = "label is used to describe form inputs. Use 'for' attribute.";
+            code.innerText = `<label for="name">Name:</label>\n<input type="text" id="name">`;
+            break;
+
+        case "header":
+            preview.innerHTML = `<header class="bg-gray-300 p-4 rounded shadow">Header Section</header>`;
+            explanation.innerText = "header defines the page header.";
+            code.innerText = `<header>Header Section</header>`;
+            break;
+
+        case "footer":
+            preview.innerHTML = `<footer class="bg-gray-800 text-white p-4 rounded shadow">Footer Section</footer>`;
+            explanation.innerText = "footer defines the page footer.";
+            code.innerText = `<footer>Footer Section</footer>`;
+            break;
+
+        case "nav":
+            preview.innerHTML = `<nav class="bg-gray-100 p-2 rounded flex gap-2"><a href="#" class="text-blue-500">Home</a><a href="#" class="text-blue-500">About</a></nav>`;
+            explanation.innerText = "nav defines navigation links.";
+            code.innerText = `<nav>\n  <a href='#'>Home</a>\n  <a href='#'>About</a>\n</nav>`;
+            break;
+
+        case "section":
+            preview.innerHTML = `<section class="p-4 bg-purple-100 rounded shadow">Page Section</section>`;
+            explanation.innerText = "section defines a thematic section of content.";
+            code.innerText = `<section>Page Section</section>`;
+            break;
+
+        case "article":
+            preview.innerHTML = `<article class="p-4 bg-green-100 rounded shadow">Article Content</article>`;
+            explanation.innerText = "article defines independent content, like blog posts.";
+            code.innerText = `<article>Article Content</article>`;
+            break;
+
+        case "main":
+            preview.innerHTML = `<main class="p-4 bg-yellow-100 rounded shadow">Main Content Area</main>`;
+            explanation.innerText = "main defines the main content of the page.";
+            code.innerText = `<main>Main Content Area</main>`;
+            break;
+
+        case "aside":
+            preview.innerHTML = `<aside class="p-4 bg-pink-100 rounded shadow">Sidebar Content</aside>`;
+            explanation.innerText = "aside is for content tangentially related to main content.";
+            code.innerText = `<aside>Sidebar Content</aside>`;
+            break;
+
+        case "iframe":
+            preview.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/X5bRRs_sLHY?si=FVDCxqUcPn6jYSlI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"  class="w-full border rounded" allowfullscreen></iframe>`;
+            explanation.innerText = "iframe embeds another HTML page.";
+            code.innerText = `<iframe src="https://www.facebook.com/share/v/17JAnAkrTz/"></iframe>`;
+            break;
+
+        case "br":
+            preview.innerHTML = `Line1<br>Line2`;
+            explanation.innerText = "br inserts a line break.";
+            code.innerText = `Line1<br>Line2`;
+            break;
+
+        case "hr":
+            preview.innerHTML = `<hr class="border-gray-400 my-2">`;
+            explanation.innerText = "hr inserts a horizontal line.";
+            code.innerText = `<hr>`;
+            break;
+
+        case "video":
+            preview.innerHTML = `<video src="https://youtu.be/X5bRRs_sLHY" controls class="w-full rounded shadow"></video>`;
+            explanation.innerText = "video embeds a video file. Add controls for play/pause.";
+            code.innerText = `<video src="https://youtu.be/X5bRRs_sLHY" controls></video>`;
+            break;
+
+        case "audio":
+            preview.innerHTML = `<audio src="audio.mp3" controls class="w-full"></audio>`;
+            explanation.innerText = "audio embeds an audio file.";
+            code.innerText = `<audio src="audio.mp3" controls></audio>`;
+            break;
+
+        case "canvas":
+            preview.innerHTML = `<canvas width="300" height="150" class="border rounded"></canvas>`;
+            explanation.innerText = "canvas is used for drawing graphics with JavaScript.";
+            code.innerText = `<canvas width="300" height="150"></canvas>`;
+            break;
+
+        case "svg":
+            preview.innerHTML = `<svg width="100" height="100"><circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" /></svg>`;
+            explanation.innerText = "svg is used for vector graphics.";
+            code.innerText = `<svg width="100" height="100"><circle cx="50" cy="50" r="40" fill="red"/></svg>`;
+            break;
+
+            case "table":
+            preview.innerHTML = `<table class="border-collapse border border-gray-400 w-full"><tr><th>Header 1</th><th>Header 2</th></tr><tr><td>Cell 1</td><td>Cell 2</td></tr></table>`;
+            explanation.innerText = "table defines a table container. Use tr for rows, th for headers, td for cells.";
+            code.innerText = `<table><tr><th>Header 1</th><th>Header 2</th></tr>
+  <tr><td>Cell 1</td><td>Cell 2</td></tr>
+</table>`;
+            break;
+
+        case "tr":
+            preview.innerHTML = `<table class="border-collapse border border-gray-400 w-full"><tr><td>Row Cell 1</td><td>Row Cell 2</td></tr></table>`;
+            explanation.innerText = "tr defines a table row. Must be inside a table.";
+            code.innerText = `<tr><td>Cell 1</td><td>Cell 2</td></tr>`;
+            break;
+
+        case "td":
+            preview.innerHTML = `<table class="border-collapse border border-gray-400 w-full"><tr><td>Cell 1</td><td>Cell 2</td></tr></table>`;
+            explanation.innerText = "td defines a table cell. Must be inside a tr.";
+            code.innerText = `<td>Cell content</td>`;
+            break;
+
+        case "th":
+            preview.innerHTML = `<table class="border-collapse border border-gray-400 w-full"><tr><th>Header 1</th><th>Header 2</th></tr></table>`;
+            explanation.innerText = "th defines a table header cell, usually bold and centered.";
+            code.innerText = `<th>Header</th>`;
+            break;
+
+        default:
+            preview.innerHTML = `Preview not available`;
+            explanation.innerText = "";
+            code.innerText = "";
+    }
+}
+
+
+/* CSS TOGGLE */
+function toggleStyle(){
+const box=document.getElementById("cssBox");
+box.classList.toggle("after-style");
+}
+/* ================= DEFAULT STATES ================= */
+
+window.onload = function(){
+
+// HTML Tag default
+const firstTagBtn = document.querySelector(".tag-btn");
+showTag("h1", firstTagBtn);
+
+// Header default
+const firstHeaderBtn = document.querySelector(".header-btn");
+setHeader("sticky", firstHeaderBtn);
+
+// Flex defaults
+const firstJustifyBtn = document.querySelector(".flex-btn");
+setJustify("justify-start", firstJustifyBtn);
+
+const firstAlignBtn = document.querySelector(".align-btn");
+setAlign("items-start", firstAlignBtn);
+
+const firstDirBtn = document.querySelector(".dir-btn");
+setDirection("flex-row", firstDirBtn);
+
+// Responsive default
+setScreen("mobile");
+
+};
+function clearActiveResponsive(){
+    document.querySelectorAll("#responsive button").forEach(btn=>{
+        btn.classList.remove("active-btn");
+    });
+}
+
+</script>
+
+</body>
+</html>

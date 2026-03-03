@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Example</title>
+  <script defer>
+    const loginBtn = document.getElementById("loginBtn");
+
+    loginBtn.addEventListener("click", function () {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "admin" && password === "1234") {
+        alert("Login Success");
+      } else {
+        alert("Login Failed");
+      }
+    });
+  </script>
+</head>
+<body>
+
+<h2>Simple Login</h2>
+
+<input id="username" type="text" placeholder="Username">
+<br><br>
+<input id="password" type="password" placeholder="Password">
+<br><br>
+
+<button id="loginBtn">Login</button>
+
+</body>
+</html>

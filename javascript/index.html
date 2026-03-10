@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Lab</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+.active-btn {
+    background-color: #2563eb !important;
+    color: white !important;
+}
+
+.code-box {
+    background: #0f172a;
+    color: #22c55e;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+.btn {
+    @apply bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition;
+}
+
+.preview-box {
+    @apply p-4 rounded shadow bg-gray-50 mb-4;
+}
+
+</style>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+<header class="bg-white shadow p-4">
+<div class="max-w-6xl mx-auto flex justify-between items-center">
+<h1 class="font-bold text-xl">JavaScript Lab</h1>
+<div class="flex gap-8">
+<a href="../" class="text-blue-600 hover:underline">Classes</a>
+<a href="../homework/" class="text-blue-600 hover:underline">Homework</a>
+<a href="#" class="text-blue-600 hover:underline">Contact</a>
+</div>
+</div>
+</header>
+
+<div class="max-w-6xl mx-auto pt-6">
+  <a href="../" class="inline-flex items-center gap-2 text-blue-600 font-medium hover:gap-3 transition-all duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+    </svg>
+    Back
+  </a>
+</div>
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-4">JavaScript гэж юу вэ?</h2>
+<p class="mb-4 text-gray-700">
+JavaScript нь вэб хуудас дээр интерактив функц нэмэхэд ашиглагддаг програмчлалын хэл юм. HTML, CSS-ийг дэмжин динамик хөдөлгөөнт контент үүсгэдэг.
+</p>
+<p class="mb-4 text-gray-700">
+    HTML → бүтэц  <br>
+CSS → дизайн  <br>
+JavaScript → хөдөлгөөн ба логик
+</p>
+
+<div class="code-box mb-4">
+console.log("Сайн байна уу, JavaScript!");
+</div>
+
+<button class="btn" onclick="runConsoleLog()">Run Example</button>
+<div id="consolePreview" class="preview-box"></div>
+</section>
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-4">Функцийн төрлүүд</h2>
+<div class="flex flex-wrap gap-3 mb-4">
+<button class="btn" onclick="showFunction('normal', this)">Энгийн функц</button>
+<button class="btn" onclick="showFunction('arrow', this)">Arrow функц</button>
+<button class="btn" onclick="showFunction('anonymous', this)">Anonymous функц</button>
+</div>
+
+<div id="functionPreview" class="preview-box"></div>
+<div id="functionExplanation" class="mb-4 text-gray-700"></div>
+<div id="functionCode" class="code-box"></div>
+</section>
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-4">Функцийн ялгаа</h2>
+<ul class="list-disc pl-6 text-gray-700">
+<li><strong>Энгийн функц:</strong> function keyword ашиглан тодорхойлогддог, hoisting дэмждэг.</li>
+<li><strong>Arrow функц:</strong> ()=> ашиглана, this-г эцэг обьектод уялдуулдаг.</li>
+<li><strong>Anonymous функц:</strong> нэргүй функц, ихэвчлэн variable-д хадгалдаг эсвэл callback-д ашигладаг.</li>
+</ul>
+</section>
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-4">JavaScript ашиглах арга</h2>
+<p class="text-gray-700 mb-4">
+HTML-д &lt;script&gt; tag ашиглаж JavaScript кодыг оруулж болно.
+</p>
+
+<div class="code-box mb-4">
+&lt;script&gt;<br/>
+console.log("Сайн байна уу!");<br/>
+&lt;/script&gt;
+</div>
+</section>
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-4">JavaScript Calculator (Нэмэх & Хасах)</h2>
+
+<div class="grid gap-4 max-w-md mx-auto">
+    <input type="number" id="num1" placeholder="Эхний тоо" class="border p-2 rounded w-full">
+    <input type="number" id="num2" placeholder="Хоёр дахь тоо" class="border p-2 rounded w-full">
+
+    <div class="flex gap-4">
+        <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" onclick="calculate('add')">+</button>
+        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" onclick="calculate('subtract')">-</button>
+    </div>
+
+    <div id="calcResult" class="preview-box text-lg font-semibold text-gray-800">
+        Үр дүн: ...
+    </div>
+</div>
+
+<div class="code-box mt-4">
+&lt;input type="number" id="num1" placeholder="Эхний тоо"&gt;<br/>
+&lt;input type="number" id="num2" placeholder="Хоёр дахь тоо"&gt;<br/>
+&lt;button onclick="calculate('add')"&gt;+&lt;/button&gt;<br/>
+&lt;button onclick="calculate('subtract')"&gt;-&lt;/button&gt;<br/>
+&lt;div id="calcResult"&gt;Үр дүн: ...&lt;/div&gt;<br/><br/>
+
+&lt;script&gt;<br/>
+// JavaScript function<br/>
+function calculate(operation){<br/>
+&nbsp;&nbsp;const n1 = parseFloat(document.getElementById("num1").value) || 0;<br/>
+&nbsp;&nbsp;const n2 = parseFloat(document.getElementById("num2").value) || 0;<br/>
+&nbsp;&nbsp;let result = 0;<br/><br/>
+&nbsp;&nbsp;if(operation === "add") result = n1 + n2;<br/>
+&nbsp;&nbsp;if(operation === "subtract") result = n1 - n2;<br/><br/>
+&nbsp;&nbsp;document.getElementById("calcResult").innerText = "Үр дүн: " + result;<br/>
+}<br/>
+&lt;/script&gt;
+</div>
+
+
+
+<script>
+// ================= CALCULATOR =================
+function calculate(operation){
+    const n1 = parseFloat(document.getElementById("num1").value) || 0;
+    const n2 = parseFloat(document.getElementById("num2").value) || 0;
+    let result = 0;
+
+    if(operation === "add") result = n1 + n2;
+    if(operation === "subtract") result = n1 - n2;
+
+    document.getElementById("calcResult").innerText = "Үр дүн: " + result;
+}
+</script>
+</section>
+
+
+
+
+<script>
+// ================= CALCULATOR =================
+function calculate(operation){
+    const n1 = parseFloat(document.getElementById("num1").value) || 0;
+    const n2 = parseFloat(document.getElementById("num2").value) || 0;
+    let result = 0;
+
+    if(operation === "add") result = n1 + n2;
+    if(operation === "subtract") result = n1 - n2;
+
+    document.getElementById("calcResult").innerText = "Үр дүн: " + result;
+}
+</script>
+
+
+
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-4">document.getElementById() Usage</h2>
+<p class="text-gray-700 mb-4">
+JavaScript-д вэб элементийг авах, утга авах болон текст өөрчлөхөд <code>document.getElementById()</code> ашигладаг.
+</p>
+
+<div class="mb-4">
+
+<p class="mb-2">
+Энэ нь input-с утга авахад хэрэглэгдэнэ:
+</p>
+
+<pre class="code-box mb-4">
+let number = document.getElementById("num1").value;
+</pre>
+
+<p class="mb-2">
+Энэ нь HTML элемент доторх текстийг өөрчлөхөд хэрэглэгдэнэ:
+</p>
+
+<pre class="code-box mb-4">
+document.getElementById("calcResult").innerText = "Үр дүн: " + number;
+</pre>
+
+<p>
+Товчоор хэлбэл:
+<ul class="list-disc pl-6 mt-2   mb-4">
+<li><code>document.getElementById("id")</code> → HTML элемент авах</li>
+<li><code>.value</code> → input эсвэл form элементээс утга авах</li>
+<li><code>.innerText</code> → элементийн текстийг өөрчлөх, гаргах</li>
+</ul>
+</p>
+</div>
+</section>
+
+
+
+<footer class="bg-gray-900 text-white text-center p-4 mt-10">
+© 2026 JavaScript Lab
+</footer>
+
+<script>
+// ================= RUN EXAMPLE =================
+function runConsoleLog(){
+    const preview = document.getElementById("consolePreview");
+    preview.innerHTML = 'Консолд: "Сайн байна уу, JavaScript!"';
+}
+
+// ================= FUNCTION TYPES =================
+function clearActive(className){
+    document.querySelectorAll(className).forEach(btn=>{
+        btn.classList.remove("active-btn");
+    });
+}
+
+function showFunction(type, element){
+    clearActive(".btn");
+    element.classList.add("active-btn");
+
+    const preview = document.getElementById("functionPreview");
+    const explanation = document.getElementById("functionExplanation");
+    const code = document.getElementById("functionCode");
+
+    switch(type){
+        case "normal":
+            preview.innerHTML = `<strong>Normal Function:</strong> console.log(add(2,3)) → 5`;
+            explanation.innerText = "Энгийн функц нь function keyword ашиглан тодорхойлогддог.";
+            code.innerText = `function add(a, b) {\n  return a + b;\n}\nconsole.log(add(2,3));`;
+            break;
+        case "arrow":
+            preview.innerHTML = `<strong>Arrow Function:</strong> console.log(sum(2,3)) → 5`;
+            explanation.innerText = "Arrow функц нь ()=> синтакс ашиглана, this-г эцэг обьектод уялдуулдаг.";
+            code.innerText = `const sum = (a,b) => a + b;\nconsole.log(sum(2,3));`;
+            break;
+        case "anonymous":
+            preview.innerHTML = `<strong>Anonymous Function:</strong> console.log(calc(2,3)) → 5`;
+            explanation.innerText = "Anonymous функц нь нэргүй функц бөгөөд variable-д хадгалж ашиглана.";
+            code.innerText = `const calc = function(a,b){\n  return a + b;\n}\nconsole.log(calc(2,3));`;
+            break;
+    }
+}
+
+// ================= DEFAULT =================
+window.onload = function(){
+    const firstBtn = document.querySelector(".btn");
+    showFunction("normal", firstBtn);
+};
+</script>
+
+</body>
+</html>

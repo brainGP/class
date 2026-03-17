@@ -216,6 +216,157 @@ document.getElementById("calcResult").innerText = "Үр дүн: " + number;
 </div>
 </section>
 
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<h2 class="text-2xl font-bold mb-4">Event Listener гэж юу вэ?</h2>
+
+<p class="text-gray-700 mb-4">
+JavaScript-д хэрэглэгчийн үйлдлийг сонсож, тухайн event болох үед function ажиллуулахад <code>addEventListener()</code> ашиглагддаг. 
+Энэ нь <code>onclick</code>, <code>oninput</code> гэх мэт inline event-ээс илүү уян хатан бөгөөд олон function нэг event-д ажиллуулах боломжтой.
+</p>
+
+<h3 class="font-semibold mb-2">Үндсэн ойлголт:</h3>
+<ul class="list-disc pl-6 mb-4 text-gray-700">
+<li><code>element.addEventListener("event", function)</code> → тухайн event-ийг сонсож function ажиллуулна.</li>
+<li>Олон listener нэг event дээр нэмэх боломжтой. Inline <code>onclick</code> бол нэг function л ажиллана.</li>
+<li>Event function нь тухайн элементийг удирдах <code>this</code> объект болон <code>event object (e)</code> ашиглах боломжтой.</li>
+<li>Хэрэгцээгүй listener-ийг <code>removeEventListener</code> ашиглан устгах боломжтой.</li>
+<li>Тухайн event болох хүртэл function ажиллахгүй.</li>
+</ul>
+
+<h3 class="font-semibold mb-2">getElementById vs addEventListener vs removeEventListener:</h3>
+<p class="text-gray-700 mb-4">
+<ul class="list-disc pl-6">
+<li><strong>getElementById:</strong> HTML элементийг авна. .value эсвэл .innerText ашиглан утга авах, текст өөрчлөхөд хэрэглэгдэнэ.</li>
+<li><strong>addEventListener:</strong> Event-д function ажиллуулахад хэрэглэгдэнэ (click, input, mouseover, submit, keydown гэх мэт). Олон listener нэг event-д нэмэх боломжтой.</li>
+<li><strong>removeEventListener:</strong> addEventListener-ээр нэмсэн listener-ийг устгана. Ингэснээр тухайн function дахин ажиллахгүй болно.</li>
+<li>Жишээ: Input-д утга авахад getElementById ашиглана, button дарсан event-д function ажиллуулахад addEventListener хэрэглэнэ. Хэрвээ нэг товчийг зөвхөн нэг удаа ажиллуулахыг хүсвэл removeEventListener ашиглана.</li>
+</ul>
+</p>
+
+<h3 class="font-semibold mb-2">Жишээ:</h3>
+<div class="code-box mb-4">
+&lt;button id="btnClick"&gt;Click Me&lt;/button&gt;<br/>
+&lt;p id="output"&gt;&lt;/p&gt;<br/><br/>
+&lt;script&gt;<br/>
+const button = document.getElementById("btnClick");<br/>
+const output = document.getElementById("output");<br/><br/>
+button.addEventListener("click", function(){<br/>
+&nbsp;&nbsp;output.innerText = "Button дарлаа!";<br/>
+});<br/>
+&lt;/script&gt;
+</div>
+
+
+
+<h3 class="font-semibold mb-2">Товч тайлбар:</h3>
+<ul class="list-disc pl-6 text-gray-700">
+<li><strong>getElementById:</strong> Элемент авна</li>
+<li><strong>.value / .innerText:</strong> Элементээс утга авах эсвэл текст өөрчлөх</li>
+<li><strong>addEventListener:</strong> Event сонсож function ажиллуулна</li>
+<li>Олон listener нэг event дээр нэмэж болно, .onclick бол нэг function л ажиллана</li>
+</ul>
+</section>
+
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+    
+<h2 class="text-2xl font-bold mb-4">Event Listener – Төрөл бүрийн ашиглалт</h2>
+
+<p class="text-gray-700 mb-4">
+Энд бид click, input, mouseover, keydown, submit зэрэг event-үүдийг хэрхэн ашиглахыг харуулсан жишээнүүдийг үзэх болно. Мөн function устгах жишээ оруулсан.
+</p>
+
+
+<div class="code-box mb-4">
+&lt;button id="clickBtn"&gt;Click Me&lt;/button&gt;<br/>
+&lt;p id="clickOutput"&gt;&lt;/p&gt;<br/><br/>
+&lt;script&gt;<br/>
+const clickBtn = document.getElementById("clickBtn");<br/>
+const clickOutput = document.getElementById("clickOutput");<br/>
+clickBtn.addEventListener("click", function(){<br/>
+&nbsp;&nbsp;clickOutput.innerText = "Button дарлаа!";<br/>
+});<br/>
+&lt;/script&gt;
+</div>
+
+<div class="code-box mb-4">
+&lt;input type="text" id="textInput" placeholder="Type something"&gt;<br/>
+&lt;p id="inputOutput"&gt;&lt;/p&gt;<br/><br/>
+&lt;script&gt;<br/>
+const textInput = document.getElementById("textInput");<br/>
+const inputOutput = document.getElementById("inputOutput");<br/>
+textInput.addEventListener("input", function(){<br/>
+&nbsp;&nbsp;inputOutput.innerText = "Текст: " + textInput.value;<br/>
+});<br/>
+&lt;/script&gt;
+</div>
+
+
+<div class="code-box mb-4">
+&lt;div id="hoverBox" style="width:200px;height:100px;background:#ccc;text-align:center;line-height:100px;"&gt;Hover over me&lt;/div&gt;<br/>
+&lt;p id="hoverOutput"&gt;&lt;/p&gt;<br/><br/>
+&lt;script&gt;<br/>
+const hoverBox = document.getElementById("hoverBox");<br/>
+const hoverOutput = document.getElementById("hoverOutput");<br/>
+hoverBox.addEventListener("mouseover", function(){<br/>
+&nbsp;&nbsp;hoverOutput.innerText = "Mouse over!";<br/>
+});<br/>
+hoverBox.addEventListener("mouseout", function(){<br/>
+&nbsp;&nbsp;hoverOutput.innerText = "Mouse out!";<br/>
+});<br/>
+&lt;/script&gt;
+</div>
+
+
+<div class="code-box mb-4">
+&lt;input type="text" id="keyInput" placeholder="Press a key"&gt;<br/>
+&lt;p id="keyOutput"&gt;&lt;/p&gt;<br/><br/>
+&lt;script&gt;<br/>
+const keyInput = document.getElementById("keyInput");<br/>
+const keyOutput = document.getElementById("keyOutput");<br/>
+keyInput.addEventListener("keydown", function(e){<br/>
+&nbsp;&nbsp;keyOutput.innerText = "You pressed: " + e.key;<br/>
+});<br/>
+&lt;/script&gt;
+</div>
+
+
+<div class="code-box mb-4">
+&lt;form id="myForm"&gt;<br/>
+&nbsp;&nbsp;&lt;input type="text" id="formInput" placeholder="Type name"&gt;<br/>
+&nbsp;&nbsp;&lt;button type="submit"&gt;Submit&lt;/button&gt;<br/>
+&lt;/form&gt;<br/>
+&lt;p id="formOutput"&gt;&lt;/p&gt;<br/><br/>
+&lt;script&gt;<br/>
+const myForm = document.getElementById("myForm");<br/>
+const formOutput = document.getElementById("formOutput");<br/>
+myForm.addEventListener("submit", function(e){<br/>
+&nbsp;&nbsp;e.preventDefault(); // page reload зогсоох<br/>
+&nbsp;&nbsp;formOutput.innerText = "Form submitted: " + document.getElementById("formInput").value;<br/>
+});<br/>
+&lt;/script&gt;
+</div>
+
+
+<div class="code-box mb-4">
+&lt;button id="onceBtn"&gt;Click Once&lt;/button&gt;<br/>
+&lt;p id="onceOutput"&gt;&lt;/p&gt;<br/><br/>
+&lt;script&gt;<br/>
+const onceBtn = document.getElementById("onceBtn");<br/>
+const onceOutput = document.getElementById("onceOutput");<br/>
+function handleClick(){<br/>
+&nbsp;&nbsp;onceOutput.innerText = "Button дарлаа! (function устсан)";<br/>
+&nbsp;&nbsp;onceBtn.removeEventListener("click", handleClick);<br/>
+}<br/>
+onceBtn.addEventListener("click", handleClick);<br/>
+&lt;/script&gt;
+</div>
+
+<p class="text-gray-700 mt-2">
+Эдгээр жишээнүүд нь оюутнуудад <code>addEventListener</code>-ийг click, input, mouseover, keydown, submit болон function устгах зэрэг **diff situation-д хэрхэн ашиглахыг** харуулна.
+</p>
+
+</section>
 
 
 <footer class="bg-gray-900 text-white text-center p-4 mt-10">

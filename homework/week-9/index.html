@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 7 – JavaScript Introduction</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+darkMode: "class"
+}
+</script>
+
+<style>
+.transition-colors{
+transition:background-color .3s,color .3s;
+}
+</style>
+
+</head>
+
+<body class="bg-zinc-50 dark:bg-zinc-900 transition-colors">
+
+<!-- HEADER -->
+
+<header class="bg-white dark:bg-zinc-800 shadow py-4 sticky top-0 z-50 transition-colors">
+
+<div class="max-w-6xl mx-auto flex justify-between">
+
+<h1 class="font-bold text-xl dark:text-white">
+Week 7 – JavaScript
+</h1>
+</div>
+
+</header>
+
+<!-- BACK -->
+<div class="max-w-6xl mx-auto mt-10 space-y-16 dark:text-zinc-200">
+
+<section>
+
+  <h2 class="text-2xl font-bold mb-6">
+    Week 9 – Final JavaScript Project
+  </h2>
+
+  <div class="space-y-4 text-lg">
+
+    <p>Та бүхэн өмнөх бүх мэдлэгээ ашиглан <strong>бүтэн веб төсөл</strong> хийнэ.</p>
+
+    <ul class="list-disc pl-6 space-y-2">
+      <li>HTML + Tailwind ашигласан байх</li>
+      <li>JavaScript ашигласан байх</li>
+      <li>EventListener ашигласан байх</li>
+      <li>Хэрэглэгчтэй interaction (click, input, гэх мэт)</li>
+      <li>Өөрийн санаагаар хийсэн байх</li>
+    </ul>
+
+  </div>
+
+  <div class="mt-6 p-4 bg-green-100 dark:bg-green-900 rounded">
+<strong>Жишээ санаанууд:</strong><br/>
+    - To-do app<br/>
+    - жижиг game<br/>
+    - interactive UI
+  </div>
+
+</section>
+
+</div>
+
+  <script>
+    function calculate(){
+      const n1 = parseFloat(document.getElementById('num1').value) || 0;
+      const n2 = parseFloat(document.getElementById('num2').value) || 0;
+      const op = document.getElementById('operation').value;
+      let res = 0;
+      if(op === '+') res = n1 + n2;
+      if(op === '-') res = n1 - n2;
+      document.getElementById('result').value = res;
+    }
+  </script>
+</section>
+
+</body>
+</html>

@@ -58,6 +58,7 @@ class="bg-white shadow p-4 transition-all duration-300">
 
 <nav class="flex gap-4 text-sm hidden md:flex">
     <a class="hover:text-blue-500" href="#tags">Tags</a>
+    <a class="hover:text-blue-500" href="#positioning">Positioning</a>
 <a class="hover:text-blue-500" href="#flexbox">Flexbox</a>
 <a class="hover:text-blue-500" href="#spacing">Spacing</a>
 <a class="hover:text-blue-500" href="#form">Form</a>
@@ -145,6 +146,143 @@ class="bg-white shadow p-4 transition-all duration-300">
   <!-- Code Box -->
   <div id="tagCode" class="code-box bg-gray-900 text-green-400 rounded-xl p-4 shadow-lg"></div>
 </section>
+
+
+
+<!-- ================= ABSOLUTE VS RELATIVE EXAMPLE ================= -->
+<section id="positioning" class="p-6 bg-white m-10 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-6">CSS Position: Relative vs Absolute</h2>
+
+  <p class="mb-4 text-gray-700">
+    CSS-д <code>position</code> нь элементүүдийг хаана байрлуулахыг тодорхойлдог. Хамгийн түгээмэл нь <code>relative</code> болон <code>absolute</code>.
+    Tailwind болон CSS-ээр хоёрыг ч ашиглаж болно.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+    <!-- ================= RELATIVE EXAMPLE ================= -->
+    <div>
+      <h3 class="font-semibold mb-2">Relative Parent + Absolute Child</h3>
+      <div class="relative bg-gray-100 p-6 h-48 border border-gray-300 rounded">
+        <div class="absolute top-4 right-4 bg-purple-500 text-white p-2 rounded shadow">
+          Absolute Box
+        </div>
+        <p class="text-gray-700 mt-2">
+          Эцэг div-д <code>relative</code> ашигласнаар доторхой child box нь зөвхөн энэ эцэг div-ийн дээд баруун буланд байрлана.
+        </p>
+      </div>
+      <p class="text-sm text-gray-500 mt-2">
+        Tailwind: <code>relative</code> on parent, <code>absolute top-4 right-4</code> on child.
+      </p>
+      <div class="code-box mt-2">
+.parent { position: relative; } <br/>
+.child { position: absolute; top: 10px; right: 10px; }
+      </div>
+    </div>
+
+    <!-- ================= ABSOLUTE WITHOUT RELATIVE ================= -->
+    <div>
+      <h3 class="font-semibold mb-2">Absolute Child without Relative Parent</h3>
+      <div class="bg-gray-100 p-6 h-48 border border-gray-300 rounded">
+        <div class="absolute top-4 right-4 bg-pink-500 text-white p-2 rounded shadow">
+          Absolute Box
+        </div>
+        <p class="text-gray-700 mt-2">
+         Parent-д <code>relative</code> байхгүй учир absolute child нь page-д харгалзана.
+        </p>
+      </div>
+      <p class="text-sm text-gray-500 mt-2">
+        Tailwind:
+      </p>
+      <div class="code-box mt-2">
+        parent: hasn't <b>relative</b>  <br> 
+ child: <b>absolute</b> top-4 right-4<br>
+
+      </div>
+        <p class="text-sm text-gray-500 mt-2">
+        CSS:
+      </p>
+      <div class="code-box mt-2">
+.child { position: absolute; top: 10px; right: 10px; }
+      </div>
+    </div>
+
+  </div>
+  <p class="mt-4 text-gray-700">
+     Тайлбар: <br/>
+    - Relative parent нь child-г өөрийн координатад харгалзуулдаг.<br/>
+    - Absolute child нь parent-д хамааралтай бол сайн, хамааралгүй бол дэлгэцэн дээр байрлана.<br/>
+    - Common use case: Tooltip, Badge, Floating button, Modal, Dropdown menu.
+  </p>
+</section>
+
+
+
+
+<!-- ================= ABSOLUTE VS RELATIVE REALISTIC ================= -->
+  <section id="positioning-real" class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded-2xl shadow-lg">
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">Relative vs Absolute</h2>
+  <p class="mb-4 text-gray-700">
+    Вэбсайт дээр relative болон absolute нь зөвхөн coordinate бус, <strong>design layout</strong>-д хэрэгтэй. 
+    Жишээ нь: notification badge, corner label, floating button.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <!-- ================= HEADER NOTIFICATION BADGE ================= -->
+    <div>
+      <h3 class="font-semibold mb-2">Header Notification Badge</h3>
+      <div class="relative bg-gray-100 p-6 h-32 rounded border border-gray-300">
+        <span class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">5</span>
+        <p class="mt-4 text-gray-700">
+          Relative parent дээр absolute badge байрласан тул зөвхөн энэ box-д хамаарна.
+        </p>
+      </div>
+      <div class="code-box mt-2">
+.parent { position: relative; } <br/>
+.badge { position: absolute; top: 8px; right: 8px; }
+      </div>
+    </div>
+
+    <!-- ================= CARD CORNER LABEL ================= -->
+    <div>
+      <h3 class="font-semibold mb-2">Card Corner Label</h3>
+      <div class="relative bg-white p-4 border border-gray-300 rounded shadow h-48">
+        <span class="absolute top-0 left-0 bg-blue-500 text-white px-3 py-1 rounded-br-lg text-sm">New</span>
+        <h4 class="font-bold mt-8">Product Name</h4>
+        <p class="text-gray-700 mt-2">Product description goes here. Absolute label-top-left.</p>
+      </div>
+      <div class="code-box mt-2">
+.card { position: relative; } <br/>
+.label { position: absolute; top: 0; left: 0; }
+      </div>
+    </div>
+
+    <!-- ================= FLOATING BUTTON ================= -->
+    <div>
+      <h3 class="font-semibold mb-2">Floating Button</h3>
+      <div class="relative bg-gray-100 p-6 h-48 rounded border border-gray-300">
+        <button class="absolute bottom-4 right-4 bg-purple-500 text-white px-4 py-2 rounded shadow-lg hover:bg-purple-600">
+          Chat
+        </button>
+        <p class="text-gray-700 mt-2">
+          Absolute button нь parent-д хамааралтай байснаар зөв байрлалтай.
+        </p>
+      </div>
+      <div class="code-box mt-2">
+.container { position: relative; } <br/>
+.button { position: absolute; bottom: 16px; right: 16px; }
+      </div>
+    </div>
+
+  </div>
+
+  <p class="mt-6 text-gray-700">
+    Tailwind дээр: parent-д <code>relative</code>, child-д <code>absolute top-4 right-4</code> гэх мэтээр бичнэ.  
+    Энэ нь header-д notification, card-д label, footer-д floating button хийхэд ашиглагдана.
+  </p>
+</section>
+
 
 
 <!-- ================= CSS BEFORE AFTER ================= -->

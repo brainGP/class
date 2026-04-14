@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Lesson</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+.code-box {
+    background: #0f172a;
+    color: #22c55e;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+.preview-box {
+    padding: 16px;
+    border-radius: 10px;
+    background: #f9fafb;
+}
+</style>
+</head>
+
+<body class="bg-gray-100 font-sans text-gray-800">
+
+<header class="bg-white shadow p-4">
+<div class="max-w-6xl mx-auto flex justify-between items-center">
+<h1 class="font-bold text-xl">JSON & Mapping</h1>
+<div class="flex gap-8">
+<a href="../" class="text-blue-600 hover:underline">Classes</a>
+<a href="../homework/" class="text-blue-600 hover:underline">Homework</a>
+<a href="../contact/" class="text-blue-600 hover:underline">Contact</a>
+</div>
+</div>
+</header>
+
+<div class="max-w-6xl mx-auto pt-6">
+  <a href="../" class="inline-flex items-center gap-2 text-blue-600 font-medium hover:gap-3 transition-all duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+    </svg>
+    Back
+  </a>
+</div>
+
+<!-- JSON INTRO -->
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">JSON гэж юу вэ?</h2>
+
+  <p class="text-gray-700 mb-4">
+    JSON нь өгөгдлийг хадгалах, дамжуулах зориулалттай стандарт формат юм.
+  </p>
+
+  <div class="code-box mb-4">
+Backend → JSON → Frontend
+  </div>
+
+  <p class="text-gray-700">
+    JSON нь backend-ээс ирсэн мэдээллийг frontend дээр ашиглахад хэрэглэгддэг.
+  </p>
+</section>
+
+<!-- STRUCTURE -->
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">JSON бүтэц</h2>
+
+  <div class="code-box mb-4">
+{<br/>
+&nbsp;&nbsp;"name": "Dorj",<br/>
+&nbsp;&nbsp;"age": 18,<br/>
+&nbsp;&nbsp;"city": "Ulaanbaatar"<br/>
+}
+  </div>
+
+  <ul class="list-disc pl-6 text-gray-700">
+    <li><b>Key</b> → "name" (заавал " " дотор бичигдэнэ)</li>
+    <li><b>Value</b> → утга (string, number, boolean, array)</li>
+    <li><b>Object</b> → { }</li>
+  </ul>
+</section>
+
+<!-- DATA TYPES -->
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">JSON өгөгдлийн төрөл</h2>
+
+  <div class="code-box mb-4">
+{<br/>
+&nbsp;&nbsp;"name": "Dorj",<br/>
+&nbsp;&nbsp;"age": 18,<br/>
+&nbsp;&nbsp;"isStudent": true,<br/>
+&nbsp;&nbsp;"skills": ["JS", "HTML"],<br/>
+&nbsp;&nbsp;"address": { "city": "UB" }<br/>
+}
+  </div>
+
+  <ul class="list-disc pl-6 text-gray-700">
+    <li>String → "text"</li>
+    <li>Number → 123</li>
+    <li>Boolean → true / false</li>
+    <li>Array → [ ]</li>
+    <li>Object → { }</li>
+  </ul>
+</section>
+
+<!-- ARRAY JSON -->
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">Array JSON</h2>
+
+  <div class="code-box mb-4">
+[<br/>
+&nbsp;&nbsp;{ "name": "Bat" },<br/>
+&nbsp;&nbsp;{ "name": "Anu" },<br/>
+&nbsp;&nbsp;{ "name": "Bold" }<br/>
+]
+  </div>
+
+  <p class="text-gray-700">
+    Array JSON нь олон объект хадгалах үед ашиглагддаг.
+  </p>
+</section>
+
+<!-- RULES -->
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">JSON бичих дүрэм</h2>
+
+  <ul class="list-disc pl-6 text-gray-700 space-y-2">
+    <li>Key заавал "double quote" дотор байна</li>
+    <li>Value төрөл өөр байж болно</li>
+    <li>Сүүлд comma (,) тавихгүй</li>
+    <li>Function бичиж болохгүй</li>
+  </ul>
+
+  <div class="code-box mt-4">
+❌ Буруу: { name: "Bat" }<br/>
+✅ Зөв: { "name": "Bat" }
+  </div>
+</section>
+
+<!-- MAPPING INTRO -->
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">Mapping гэж юу вэ?</h2>
+
+  <p class="text-gray-700 mb-4">
+    Mapping гэдэг нь array доторх бүх элемент дээр нэг үйлдэл хийх процесс юм.
+  </p>
+
+  <div class="code-box mb-4">
+Array → map() → нэг нэгээр нь ажиллана
+  </div>
+
+  <p class="text-gray-700">
+    Жишээ: list доторх бүх нэрийг нэг нэгээр нь гаргах
+  </p>
+</section>
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">JSON → UI (map ашиглах)</h2>
+
+  <p class="text-gray-700 mb-4">
+    Одоо бид JSON өгөгдлийг вэб дээр хэрхэн харуулдагийг сурна. Үүний тулд <b>map()</b> ашиглана.
+  </p>
+
+  <div class="code-box mb-4">
+const users = [<br/>
+&nbsp;&nbsp;{ name: "Bat" },<br/>
+&nbsp;&nbsp;{ name: "Anu" }<br/>
+];
+  </div>
+
+  <p class="text-gray-700 mb-4">
+    Энэ бол <b>array of objects</b>. Өөрөөр хэлбэл олон хэрэглэгчийн мэдээлэл байна.
+  </p>
+
+  <h3 class="font-bold mb-2"> map() гэж юу вэ?</h3>
+
+  <p class="text-gray-700 mb-4">
+    <b>map()</b> гэдэг нь array доторх <b>бүх элемент дээр нэг нэгээр нь ажил хийх</b> функц юм.
+  </p>
+
+  <div class="code-box mb-4">
+users.map(user => {
+  console.log(user.name);
+});
+  </div>
+
+  <h3 class="font-bold mb-2"> Энэ кодыг задалж ойлгоё</h3>
+
+  <ul class="list-disc pl-6 text-gray-700 space-y-2">
+    <li><b>users</b> → өгөгдлийн жагсаалт (array)</li>
+
+    <li><b>.map()</b> → энэ array доторх бүх item дээр давталт хийх функц</li>
+
+    <li><b>user</b> → нэг элемент (нэг хүн)</li>
+
+    <li><b>user =></b> → “энэ нэг элемент дээр хийх үйлдэл” гэж хэлж байна</li>
+  </ul>
+
+  <p class="text-gray-700 mt-4">
+     Товчоор: <br/>
+    <b>user</b> = нэг хүн <br/>
+    <b>=></b> = “энэ хүн дээр юу хийх вэ?” гэж тодорхойлж байна
+  </p>
+
+  <h3 class="font-bold mt-6 mb-2"> DOM дээр харуулах</h3>
+
+  <p class="text-gray-700 mb-4">
+    Одоо бид зөвхөн console биш, HTML дээр харуулна.
+  </p>
+
+  <div class="code-box mb-4">
+const list = document.getElementById("list");
+  </div>
+
+  <p class="text-gray-700 mb-4">
+   Энэ нь HTML доторх <b>list</b> гэсэн хэсгийг олж авч байна.
+  </p>
+
+  <div class="code-box mb-4">
+users.map(user => {
+  const li = document.createElement("li");
+  li.innerText = user.name;
+  list.appendChild(li);
+});
+  </div>
+
+  <h3 class="font-bold mb-2"> Алхам алхмаар юу болж байна?</h3>
+
+  <ol class="list-decimal pl-6 text-gray-700 space-y-2">
+    <li>users array доторх нэг хүн (user) авна</li>
+    <li>li гэсэн шинэ HTML элемент үүсгэнэ</li>
+    <li>li дотор тухайн хүний нэрийг бичнэ</li>
+    <li>HTML list дотор нэмнэ (харагдуулна)</li>
+  </ol>
+
+  <div class="preview-box mt-4">
+    Гаралт:
+    <br/>Bat
+    <br/>Anu
+  </div>
+</section>
+
+
+
+<!-- PRACTICE -->
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">Practice</h2>
+
+  <p class="text-gray-700 mb-4">
+    Доорх JSON-г UI дээр харуул:
+  </p>
+
+  <div class="code-box">
+const products = [<br/>
+&nbsp;&nbsp;{ name: "iPhone", price: 1000 },<br/>
+&nbsp;&nbsp;{ name: "Laptop", price: 2000 }<br/>
+];
+  </div>
+</section>
+
+<footer class="bg-gray-900 text-white text-center p-4 mt-10">
+© 2026 JSON Lesson
+</footer>
+
+<script>
+const users = [
+  { name: "Bat" },
+  { name: "Anu" },
+  { name: "Bold" }
+];
+
+const list = document.getElementById("list");
+
+users.map(user => {
+  const li = document.createElement("li");
+  li.innerText = user.name;
+  list.appendChild(li);
+});
+</script>
+
+</body>
+</html>

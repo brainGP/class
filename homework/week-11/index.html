@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 10 – E-commerce Project</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { darkMode: 'class' }
+</script>
+
+
+<style>
+body { font-family: 'Poppins', sans-serif; }
+
+.gradient-border-btn {
+  border: 4px solid transparent;
+  background-image: linear-gradient(#101010, #101010), linear-gradient(to right, #a855f7, #ec4899);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.code-box {
+    background: #0f172a;
+    color: #22c55e;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    overflow-x: auto;
+}
+</style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+<!-- HEADER -->
+<header class="bg-white shadow p-4 sticky top-0 z-10">
+  <div class="max-w-6xl mx-auto flex justify-between items-center">
+    <h1 class="font-bold text-xl">Week 10 – JavaScript Project</h1>
+  </div>
+</header>
+
+<!-- BACK -->
+<div class="max-w-6xl mx-auto pt-6">
+  <a href="../" class="inline-flex items-center gap-2 text-blue-600 font-medium hover:gap-3 transition-all duration-300">
+    ← Back
+  </a>
+</div>
+
+<!-- MAIN -->
+<section class="max-w-6xl mx-auto mt-6 bg-white p-6 rounded shadow">
+
+<h2 class="w-96 text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">
+  E-commerce Demo
+</h2>
+
+<h2 class="text-2xl font-bold mb-4 mt-4">JSON + map() Product Page</h2>
+
+<p class="mb-6">
+Та JSON ашиглан бүтээгдэхүүн үүсгэж, map() ашиглан дэлгэц дээр харуулна.
+</p>
+
+<ul class="list-disc pl-6 space-y-2 mb-8">
+  <li>Product data → JSON array</li>
+  <li>map() ашиглан UI дээр харуулах</li>
+  <li>Product card дизайн хийх</li>
+  <li>DOM ашиглах (createElement)</li>
+</ul>
+
+<!-- PRODUCTS -->
+<div id="productList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+
+<!-- CODE -->
+<h2 class="text-2xl font-bold mt-10 mb-4">Example Code</h2>
+
+<div class="code-box">
+const products = [<br/>
+&nbsp;&nbsp;{ name: "iPhone", price: 1200, image: "..." },<br/>
+&nbsp;&nbsp;{ name: "Laptop", price: 2000, image: "..." }<br/>
+];<br/><br/>
+
+products.map(product => {<br/>
+&nbsp;&nbsp;// create card<br/>
+});
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white mt-10 p-4 shadow text-center">
+  &copy; 2026 Week 10 – E-commerce Homework
+</footer>
+
+<!-- JS -->
+<script>
+// JSON DATA (Unsplash images)
+const products = [
+  {
+    name: "iPhone 14",
+    price: 1200,
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+  },
+  {
+    name: "MacBook",
+    price: 2500,
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+  },
+  {
+    name: "AirPods",
+    price: 300,
+    image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad"
+  },
+  {
+    name: "iPad",
+    price: 900,
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0"
+  },
+  {
+    name: "Apple Watch",
+    price: 600,
+    image: "https://images.unsplash.com/photo-1459802071246-377c0346da93?q=80&w=1009&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  }
+];
+
+// DOM
+const productList = document.getElementById("productList");
+
+// MAP
+products.map(product => {
+
+  const card = document.createElement("div");
+  card.className = "bg-gray-50 p-4 rounded-lg shadow hover:shadow-lg transition";
+
+  card.innerHTML = `
+    <img src="${product.image}" class="w-full h-40 object-cover rounded mb-3"/>
+    <h3 class="text-lg font-semibold">${product.name}</h3>
+    <p class="text-gray-600">$${product.price}</p>
+
+    <button class="mt-3 w-full py-2 rounded-full bg-black text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition">
+      Add to Cart
+    </button>
+  `;
+
+  productList.appendChild(card);
+});
+</script>
+
+</body>
+</html>

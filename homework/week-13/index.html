@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Dashboard</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body { font-family: 'Poppins', sans-serif; }
+
+.code-box {
+  background: #0f172a;
+  color: #22c55e;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  overflow-x: auto;
+}
+</style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+<!-- HEADER -->
+<header class="bg-white shadow p-4 sticky top-0">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="font-bold text-xl">Fetch Image</h1>
+  </div>
+</header>
+
+<!-- BACK -->
+<div class="max-w-6xl mx-auto pt-6">
+  <a href="../" class="text-blue-600 hover:text-blue-800">
+    ← Back
+  </a>
+</div>
+
+<section class="max-w-6xl mx-auto mt-6 bg-white p-6 rounded shadow">
+
+  <h2 class="text-2xl font-bold mb-4">Week 13 Homework: Albums API</h2>
+
+  <p class="text-gray-700 mb-4">
+ Энэ даалгаварт та нар <b>async / await + fetch()</b> ашиглан API-с data авч UI дээр харуулах болно.
+  </p>
+
+  <hr class="my-4"/>
+
+  <h3 class="font-bold mb-2"> Даалгаврын зорилго:</h3>
+  <ul class="list-disc pl-6 text-gray-700 mb-4">
+    <li>API-с data fetch хийх</li>
+    <li>async / await зөв ашиглах</li>
+    <li>map ашиглан data UI дээр харуулах</li>
+    <li>HTML дээр card хэлбэрээр render хийх</li>
+  </ul>
+
+  <hr class="my-4"/>
+
+  <h3 class="font-bold mb-2">Ашиглах API:</h3>
+
+  <div class="code-box mb-4">
+https://jsonplaceholder.typicode.com/albums
+  </div>
+
+  <hr class="my-4"/>
+
+  <h3 class="font-bold mb-2">Анхааруулга:</h3>
+
+  <ul class="list-disc pl-6 text-gray-700 mb-4">
+    <li>Энэ API нийт <b>5000 data</b> өгнө</li>
+    <li>Та нар зөвхөн <b>эхний 20 album</b>-ийг харуулна</li>
+    <li><b>id ашиглан filter хийх</b> (id <= 20)</li>
+  </ul>
+  <hr class="my-4"/>
+
+  <h3 class="font-bold mb-2">🔥 Bonus (extra) - 0.5 оноо :</h3>
+
+  <ul class="list-disc pl-6 text-gray-700">
+    <li>Loading icon харуулах - spin</li>
+    <li>Hover effect хийх</li>
+    <li>Clean card design хийх</li>
+  </ul>
+
+</section>
+
+<!-- CODE -->
+<!-- <section class="max-w-6xl mx-auto mt-6 bg-white p-6 rounded shadow">
+
+<h2 class="text-xl font-bold mb-3">JS Code</h2>
+
+<div class="code-box">
+const name = document.querySelector(".name");<br/>
+const price = document.querySelector(".price");<br/>
+const desc = document.querySelector(".desc");<br/>
+const add = document.querySelector(".add");<br/>
+const list = document.querySelector(".list");<br/><br/>
+
+add.addEventListener("click", () => {<br/>
+&nbsp;&nbsp;const n = name.value.trim();<br/>
+&nbsp;&nbsp;const p = price.value.trim();<br/>
+&nbsp;&nbsp;const d = desc.value.trim();<br/><br/>
+
+&nbsp;&nbsp;if (!n || !p || !d) return;<br/><br/>
+
+&nbsp;&nbsp;const card = document.createElement("div");<br/>
+&nbsp;&nbsp;card.className = "p-4 bg-gray-100 rounded-lg shadow";<br/><br/>
+
+&nbsp;&nbsp;card.innerHTML = `<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;${n}&lt;/h3&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;$${p}&lt;/p&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;${d}&lt;/p&gt;<br/>
+&nbsp;&nbsp;`;<br/><br/>
+
+&nbsp;&nbsp;list.append(card);<br/><br/>
+
+&nbsp;&nbsp;name.value = "";<br/>
+&nbsp;&nbsp;price.value = "";<br/>
+&nbsp;&nbsp;desc.value = "";<br/>
+});
+</div>
+
+</section> -->
+
+<script>
+const name = document.querySelector(".name");
+const price = document.querySelector(".price");
+const desc = document.querySelector(".desc");
+const add = document.querySelector(".add");
+const list = document.querySelector(".list");
+
+add.addEventListener("click", () => {
+
+  const n = name.value.trim();
+  const p = price.value.trim();
+  const d = desc.value.trim();
+
+  if (!n || !p || !d) return;
+
+  const card = document.createElement("div");
+
+  card.className = "p-4 bg-gray-50 rounded-lg shadow hover:shadow-md transition";
+
+  card.innerHTML = `
+    <h3 class="font-bold text-gray-800">${n}</h3>
+    <p class="text-blue-600 font-semibold">$${p}</p>
+    <p class="text-gray-600 text-sm">${d}</p>
+  `;
+
+  list.append(card);
+
+  name.value = "";
+  price.value = "";
+  desc.value = "";
+});
+</script>
+
+</body>
+</html>

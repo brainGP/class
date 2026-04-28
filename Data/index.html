@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FETCH Lesson</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+.code-box {
+    background: #0f172a;
+    color: #22c55e;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+.preview-box {
+    padding: 16px;
+    border-radius: 10px;
+    background: #f9fafb;
+}
+</style>
+</head>
+
+<body class="bg-gray-100 font-sans text-gray-800">
+
+<header class="bg-white shadow p-4">
+<div class="max-w-6xl mx-auto flex justify-between items-center">
+<h1 class="font-bold text-xl">ASYNC & AWAIT</h1>
+<div class="flex gap-8">
+<a href="../" class="text-blue-600 hover:underline">Classes</a>
+<a href="../homework/" class="text-blue-600 hover:underline">Homework</a>
+<a href="../contact/" class="text-blue-600 hover:underline">Contact</a>
+</div>
+</div>
+</header>
+
+<div class="max-w-6xl mx-auto pt-6">
+  <a href="../" class="inline-flex items-center gap-2 text-blue-600 font-medium hover:gap-3 transition-all duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+    </svg>
+    Back
+  </a>
+</div>
+
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">Static vs Dynamic Data</h2>
+
+  <p class="text-gray-700 mb-4">
+    Бид өмнө нь өгөгдлийг өөрсдөө бичиж ашиглаж байсан. Үүнийг <b>Static Data</b> гэдэг.
+  </p>
+
+  <div class="code-box mb-4">
+const users = [ <br/>
+  { name: "Bat" }, <br/>
+  { name: "Anu" } <br/>
+];
+  </div>
+
+  <p class="text-gray-700 mb-4">
+    Харин бодит системд өгөгдөл серверээс ирдэг. Үүнийг <b>Dynamic Data</b> гэдэг.
+  </p>
+
+  <div class="code-box">
+fetch("https://jsonplaceholder.typicode.com/users")
+  </div>
+
+  <ul class="list-disc pl-6 text-gray-700 mt-4 space-y-2">
+    <li>Static → өөрсдөө бичсэн</li>
+    <li>Dynamic → backend-ээс ирдэг</li>
+  </ul>
+</section>
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">fetch() гэж юу вэ?</h2>
+
+  <p class="text-gray-700 mb-4">
+    <b>fetch()</b> нь сервер рүү хүсэлт (request) явуулж өгөгдөл авах функц юм.
+  </p>
+
+  <div class="code-box mb-4">
+fetch("https://jsonplaceholder.typicode.com/users")
+  .then(res => res.json())
+  .then(data => console.log(data));
+  </div>
+
+  <h3 class="font-bold mb-2">Яаж ажилладаг вэ?</h3>
+
+  <ol class="list-decimal pl-6 text-gray-700 space-y-2">
+    <li>fetch → сервер рүү хүсэлт явуулна</li>
+    <li>response ирнэ</li>
+    <li>res.json() → JSON болгож хөрвүүлнэ</li>
+    <li>data → бид ашиглана</li>
+  </ol>
+
+  <p class="text-gray-700 mt-4">
+     Энэ нь бодит апп-д хамгийн их ашиглагддаг зүйл
+  </p>
+</section>
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">Яагаад fetch ашиглах ёстой вэ?</h2>
+
+  <ul class="list-disc pl-6 text-gray-700 space-y-2">
+    <li>Бодит өгөгдөл авахын тулд</li>
+    <li>Backend-тэй холбогдохын тулд</li>
+    <li>Dynamic website хийхийн тулд</li>
+  </ul>
+
+  <div class="code-box mt-4">
+Frontend → fetch() → Backend → JSON → UI
+  </div>
+</section>
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">JSON бүтэц</h2>
+
+  <div class="code-box mb-4">
+{<br/>
+&nbsp;&nbsp;"name": "Dorj",<br/>
+&nbsp;&nbsp;"age": 18,<br/>
+&nbsp;&nbsp;"city": "Ulaanbaatar"<br/>
+}
+  </div>
+
+  <ul class="list-disc pl-6 text-gray-700 mb-6">
+    <li><b>Key</b> → "name" (заавал " " дотор бичигдэнэ)</li>
+    <li><b>Value</b> → утга (string, number, boolean, array)</li>
+    <li><b>Object</b> → { }</li>
+  </ul>
+
+  <h3 class="text-xl font-bold mb-3">Object vs Array ялгаа</h3>
+
+  <p class="text-gray-700 mb-4">
+    JSON дотор хамгийн их ашиглагддаг 2 бүтэц бол <b>Object</b> болон <b>Array</b> юм.
+  </p>
+
+  <!-- OBJECT -->
+  <h4 class="font-semibold mb-2">1. Object</h4>
+
+  <div class="code-box mb-3">
+{<br/>
+&nbsp;&nbsp;"name": "Bat",<br/>
+&nbsp;&nbsp;"age": 18<br/>
+}
+  </div>
+
+  <ul class="list-disc pl-6 text-gray-700 mb-4">
+    <li>Нэг зүйл (single data)-г илэрхийлнэ</li>
+    <li>Key → value бүтэцтэй</li>
+    <li>Тодорхой мэдээлэл хадгална (нэг хүн, нэг бүтээгдэхүүн)</li>
+  </ul>
+
+  <!-- ARRAY -->
+  <h4 class="font-semibold mb-2">2. Array</h4>
+
+  <div class="code-box mb-3">
+[<br/>
+&nbsp;&nbsp;{ "name": "Bat" },<br/>
+&nbsp;&nbsp;{ "name": "Anu" }<br/>
+]
+  </div>
+
+  <ul class="list-disc pl-6 text-gray-700 mb-4">
+    <li>Олон зүйл (list of data) хадгална</li>
+    <li>Index ашиглаж хандана (0, 1, 2...)</li>
+    <li>Ихэнх API array буцаадаг ❗</li>
+  </ul>
+
+  <!-- KEY DIFFERENCE -->
+  <h4 class="font-semibold mb-2">Гол ялгаа</h4>
+
+  <div class="code-box mb-4">
+Object → нэг зүйл (user)<br/>
+Array → олон зүйл (users)
+  </div>
+
+
+</section>
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">map() + fetch()</h2>
+
+  <p class="text-gray-700 mb-4">
+    Өмнө нь бид static array дээр map ашигласан.
+    Одоо API-аас ирсэн data дээр map ашиглана.
+  </p>
+
+  <div class="code-box mb-4">
+fetch("https://jsonplaceholder.typicode.com/users")
+  .then(res => res.json())
+  .then(users => {
+
+    const list = document.getElementById("list");
+
+    users.map(user => {
+      const li = document.createElement("li");
+      li.innerText = user.name;
+      list.appendChild(li);
+    });
+
+  });
+  </div>
+
+  <p class="text-gray-700">
+    👉 users array-г бид бичээгүй ч map ажиллаж байна!
+  </p>
+</section>
+
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">async / await гэж юу вэ?</h2>
+
+  <p class="text-gray-700 mb-4">
+    <b>fetch()</b> нь серверээс data авах үед шууд хариу өгдөггүй.
+    Түр хугацаа шаардагддаг тул бид <b>хүлээх</b> хэрэгтэй болдог.
+  </p>
+
+  <!-- IMAGE PLACE -->
+  <div class="preview-box mb-4 text-center text-gray-400">
+    <img src="../img.png" alt="Async vs Sync" class="mx-auto"/>
+  </div>
+
+  <h3 class="font-bold mb-2">жишээ:</h3>
+  <p class="text-gray-700 mb-4">
+    Та кофе захиаллаа гэж бодъё
+  </p>
+  <ul class="list-disc pl-6 text-gray-700 mb-4">
+    <li>Захиалга өгнө</li>
+    <li>Хүлээнэ</li>
+    <li>Кофе ирнэ</li>
+  </ul>
+
+  <p class="text-gray-700 mb-4 font-bold">
+ Хэрвээ хүлээхгүй бол → кофе авч чадахгүй
+  </p>
+
+  <hr class="my-6"/>
+
+  <h3 class="font-bold mb-2"> await байхгүй (алдаа)</h3>
+
+  <div class="code-box mb-4">
+function getData() {<br/>
+  const res = fetch("https://jsonplaceholder.typicode.com/users");<br/>
+  console.log(res);<br/>
+}<br/>
+
+getData();
+  </div>
+
+  <p class="text-gray-700 mb-4">
+
+      <ul class="list-disc pl-6 text-gray-700 mb-4">
+    <li>fetch нь шууд data биш, <b>Promise (ирээдүйд data өгнө гэсэн амлалт)</b> буцаадаг </li>
+    <li>data харагдахгүй ❗</li>
+  </ul>
+ 
+  </p>
+
+
+  <hr class="my-6"/>
+  <h3 class="font-bold mb-2">async / await гэж юу вэ?</h3>
+
+<div class="code-box mb-4">
+
+async function getData() {<br/>
+&nbsp;&nbsp;console.log("1. function эхэллээ");<br/><br/>
+
+&nbsp;&nbsp;console.log("2. server рүү явж байна...");<br/>
+&nbsp;&nbsp;const res = await fetch("https://jsonplaceholder.typicode.com/users");<br/><br/>
+
+&nbsp;&nbsp;console.log("3. server-ээс хариу ирлээ");<br/>
+&nbsp;&nbsp;const data = await res.json();<br/><br/>
+
+&nbsp;&nbsp;console.log("4. data бэлэн боллоо");<br/>
+&nbsp;&nbsp;console.log(data);<br/>
+}<br/><br/>
+
+console.log("A. function дуудахын өмнө");<br/>
+getData();<br/>
+console.log("B. function дуудасны дараа");
+</div>
+
+<ul class="list-disc pl-6 text-gray-700 mb-4">
+  <li><b>async</b> -> "энэ function жаахан удаан ажиллана" гэж JS-д хэлж байна</li>
+  <li><b>await</b> -> Promise - "энэ хэсэг дээр түр хүлээ" гэсэн үг</li>
+  <li><b>fetch</b> -> execution order - "интернетээс data авч ирнэ"</li>
+</ul>
+
+<hr class="my-6"/>
+
+<h3 class="font-bold mb-2"> Яг юу болж байна вэ?</h3>
+
+<ol class="list-decimal pl-6 text-gray-700 mb-4">
+  <li>JS function-ийг эхлүүлнэ</li>
+  <li>server рүү data гуйна</li>
+  <li>хариу иртэл түр хүлээнэ </li>
+  <li>data ирмэгц үргэлжлүүлнэ</li>
+</ol>
+
+<div class="code-box mb-4">
+await = "түр хүлээ (data иртэл)"
+</div>
+
+<p class="text-gray-700">
+ <b>await байхгүй бол</b> JS шууд цаашаа явчихна, data бэлэн биш байдаг ❗
+</p>
+
+<hr class="my-6"/>
+
+<h3 class="font-bold mb-2"> Бодит амьдралтай жишээ</h3>
+
+<ul class="list-disc pl-6 text-gray-700">
+  <li>Чи кофе захиална </li>
+  <li>barista хийж эхэлнэ</li>
+  <li>чи түр хүлээнэ </li>
+  <li>кофе бэлэн болоод ирнэ</li>
+</ul>
+
+<p class="text-gray-700 mt-4"> 
+ async = кофе хийх процесс  <br/>
+ await = кофе бэлэн болохыг хүлээх
+</p>
+</section>
+
+
+
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">API -> UI (User List App)</h2>
+<a href="https://jsonplaceholder.typicode.com/albums">
+    <div class="code-box mb-4">
+https://jsonplaceholder.typicode.com/albums
+  </div>
+  </a>
+
+  <p class="text-gray-700 mb-4">
+    Бид API-с хэрэглэгчдийн мэдээлэл авч, UI дээр харуулна.
+  </p>
+
+  <!-- PREVIEW -->
+  <div class="preview-box mb-6">
+    <ul id="userList" class="space-y-3 grid grid-cols-2 md:grid-cols-3 gap-4 lg:grid-cols-4"></ul>
+  </div>
+
+  <!-- CODE -->
+  <div class="code-box">
+async function loadUsers() { <br/>
+  const list = document.getElementById("userList");<br/>
+  list.innerText = "Loading...";<br/>
+<br/>
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");<br/>
+  const users = await res.json();<br/>
+<br/>
+  list.innerText = "";<br/>
+<br/>
+  users.map(user => {<br/>
+    const li = document.createElement("li");<br/>
+<br/>
+    li.className = "p-4 bg-white rounded shadow";<br/>
+<br/>
+    li.innerHTML = `<br/>
+      <div>${user.name}</div>
+      <div>${user.email}</div>
+      <div>${user.address.city}</div><br/>
+    `;<br/>
+<br/>
+    list.appendChild(li);<br/>
+  });<br/>
+}<br/>
+<br/>
+loadUsers();
+  </div>
+  <div class="mt-6 text-gray-700 space-y-4 text-sm leading-relaxed">
+
+  <p><b>async function loadUsers()</b> → API-с хэрэглэгчдийн мэдээлэл авах function үүсгэж байна. <b>async</b> нь await ашиглах боломж олгодог.</p>
+
+  <p><b>document.getElementById("userList")</b> → HTML дээрх userList элементийг авч, data харуулах хэсгийг зааж байна.</p>
+
+  <p><b>list.innerText = "Loading..."</b> → Data ирэх хүртэл “ачаалж байна” гэж харуулж байна.</p>
+
+  <p><b>await fetch(...)</b> → API руу хүсэлт явуулж, серверийн хариу иртэл хүлээж байна.</p>
+
+  <p><b>await res.json()</b> → серверээс ирсэн response-г JSON формат руу хөрвүүлж, users хувьсагчид хадгалж байна.</p>
+
+  <p><b>list.innerText = ""</b> → Loading текстийг устгаж, шинэ data харуулахад бэлдэж байна.</p>
+
+  <p><b>users.map(user => {...})</b> → users array доторх бүх хэрэглэгч дээр нэг нэгээр нь ажиллаж байна.</p>
+
+  <p><b>document.createElement("li")</b> → шинэ HTML элемент үүсгэж байна (нэг хэрэглэгч = нэг card).</p>
+
+  <p><b>li.className</b> → Tailwind ашиглан дизайныг тохируулж байна.</p>
+
+  <p><b>li.innerHTML</b> → хэрэглэгчийн нэр, email, city-г HTML дотор оруулж байна. <br/>
+   <b>user.address.city</b> нь nested object-с data авч байна.</p>
+
+  <p><b>list.appendChild(li)</b> → үүсгэсэн элементийг HTML дээр нэмэж, харагдуулж байна.</p>
+
+  <p><b>loadUsers()</b> → function-г ажиллуулж байна. Энэ мөр байхгүй бол юу ч болохгүй.</p>
+
+</div>
+</section>
+
+<script>
+async function loadUsers() {
+  const list = document.getElementById("userList");
+  list.innerText = "Loading...";
+
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const users = await res.json();
+
+  list.innerText = "";
+
+  users.map(user => {
+    const li = document.createElement("li");
+
+    li.className = "p-4 bg-white rounded shadow";
+
+    li.innerHTML = `
+      <div class="font-bold">${user.name}</div>
+      <div class="text-sm text-gray-500">${user.email}</div>
+      <div class="text-sm">${user.address.city}</div>
+    `;
+
+    list.appendChild(li);
+  });
+}
+
+loadUsers();
+</script>
+
+<footer class="bg-gray-900 text-white text-center p-4 mt-10">
+© 2026 JSON Lesson
+</footer>
+
+<script>
+const users = [
+  { name: "Bat" },
+  { name: "Anu" },
+  { name: "Bold" }
+];
+
+const list = document.getElementById("list");
+
+users.map(user => {
+  const li = document.createElement("li");
+  li.innerText = user.name;
+  list.appendChild(li);
+});
+</script>
+
+</body>
+</html>

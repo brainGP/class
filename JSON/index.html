@@ -329,6 +329,92 @@ users.map(user => {
   </div>
 </section>
 
+<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+
+  <h2 class="text-2xl font-bold mb-4">Template String (${ }) гэж юу вэ?</h2>
+
+  <p class="text-gray-700 mb-4">
+    Бид өмнө нь JavaScript дээр text + data холбохдоо <b>+</b> ашигладаг байсан.
+    Энэ нь ажилладаг ч урт, ойлгоход хэцүү байдаг.
+  </p>
+
+  <div class="code-box mb-4">
+const name = "Bat";<br/>
+console.log("My name is " + name);
+  </div>
+
+  <p class="text-gray-700 mb-4">
+    Энэ арга нь хуучин бөгөөд олон data холбох үед маш төвөгтэй болдог.
+  </p>
+
+  <hr class="my-6"/>
+
+  <h3 class="font-bold mb-2"> Шинэ арга (Template String)</h3>
+
+  <p class="text-gray-700 mb-4">
+    Одоо бид <b>backtick (` `)</b> ашиглаж илүү хялбар бичдэг болсон.
+  </p>
+
+  <div class="code-box mb-4">
+const name = "Bat";<br/>
+console.log(`My name is ${name}`);
+  </div>
+
+  <p class="text-gray-700 mb-4">
+    <b> ${ }  </b> дотор variable-аа шууд оруулдаг.
+  </p>
+
+  <hr class="my-6"/>
+
+  <h3 class="font-bold mb-2"> Яаж ажилладаг вэ?</h3>
+
+  <ul class="list-disc pl-6 text-gray-700 mb-4">
+    <li>Backtick (` `) дотор бичнэ</li>
+    <li>${ } дотор variable оруулна</li>
+    <li>JS автоматаар утгыг орлуулна</li>
+  </ul>
+
+  <div class="code-box mb-4">
+`${name}` → "Bat" болж хувирна
+  </div>
+
+  <hr class="my-6"/>
+
+  <h3 class="font-bold mb-2"> Яагаад хэрэгтэй вэ?</h3>
+
+  <ul class="list-disc pl-6 text-gray-700 mb-4">
+    <li>Илүү богино код</li>
+    <li>Илүү ойлгомжтой</li>
+    <li>API data UI дээр харуулахад хамгийн тохиромжтой</li>
+  </ul>
+
+  <div class="code-box mb-4">
+li.innerHTML = `&lt;div&gt;${user.name}&lt;/div&gt;`;
+  </div>
+
+  <p class="text-gray-700 mb-4">
+    API-с ирсэн data-г HTML-д шууд оруулж байна
+  </p>
+
+  <hr class="my-6"/>
+
+  <h3 class="font-bold mb-2"> Хуучин vs Шинэ</h3>
+
+  <div class="code-box mb-4">
+ Хуучин арга:<br/>
+"My name is " + name + " and I am student"<br/><br/>
+
+ Шинэ арга:<br/>
+`My name is ${name} and I am student`
+  </div>
+
+  <ul class="list-disc pl-6 text-gray-700">
+    <li>Хуучин → урт, төвөгтэй</li>
+    <li>Шинэ → цэвэр, хурдан, ойлгомжтой</li>
+  </ul>
+
+</section>
+
 
 
 <!-- PRACTICE -->

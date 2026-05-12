@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frontend Interactive Lab</title>
+<title>HTML & CSS — Веб Хөгжүүлэлт</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -18,11 +18,12 @@
     color: #22c55e;
     padding: 16px;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 13px;
     overflow-x: auto;
+    font-family: monospace;
+    line-height: 1.7;
 }
 
-/* BEFORE CSS */
 .before-style {
     background: white;
     border: 2px dashed gray;
@@ -37,44 +38,38 @@
     opacity: 0.95;
     letter-spacing: 1px;
 }
-
 </style>
 </head>
 
-<body class="bg-gray-100 font-sans text-gray-800">
+<body class="bg-gray-50 font-sans text-gray-800">
 
 <!-- ================= HEADER ================= -->
 
-<header id="header"
-class="bg-white shadow p-4 transition-all duration-300">
-
-<div class="max-w-6xl mx-auto flex justify-between items-center">
-<h1 class="font-bold text-xl">Frontend Lab</h1>
-
-<div class="flex gap-8">
-<a href="../contact/" class="text-blue-600 hover:underline">Contact</a>
-<a href="../homework/" class="text-blue-600 hover:underline">Homework</a>
-</div>
-
-<nav class="flex gap-4 text-sm hidden md:flex">
-    <a class="hover:text-blue-500" href="#tags">Tags</a>
-    <a class="hover:text-blue-500" href="#positioning">Positioning</a>
-<a class="hover:text-blue-500" href="#flexbox">Flexbox</a>
-<a class="hover:text-blue-500" href="#spacing">Spacing</a>
-<a class="hover:text-blue-500" href="#form">Form</a>
-<a class="hover:text-blue-500" href="#responsive">Responsive</a>
-<a class="hover:text-blue-500" href="#css">CSS</a>
-</nav>
-</div>
-
+<header id="header" class="bg-white border-b border-gray-200 px-6 py-4 transition-all duration-300">
+  <div class="max-w-3xl mx-auto flex justify-between items-center">
+    <h1 class="text-lg font-bold text-gray-900">Веб Хөгжүүлэлт</h1>
+    <div class="flex gap-6 text-sm">
+      <a href="../" class="text-gray-500 hover:text-blue-600">Нүүр</a>
+      <a href="../homework/" class="text-gray-500 hover:text-blue-600">Даалгавар</a>
+      <a href="../contact/" class="text-gray-500 hover:text-blue-600">Холбоо барих</a>
+    </div>
+    <nav class="hidden md:flex gap-4 text-xs text-gray-500">
+      <a class="hover:text-blue-600" href="#tags">Тагнууд</a>
+      <a class="hover:text-blue-600" href="#positioning">Position</a>
+      <a class="hover:text-blue-600" href="#flexbox">Flexbox</a>
+      <a class="hover:text-blue-600" href="#spacing">Зай</a>
+      <a class="hover:text-blue-600" href="#form">Форм</a>
+      <a class="hover:text-blue-600" href="#responsive">Responsive</a>
+    </nav>
+  </div>
 </header>
 
-<div class="max-w-6xl mx-auto pt-6">
-  <a href="../" class="inline-flex items-center gap-2 text-blue-600 font-medium hover:gap-3 transition-all duration-300">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+<div class="max-w-3xl mx-auto px-6 pt-6">
+  <a href="../" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
     </svg>
-    Back
+    Буцах
   </a>
 </div>
 
@@ -82,7 +77,7 @@ class="bg-white shadow p-4 transition-all duration-300">
 
 <!-- ================= HEADER CONTROLS ================= -->
 
-<section id="tags" class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section id="tags" class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">Header Position Types</h2>
 
 <div class="flex gap-3">
@@ -95,7 +90,7 @@ class="bg-white shadow p-4 transition-all duration-300">
 </section>
 
 
-<section class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded-2xl shadow-lg">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
   <h2 class="text-2xl font-bold mb-6 text-gray-800">HTML Tag Explainer</h2>
 
   <!-- Scrollable Buttons -->
@@ -150,7 +145,7 @@ class="bg-white shadow p-4 transition-all duration-300">
 
 
 <!-- ================= ABSOLUTE VS RELATIVE EXAMPLE ================= -->
-<section id="positioning" class="p-6 bg-white m-10 max-w-6xl mx-auto rounded shadow">
+<section id="positioning" class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
   <h2 class="text-2xl font-bold mb-6">CSS Position: Relative vs Absolute</h2>
 
   <p class="mb-4 text-gray-700">
@@ -220,7 +215,7 @@ class="bg-white shadow p-4 transition-all duration-300">
 
 
 <!-- ================= ABSOLUTE VS RELATIVE REALISTIC ================= -->
-  <section id="positioning-real" class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded-2xl shadow-lg">
+  <section id="positioning-real" class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
   <h2 class="text-2xl font-bold mb-6 text-gray-800">Relative vs Absolute</h2>
   <p class="mb-4 text-gray-700">
     Вэбсайт дээр relative болон absolute нь зөвхөн coordinate бус, <strong>design layout</strong>-д хэрэгтэй. 
@@ -286,7 +281,7 @@ class="bg-white shadow p-4 transition-all duration-300">
 
 
 <!-- ================= CSS BEFORE AFTER ================= -->
-<section id="css" class="p-6 bg-white m-10 max-w-6xl mx-auto rounded shadow">
+<section id="css" class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-6">Before vs After CSS</h2>
 
 <div class="flex gap-10">
@@ -324,7 +319,7 @@ letter-spacing:1px;
 
 <!-- ================= FLEXBOX ================= -->
 
-<section id="flexbox" class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded shadow">
+<section id="flexbox" class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">Flexbox Interactive</h2>
 
 <h3 class="font-semibold">Justify</h3>
@@ -361,7 +356,7 @@ class="flex justify-start items-start flex-row gap-4 bg-gray-200 h-56 p-4 rounde
 
 <div class="code-box mt-6" id="flexCode"></div>
 </section>
-<section id="spacing" class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded shadow">
+<section id="spacing" class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-6">Spacing: Margin vs Padding</h2>
 
 <h3 class="font-semibold mb-4">Padding (Inside Space)</h3>
@@ -410,7 +405,7 @@ Gap → space between flex/grid items  <br/>
 
 <!-- ================= FORM SECTION ================= -->
 
-<section id="form" class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded shadow">
+<section id="form" class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">Form Inputs</h2>
 
 <form class="grid gap-4 max-w-md bg-gray-100 p-6 rounded">
@@ -451,7 +446,7 @@ Gap → space between flex/grid items  <br/>
 </section>
 
 <!-- ================= RESPONSIVE ================= -->
-<section id="responsive" class="p-6 bg-white mt-10 max-w-6xl mx-auto rounded shadow">
+<section id="responsive" class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">Interactive Responsive Simulation</h2>
 
 <div class="flex gap-3 mb-6">
@@ -480,8 +475,8 @@ class="flex flex-wrap gap-4 mb-6 sm:grid sm:grid-cols-1 md:grid-cols-2 lg:grid-c
 </section>
 
 
-<footer class="bg-gray-900 text-white text-center p-4">
-© 2026 Frontend Lab
+<footer class="text-center text-xs text-gray-400 py-8">
+  Веб Хөгжүүлэлтийн Хичээл — 2026
 </footer>
 
 <script>

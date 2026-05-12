@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JavaScript Lab</title>
+<title>JavaScript — Веб Хөгжүүлэлт</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -18,47 +18,64 @@
     color: #22c55e;
     padding: 16px;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 13px;
     overflow-x: auto;
+    font-family: monospace;
+    line-height: 1.7;
 }
 
 .btn {
-    @apply bg-gray-200 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition;
+    background: #e5e7eb;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    font-size: 14px;
 }
+.btn:hover { background: #3b82f6; color: white; }
 
 .preview-box {
-    @apply p-4 rounded shadow bg-gray-50 mb-4;
+    padding: 16px;
+    border-radius: 8px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 16px;
 }
-
 </style>
 </head>
-<body class="bg-gray-100 font-sans text-gray-800">
+<body class="bg-gray-50 font-sans text-gray-800">
 
-<header class="bg-white shadow p-4">
-<div class="max-w-6xl mx-auto flex justify-between items-center">
-<h1 class="font-bold text-xl">JavaScript Lab</h1>
-<div class="flex gap-8">
-<a href="../" class="text-blue-600 hover:underline">Classes</a>
-<a href="../homework/" class="text-blue-600 hover:underline">Homework</a>
-<a href="../contact/" class="text-blue-600 hover:underline">Contact</a>
-</div>
- <button id="menuBtn" class="text-2xl md:hidden">
-      ☰
-    </button>
-</div>
-
+<header class="bg-white border-b border-gray-200 px-6 py-4">
+  <div class="max-w-3xl mx-auto flex justify-between items-center">
+    <h1 class="text-lg font-bold text-gray-900">Веб Хөгжүүлэлт</h1>
+    <div class="flex gap-6 text-sm">
+      <a href="../" class="text-gray-500 hover:text-blue-600">Нүүр</a>
+      <a href="../homework/" class="text-gray-500 hover:text-blue-600">Даалгавар</a>
+      <a href="../contact/" class="text-gray-500 hover:text-blue-600">Холбоо барих</a>
+    </div>
+  </div>
 </header>
 
-<div class="max-w-6xl mx-auto pt-6">
-  <a href="../" class="inline-flex items-center gap-2 text-blue-600 font-medium hover:gap-3 transition-all duration-300">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+<div class="max-w-3xl mx-auto px-6 pt-6">
+  <a href="../" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
     </svg>
-    Back
+    Буцах
   </a>
 </div>
 
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<div class="max-w-3xl mx-auto px-6 pt-6 pb-2">
+  <div class="flex items-center gap-3 mb-1">
+    <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/>
+    </svg>
+    <h2 class="text-2xl font-bold text-gray-900">JavaScript</h2>
+  </div>
+  <p class="text-gray-500 text-sm">Хувьсагч, функц, DOM, үйл явдал, ES6+ синтакс.</p>
+</div>
+
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">JavaScript гэж юу вэ?</h2>
 <p class="mb-4 text-gray-700">
 JavaScript нь вэб хуудас дээр интерактив функц нэмэхэд ашиглагддаг програмчлалын хэл юм. HTML, CSS-ийг дэмжин динамик хөдөлгөөнт контент үүсгэдэг.
@@ -78,7 +95,7 @@ console.log("Сайн байна уу, JavaScript!");
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">JavaScript хэрхэн ажилладаг вэ?</h2>
 
 <div class="code-box">
@@ -92,7 +109,7 @@ User → Event → JavaScript → DOM өөрчлөгдөнө
 
 
 <!-- DOM -->
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">DOM (Document Object Model) гэж юу вэ?</h2>
 
 <p class="text-gray-700 mb-4">
@@ -112,7 +129,7 @@ el.innerText = "Hello";
 </section>
 
 <!-- EVENT -->
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">Event гэж юу вэ?</h2>
 
 <p class="text-gray-700 mb-4">
@@ -135,7 +152,7 @@ btn.addEventListener("click", function(){<br>
 </section>
 
 
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">Variables + Data Types</h2>
 
 <p class="text-gray-700 mb-4">
@@ -175,7 +192,7 @@ let notDefined;           // Undefined<br>
 </ul>
 </section>
 
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">Operators (Үйлдлүүд)</h2>
 
 <p class="text-gray-700 mb-4">
@@ -222,7 +239,7 @@ true || false  // true (OR)<br>
 </section>
 
 
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">Функцийн төрлүүд</h2>
 
 <div class="flex flex-wrap gap-3 mb-4">
@@ -251,7 +268,7 @@ true || false  // true (OR)<br>
 
 
 <!-- FUNCTION VS ARROW -->
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">Function vs Arrow Function</h2>
 
 <div class="code-box">
@@ -272,7 +289,7 @@ const sum = (a, b) => {<br>
 </ul>
 </section>
 
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">JavaScript ашиглах арга</h2>
 <p class="text-gray-700 mb-4">
 HTML-д &lt;script&gt; tag ашиглаж JavaScript кодыг оруулж болно.
@@ -284,7 +301,7 @@ console.log("Сайн байна уу!");<br/>
 &lt;/script&gt;
 </div>
 </section>
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">JavaScript Calculator (Нэмэх & Хасах)</h2>
 
 <div class="grid gap-4 max-w-md mx-auto">
@@ -358,7 +375,7 @@ function calculate(operation){
 
 
 
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">document.getElementById() Usage</h2>
 <p class="text-gray-700 mb-4">
 JavaScript-д вэб элементийг авах, утга авах болон текст өөрчлөхөд <code>document.getElementById()</code> ашигладаг.
@@ -394,7 +411,7 @@ document.getElementById("calcResult").innerText = "Үр дүн: " + number;
 </section>
 
 
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 
 <h2 class="text-2xl font-bold mb-4">querySelector vs getElementById гэж юу вэ?</h2>
 
@@ -506,7 +523,7 @@ t2.innerText = "Query method";<br/>
 
 </section>
 
-<section class="p-8 bg-gradient-to-br from-gray-50 to-gray-100 mt-6 max-w-6xl mx-auto rounded-2xl shadow-lg relative">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 
   <!-- HEADER -->
   <div class="flex justify-between items-center mb-4">
@@ -639,7 +656,7 @@ btn2.addEventListener("click", () => {
 </script>
 
 
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
 <h2 class="text-2xl font-bold mb-4">Event Listener гэж юу вэ?</h2>
 
 <p class="text-gray-700 mb-4">
@@ -691,7 +708,7 @@ button.addEventListener("click", function(){<br/>
 </section>
 
 
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
+<section class="bg-white border border-gray-200 rounded-xl p-6 mb-5 mt-6 max-w-3xl mx-auto">
     
 <h2 class="text-2xl font-bold mb-4">Event Listener – Төрөл бүрийн ашиглалт</h2>
 
@@ -794,8 +811,8 @@ onceBtn.addEventListener("click", handleClick);<br/>
 
 
 
-<footer class="bg-gray-900 text-white text-center p-4 mt-10">
-© 2026 JavaScript Lab
+<footer class="text-center text-xs text-gray-400 py-8 mt-6">
+Веб Хөгжүүлэлтийн Хичээл — 2026
 </footer>
 
 <script>

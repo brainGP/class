@@ -3,157 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Dashboard</title>
-
+<title>13-р долоо хоног — Fetch өгөгдөл авах</title>
 <script src="https://cdn.tailwindcss.com"></script>
-
 <style>
-body { font-family: 'Poppins', sans-serif; }
-
 .code-box {
   background: #0f172a;
   color: #22c55e;
   padding: 16px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 13px;
   overflow-x: auto;
+  font-family: monospace;
+  line-height: 1.8;
+  white-space: pre;
 }
 </style>
 </head>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-<!-- HEADER -->
-<header class="bg-white shadow p-4 sticky top-0">
-  <div class="max-w-6xl mx-auto">
-    <h1 class="font-bold text-xl">Fetch Image</h1>
+<header class="bg-white border-b border-gray-200 px-6 py-4">
+  <div class="max-w-3xl mx-auto flex justify-between items-center">
+    <h1 class="text-lg font-bold text-gray-900">Веб Хөгжүүлэлт</h1>
+    <div class="flex gap-6 text-sm">
+      <a href="../../" class="text-gray-500 hover:text-blue-600">Нүүр</a>
+      <a href="../" class="text-blue-600 font-medium">Даалгавар</a>
+      <a href="../../contact/" class="text-gray-500 hover:text-blue-600">Холбоо барих</a>
+    </div>
   </div>
 </header>
 
-<!-- BACK -->
-<div class="max-w-6xl mx-auto pt-6">
-  <a href="../" class="text-blue-600 hover:text-blue-800">
-    ← Back
+<main class="max-w-3xl mx-auto px-6 py-10">
+
+  <a href="../" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline mb-6">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
+    </svg>
+    Буцах
   </a>
-</div>
 
-<section class="max-w-6xl mx-auto mt-6 bg-white p-6 rounded shadow">
-
-  <h2 class="text-2xl font-bold mb-4">Week 13 Homework: Album API</h2>
-
-  <p class="text-gray-700 mb-4">
- Энэ даалгаварт та нар <b>async / await + fetch()</b> ашиглан API-с data авч UI дээр харуулах болно.
-  </p>
-
-  <hr class="my-4"/>
-
-  <h3 class="font-bold mb-2"> Даалгаврын зорилго:</h3>
-  <ul class="list-disc pl-6 text-gray-700 mb-4">
-    <li>API-с data fetch хийх</li>
-    <li>async / await зөв ашиглах</li>
-    <li>map ашиглан data UI дээр харуулах</li>
-    <li>HTML дээр card хэлбэрээр render хийх</li>
-  </ul>
-
-  <hr class="my-4"/>
-
-  <h3 class="font-bold mb-2">Ашиглах API:</h3>
-
-  <div class="code-box mb-4">
-https://jsonplaceholder.typicode.com/photos
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-1">
+      <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/>
+      </svg>
+      <h2 class="text-2xl font-bold text-gray-900">13-р долоо хоног</h2>
+    </div>
+    <p class="text-gray-500 text-sm">Fetch өгөгдөл авах — Album API</p>
   </div>
 
-  <hr class="my-4"/>
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Даалгаврын зорилго</h3>
+    </div>
 
-  <h3 class="font-bold mb-2">Анхааруулга:</h3>
+    <p class="text-sm text-gray-600 mb-4">
+      Энэ даалгаварт та нар <strong>async / await + fetch()</strong> ашиглан API-с data авч UI дээр харуулах болно.
+    </p>
 
-  <ul class="list-disc pl-6 text-gray-700 mb-4">
-    <li>Энэ API нийт <b>5000 data</b> өгнө</li>
-    <li>Та нар зөвхөн <b>эхний 20 album</b>-ийг харуулна</li>
-    <li><b>id ашиглан filter хийх</b> (id <= 20)</li>
-  </ul>
-  <hr class="my-4"/>
+    <ul class="space-y-2 text-sm text-gray-700 mb-5">
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        API-с data fetch хийх
+      </li>
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        async / await зөв ашиглах
+      </li>
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        map ашиглан data UI дээр харуулах
+      </li>
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        HTML дээр card хэлбэрээр render хийх
+      </li>
+    </ul>
+  </section>
 
-  <h3 class="font-bold mb-2">🔥 Bonus (extra) - 0.25 оноо :</h3>
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Ашиглах API</h3>
+    </div>
+    <div class="code-box">https://jsonplaceholder.typicode.com/photos</div>
+  </section>
 
-  <ul class="list-disc pl-6 text-gray-700">
-    <li>Loading icon харуулах - spin</li>
-    <li>Hover effect хийх</li>
-    <li>Clean card design хийх</li>
-  </ul>
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Анхааруулга</h3>
+    </div>
+    <ul class="space-y-2 text-sm text-gray-700">
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9.303 3.376c.866 1.5-.217 3.374-1.948 3.374H4.645c-1.73 0-2.813-1.874-1.948-3.374L10.052 3.378c.866-1.5 3.032-1.5 3.898 0L21.303 16.126Z"/></svg>
+        Энэ API нийт <strong>5000 data</strong> өгнө
+      </li>
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9.303 3.376c.866 1.5-.217 3.374-1.948 3.374H4.645c-1.73 0-2.813-1.874-1.948-3.374L10.052 3.378c.866-1.5 3.032-1.5 3.898 0L21.303 16.126Z"/></svg>
+        Та нар зөвхөн <strong>эхний 20 album</strong>-ийг харуулна
+      </li>
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9.303 3.376c.866 1.5-.217 3.374-1.948 3.374H4.645c-1.73 0-2.813-1.874-1.948-3.374L10.052 3.378c.866-1.5 3.032-1.5 3.898 0L21.303 16.126Z"/></svg>
+        <strong>id ашиглан filter хийх</strong> (id &lt;= 20)
+      </li>
+    </ul>
+  </section>
 
-</section>
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Bonus (extra) — 0.25 оноо</h3>
+    </div>
+    <ul class="space-y-2 text-sm text-gray-700">
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        Loading icon харуулах — spin
+      </li>
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        Hover effect хийх
+      </li>
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        Clean card design хийх
+      </li>
+    </ul>
+  </section>
 
-<!-- CODE -->
-<!-- <section class="max-w-6xl mx-auto mt-6 bg-white p-6 rounded shadow">
+</main>
 
-<h2 class="text-xl font-bold mb-3">JS Code</h2>
-
-<div class="code-box">
-const name = document.querySelector(".name");<br/>
-const price = document.querySelector(".price");<br/>
-const desc = document.querySelector(".desc");<br/>
-const add = document.querySelector(".add");<br/>
-const list = document.querySelector(".list");<br/><br/>
-
-add.addEventListener("click", () => {<br/>
-&nbsp;&nbsp;const n = name.value.trim();<br/>
-&nbsp;&nbsp;const p = price.value.trim();<br/>
-&nbsp;&nbsp;const d = desc.value.trim();<br/><br/>
-
-&nbsp;&nbsp;if (!n || !p || !d) return;<br/><br/>
-
-&nbsp;&nbsp;const card = document.createElement("div");<br/>
-&nbsp;&nbsp;card.className = "p-4 bg-gray-100 rounded-lg shadow";<br/><br/>
-
-&nbsp;&nbsp;card.innerHTML = `<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;${n}&lt;/h3&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;$${p}&lt;/p&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;${d}&lt;/p&gt;<br/>
-&nbsp;&nbsp;`;<br/><br/>
-
-&nbsp;&nbsp;list.append(card);<br/><br/>
-
-&nbsp;&nbsp;name.value = "";<br/>
-&nbsp;&nbsp;price.value = "";<br/>
-&nbsp;&nbsp;desc.value = "";<br/>
-});
-</div>
-
-</section> -->
-
-<script>
-const name = document.querySelector(".name");
-const price = document.querySelector(".price");
-const desc = document.querySelector(".desc");
-const add = document.querySelector(".add");
-const list = document.querySelector(".list");
-
-add.addEventListener("click", () => {
-
-  const n = name.value.trim();
-  const p = price.value.trim();
-  const d = desc.value.trim();
-
-  if (!n || !p || !d) return;
-
-  const card = document.createElement("div");
-
-  card.className = "p-4 bg-gray-50 rounded-lg shadow hover:shadow-md transition";
-
-  card.innerHTML = `
-    <h3 class="font-bold text-gray-800">${n}</h3>
-    <p class="text-blue-600 font-semibold">$${p}</p>
-    <p class="text-gray-600 text-sm">${d}</p>
-  `;
-
-  list.append(card);
-
-  name.value = "";
-  price.value = "";
-  desc.value = "";
-});
-</script>
+<footer class="text-center text-xs text-gray-400 py-8">
+  Веб Хөгжүүлэлтийн Хичээл — 2026
+</footer>
 
 </body>
 </html>

@@ -1,87 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Week 7 – JavaScript Introduction</title>
-
+<title>9-р долоо хоног — JavaScript EventListener</title>
 <script src="https://cdn.tailwindcss.com"></script>
-
-<script>
-tailwind.config = {
-darkMode: "class"
-}
-</script>
-
 <style>
-.transition-colors{
-transition:background-color .3s,color .3s;
+.code-box {
+  background: #0f172a;
+  color: #22c55e;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  overflow-x: auto;
+  font-family: monospace;
+  line-height: 1.8;
+  white-space: pre;
 }
 </style>
-
 </head>
 
-<body class="bg-zinc-50 dark:bg-zinc-900 transition-colors">
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-<!-- HEADER -->
-
-<header class="bg-white dark:bg-zinc-800 shadow py-4 sticky top-0 z-50 transition-colors">
-
-<div class="max-w-6xl mx-auto flex justify-between">
-
-<h1 class="font-bold text-xl dark:text-white">
-Week 7 – JavaScript
-</h1>
-</div>
-
+<header class="bg-white border-b border-gray-200 px-6 py-4">
+  <div class="max-w-3xl mx-auto flex justify-between items-center">
+    <h1 class="text-lg font-bold text-gray-900">Веб Хөгжүүлэлт</h1>
+    <div class="flex gap-6 text-sm">
+      <a href="../../" class="text-gray-500 hover:text-blue-600">Нүүр</a>
+      <a href="../" class="text-blue-600 font-medium">Даалгавар</a>
+      <a href="../../contact/" class="text-gray-500 hover:text-blue-600">Холбоо барих</a>
+    </div>
+  </div>
 </header>
 
-<!-- BACK -->
-<div class="max-w-6xl mx-auto mt-10 space-y-16 dark:text-zinc-200">
+<main class="max-w-3xl mx-auto px-6 py-10">
 
-<section>
+  <a href="../" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline mb-6">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
+    </svg>
+    Буцах
+  </a>
 
-  <h2 class="text-2xl font-bold mb-6">
-    Week 9 – Final JavaScript Project
-  </h2>
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-1">
+      <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 11l3 3 8-8"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9"/>
+      </svg>
+      <h2 class="text-2xl font-bold text-gray-900">9-р долоо хоног</h2>
+    </div>
+    <p class="text-gray-500 text-sm">JavaScript (EventListener) — Эцсийн төсөл</p>
+  </div>
 
-  <div class="space-y-4 text-lg">
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Эцсийн JavaScript Төсөл</h3>
+    </div>
 
-    <p>Та бүхэн өмнөх бүх мэдлэгээ ашиглан <strong>бүтэн веб төсөл</strong> хийнэ.</p>
+    <p class="text-sm text-gray-600 mb-4">Та бүхэн өмнөх бүх мэдлэгээ ашиглан <strong>бүтэн веб төсөл</strong> хийнэ.</p>
 
-    <ul class="list-disc pl-6 space-y-2">
-      <li>HTML + Tailwind ашигласан байх</li>
-      <li>JavaScript ашигласан байх</li>
-      <li>EventListener ашигласан байх</li>
-      <li>Хэрэглэгчтэй interaction (click, input, гэх мэт)</li>
-      <li>Өөрийн санаагаар хийсэн байх</li>
+    <ul class="space-y-2 text-sm text-gray-700 mb-5">
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+        </svg>
+        HTML + Tailwind ашигласан байх
+      </li>
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+        </svg>
+        JavaScript ашигласан байх
+      </li>
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+        </svg>
+        EventListener ашигласан байх
+      </li>
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+        </svg>
+        Хэрэглэгчтэй interaction (click, input, гэх мэт)
+      </li>
+      <li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+        </svg>
+        Өөрийн санаагаар хийсэн байх
+      </li>
     </ul>
 
-  </div>
+    <div class="p-4 bg-green-50 border border-green-100 rounded-lg text-sm text-green-800">
+      <p class="font-semibold mb-1">Жишээ санаанууд:</p>
+      <p>→ To-do app</p>
+      <p>→ Жижиг game</p>
+      <p>→ Interactive UI</p>
+    </div>
+  </section>
 
-  <div class="mt-6 p-4 bg-green-100 dark:bg-green-900 rounded">
-<strong>Жишээ санаанууд:</strong><br/>
-    - To-do app<br/>
-    - жижиг game<br/>
-    - interactive UI
-  </div>
+</main>
 
-</section>
-
-</div>
-
-  <script>
-    function calculate(){
-      const n1 = parseFloat(document.getElementById('num1').value) || 0;
-      const n2 = parseFloat(document.getElementById('num2').value) || 0;
-      const op = document.getElementById('operation').value;
-      let res = 0;
-      if(op === '+') res = n1 + n2;
-      if(op === '-') res = n1 - n2;
-      document.getElementById('result').value = res;
-    }
-  </script>
-</section>
+<footer class="text-center text-xs text-gray-400 py-8">
+  Веб Хөгжүүлэлтийн Хичээл — 2026
+</footer>
 
 </body>
 </html>

@@ -3,445 +3,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JSON Lesson</title>
-
+<title>JSON — Веб Хөгжүүлэлт</title>
 <script src="https://cdn.tailwindcss.com"></script>
-
 <style>
 .code-box {
-    background: #0f172a;
-    color: #22c55e;
-    padding: 16px;
-    border-radius: 10px;
-    font-size: 14px;
-    overflow-x: auto;
-}
-
-.preview-box {
-    padding: 16px;
-    border-radius: 10px;
-    background: #f9fafb;
+  background: #0f172a;
+  color: #22c55e;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  overflow-x: auto;
+  font-family: monospace;
+  line-height: 1.8;
+  white-space: pre;
 }
 </style>
 </head>
 
-<body class="bg-gray-100 font-sans text-gray-800">
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-<header class="bg-white shadow p-4">
-<div class="max-w-6xl mx-auto flex justify-between items-center">
-<h1 class="font-bold text-xl">JSON & Mapping</h1>
-<div class="flex gap-8">
-<a href="../" class="text-blue-600 hover:underline">Classes</a>
-<a href="../homework/" class="text-blue-600 hover:underline">Homework</a>
-<a href="../contact/" class="text-blue-600 hover:underline">Contact</a>
-</div>
-</div>
+<header class="bg-white border-b border-gray-200 px-6 py-4">
+  <div class="max-w-3xl mx-auto flex justify-between items-center">
+    <h1 class="text-lg font-bold text-gray-900">Веб Хөгжүүлэлт</h1>
+    <div class="flex gap-6 text-sm">
+      <a href="../" class="text-gray-500 hover:text-blue-600">Нүүр</a>
+      <a href="../homework/" class="text-gray-500 hover:text-blue-600">Даалгавар</a>
+      <a href="../contact/" class="text-gray-500 hover:text-blue-600">Холбоо барих</a>
+    </div>
+  </div>
 </header>
 
-<div class="max-w-6xl mx-auto pt-6">
-  <a href="../" class="inline-flex items-center gap-2 text-blue-600 font-medium hover:gap-3 transition-all duration-300">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+<main class="max-w-3xl mx-auto px-6 py-10">
+
+  <a href="../" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline mb-6">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
     </svg>
-    Back
+    Буцах
   </a>
-</div>
 
-<!-- JSON INTRO -->
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
-  <h2 class="text-2xl font-bold mb-4">JSON гэж юу вэ?</h2>
-
-  <p class="text-gray-700 mb-4">
-    JSON нь өгөгдлийг хадгалах, дамжуулах зориулалттай стандарт формат юм.
-  </p>
-
-  <div class="code-box mb-4">
-Backend → JSON → Frontend
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-1">
+      <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75"/>
+      </svg>
+      <h2 class="text-2xl font-bold text-gray-900">JSON</h2>
+    </div>
+    <p class="text-gray-500 text-sm">Өгөгдлийн формат, array, mapping.</p>
   </div>
 
-  <p class="text-gray-700">
-    JSON нь backend-ээс ирсэн мэдээллийг frontend дээр ашиглахад хэрэглэгддэг.
-  </p>
-</section>
-
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
-<h2 class="text-2xl font-bold mb-4">Array гэж юу вэ?</h2>
-
-<div class="code-box">
-const names = ["Bat", "Anu", "Bold"];
-</div>
-
-<p class="text-gray-700 mt-4">
-Array = олон өгөгдөл хадгалах
-</p>
-</section>
-
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
-<h2 class="text-2xl font-bold mb-4">Array Methods (Чухал хэсэг)</h2>
-
-<p class="text-gray-700 mb-4">
-Array methods нь list доторх өгөгдөлтэй ажиллахад ашиглагддаг.
-</p>
-
-<h3 class="font-semibold mb-2">Example Array:</h3>
-
-<div class="code-box mb-4">
-const numbers = [1, 2, 3, 4, 5];
-</div>
-
----
-
-<h3 class="font-semibold mb-2">1. map()</h3>
-<div class="code-box mb-4">
-numbers.map(n => n * 2);
-</div>
-<p class="text-gray-700 mb-4">
-→ Бүх элемент дээр нэг үйлдэл хийнэ
-</p>
-
----
-
-<h3 class="font-semibold mb-2">2. filter()</h3>
-<div class="code-box mb-4">
-numbers.filter(n => n > 2);
-</div>
-<p class="text-gray-700 mb-4">
-→ Нөхцөл хангаж байгаа элементүүдийг буцаана
-</p>
-
----
-
-<h3 class="font-semibold mb-2">3. find()</h3>
-<div class="code-box mb-4">
-numbers.find(n => n === 3);
-</div>
-<p class="text-gray-700 mb-4">
-→ Эхний тохирсон утгыг буцаана
-</p>
-
----
-
-<h3 class="font-semibold mb-2">4. reduce()</h3>
-<div class="code-box mb-4">
-numbers.reduce((sum, n) => sum + n, 0);
-</div>
-<p class="text-gray-700 mb-4">
-→ Бүх утгыг нэг утга болгон нэгтгэнэ
-</p>
-
----
-
-<h3 class="font-semibold mb-2">Full Example:</h3>
-
-<div class="code-box mb-4">
-const numbers = [1,2,3,4,5];<br><br>
-
-const doubled = numbers.map(n => n * 2);<br>
-const filtered = numbers.filter(n => n > 2);<br>
-const found = numbers.find(n => n === 3);<br>
-const sum = numbers.reduce((a,b) => a + b, 0);
-</div>
-
-<ul class="list-disc pl-6 text-gray-700">
-<li>map → transform</li>
-<li>filter → select</li>
-<li>find → single value</li>
-<li>reduce → combine</li>
-</ul>
-</section>
-
-<!-- STRUCTURE -->
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
-  <h2 class="text-2xl font-bold mb-4">JSON бүтэц</h2>
-
-  <div class="code-box mb-4">
-{<br/>
-&nbsp;&nbsp;"name": "Dorj",<br/>
-&nbsp;&nbsp;"age": 18,<br/>
-&nbsp;&nbsp;"city": "Ulaanbaatar"<br/>
-}
-  </div>
-
-  <ul class="list-disc pl-6 text-gray-700">
-    <li><b>Key</b> → "name" (заавал " " дотор бичигдэнэ)</li>
-    <li><b>Value</b> → утга (string, number, boolean, array)</li>
-    <li><b>Object</b> → { }</li>
-  </ul>
-</section>
-
-<!-- DATA TYPES -->
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
-  <h2 class="text-2xl font-bold mb-4">JSON өгөгдлийн төрөл</h2>
-
-  <div class="code-box mb-4">
-{<br/>
-&nbsp;&nbsp;"name": "Dorj",<br/>
-&nbsp;&nbsp;"age": 18,<br/>
-&nbsp;&nbsp;"isStudent": true,<br/>
-&nbsp;&nbsp;"skills": ["JS", "HTML"],<br/>
-&nbsp;&nbsp;"address": { "city": "UB" }<br/>
-}
-  </div>
-
-  <ul class="list-disc pl-6 text-gray-700">
-    <li>String → "text"</li>
-    <li>Number → 123</li>
-    <li>Boolean → true / false</li>
-    <li>Array → [ ]</li>
-    <li>Object → { }</li>
-  </ul>
-</section>
-
-<!-- ARRAY JSON -->
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
-  <h2 class="text-2xl font-bold mb-4">Array JSON</h2>
-
-  <div class="code-box mb-4">
-[<br/>
-&nbsp;&nbsp;{ "name": "Bat" },<br/>
-&nbsp;&nbsp;{ "name": "Anu" },<br/>
-&nbsp;&nbsp;{ "name": "Bold" }<br/>
-]
-  </div>
-
-  <p class="text-gray-700">
-    Array JSON нь олон объект хадгалах үед ашиглагддаг.
-  </p>
-</section>
-
-<!-- RULES -->
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
-  <h2 class="text-2xl font-bold mb-4">JSON бичих дүрэм</h2>
-
-  <ul class="list-disc pl-6 text-gray-700 space-y-2">
-    <li>Key заавал "double quote" дотор байна</li>
-    <li>Value төрөл өөр байж болно</li>
-    <li>Сүүлд comma (,) тавихгүй</li>
-    <li>Function бичиж болохгүй</li>
-  </ul>
-
-  <div class="code-box mt-4">
-❌ Буруу: { name: "Bat" }<br/>
-✅ Зөв: { "name": "Bat" }
-  </div>
-</section>
-
-<!-- MAPPING INTRO -->
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
-  <h2 class="text-2xl font-bold mb-4">Mapping гэж юу вэ?</h2>
-
-  <p class="text-gray-700 mb-4">
-    Mapping гэдэг нь array доторх бүх элемент дээр нэг үйлдэл хийх процесс юм.
-  </p>
-
-  <div class="code-box mb-4">
-Array → map() → нэг нэгээр нь ажиллана
-  </div>
-
-  <p class="text-gray-700">
-    Жишээ: list доторх бүх нэрийг нэг нэгээр нь гаргах
-  </p>
-</section>
-
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
-  <h2 class="text-2xl font-bold mb-4">JSON → UI (map ашиглах)</h2>
-
-  <p class="text-gray-700 mb-4">
-    Одоо бид JSON өгөгдлийг вэб дээр хэрхэн харуулдагийг сурна. Үүний тулд <b>map()</b> ашиглана.
-  </p>
-
-  <div class="code-box mb-4">
-const users = [<br/>
-&nbsp;&nbsp;{ name: "Bat" },<br/>
-&nbsp;&nbsp;{ name: "Anu" }<br/>
-];
-  </div>
-
-  <p class="text-gray-700 mb-4">
-    Энэ бол <b>array of objects</b>. Өөрөөр хэлбэл олон хэрэглэгчийн мэдээлэл байна.
-  </p>
-
-  <h3 class="font-bold mb-2"> map() гэж юу вэ?</h3>
-
-  <p class="text-gray-700 mb-4">
-    <b>map()</b> гэдэг нь array доторх <b>бүх элемент дээр нэг нэгээр нь ажил хийх</b> функц юм.
-  </p>
-
-  <div class="code-box mb-4">
-users.map(user => {
-  console.log(user.name);
-});
-  </div>
-
-  <h3 class="font-bold mb-2"> Энэ кодыг задалж ойлгоё</h3>
-
-  <ul class="list-disc pl-6 text-gray-700 space-y-2">
-    <li><b>users</b> → өгөгдлийн жагсаалт (array)</li>
-
-    <li><b>.map()</b> → энэ array доторх бүх item дээр давталт хийх функц</li>
-
-    <li><b>user</b> → нэг элемент (нэг хүн)</li>
-
-    <li><b>user =></b> → “энэ нэг элемент дээр хийх үйлдэл” гэж хэлж байна</li>
-  </ul>
-
-  <p class="text-gray-700 mt-4">
-     Товчоор: <br/>
-    <b>user</b> = нэг хүн <br/>
-    <b>=></b> = “энэ хүн дээр юу хийх вэ?” гэж тодорхойлж байна
-  </p>
-
-  <h3 class="font-bold mt-6 mb-2"> DOM дээр харуулах</h3>
-
-  <p class="text-gray-700 mb-4">
-    Одоо бид зөвхөн console биш, HTML дээр харуулна.
-  </p>
-
-  <div class="code-box mb-4">
-const list = document.getElementById("list");
-  </div>
-
-  <p class="text-gray-700 mb-4">
-   Энэ нь HTML доторх <b>list</b> гэсэн хэсгийг олж авч байна.
-  </p>
-
-  <div class="code-box mb-4">
-users.map(user => {
-  const li = document.createElement("li");
-  li.innerText = user.name;
-  list.appendChild(li);
-});
-  </div>
-
-  <h3 class="font-bold mb-2"> Алхам алхмаар юу болж байна?</h3>
-
-  <ol class="list-decimal pl-6 text-gray-700 space-y-2">
-    <li>users array доторх нэг хүн (user) авна</li>
-    <li>li гэсэн шинэ HTML элемент үүсгэнэ</li>
-    <li>li дотор тухайн хүний нэрийг бичнэ</li>
-    <li>HTML list дотор нэмнэ (харагдуулна)</li>
-  </ol>
-
-  <div class="preview-box mt-4">
-    Гаралт:
-    <br/>Bat
-    <br/>Anu
-  </div>
-</section>
-
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
-
-  <h2 class="text-2xl font-bold mb-4">Template String (${ }) гэж юу вэ?</h2>
-
-  <p class="text-gray-700 mb-4">
-    Бид өмнө нь JavaScript дээр text + data холбохдоо <b>+</b> ашигладаг байсан.
-    Энэ нь ажилладаг ч урт, ойлгоход хэцүү байдаг.
-  </p>
-
-  <div class="code-box mb-4">
-const name = "Bat";<br/>
-console.log("My name is " + name);
-  </div>
-
-  <p class="text-gray-700 mb-4">
-    Энэ арга нь хуучин бөгөөд олон data холбох үед маш төвөгтэй болдог.
-  </p>
-
-  <hr class="my-6"/>
-
-  <h3 class="font-bold mb-2"> Шинэ арга (Template String)</h3>
-
-  <p class="text-gray-700 mb-4">
-    Одоо бид <b>backtick (` `)</b> ашиглаж илүү хялбар бичдэг болсон.
-  </p>
-
-  <div class="code-box mb-4">
-const name = "Bat";<br/>
-console.log(`My name is ${name}`);
-  </div>
-
-  <p class="text-gray-700 mb-4">
-    <b> ${ }  </b> дотор variable-аа шууд оруулдаг.
-  </p>
-
-  <hr class="my-6"/>
-
-  <h3 class="font-bold mb-2"> Яаж ажилладаг вэ?</h3>
-
-  <ul class="list-disc pl-6 text-gray-700 mb-4">
-    <li>Backtick (` `) дотор бичнэ</li>
-    <li>${ } дотор variable оруулна</li>
-    <li>JS автоматаар утгыг орлуулна</li>
-  </ul>
-
-  <div class="code-box mb-4">
-`${name}` → "Bat" болж хувирна
-  </div>
-
-  <hr class="my-6"/>
-
-  <h3 class="font-bold mb-2"> Яагаад хэрэгтэй вэ?</h3>
-
-  <ul class="list-disc pl-6 text-gray-700 mb-4">
-    <li>Илүү богино код</li>
-    <li>Илүү ойлгомжтой</li>
-    <li>API data UI дээр харуулахад хамгийн тохиромжтой</li>
-  </ul>
-
-  <div class="code-box mb-4">
-li.innerHTML = `&lt;div&gt;${user.name}&lt;/div&gt;`;
-  </div>
-
-  <p class="text-gray-700 mb-4">
-    API-с ирсэн data-г HTML-д шууд оруулж байна
-  </p>
-
-  <hr class="my-6"/>
-
-  <h3 class="font-bold mb-2"> Хуучин vs Шинэ</h3>
-
-  <div class="code-box mb-4">
- Хуучин арга:<br/>
-"My name is " + name + " and I am student"<br/><br/>
-
- Шинэ арга:<br/>
-`My name is ${name} and I am student`
-  </div>
-
-  <ul class="list-disc pl-6 text-gray-700">
-    <li>Хуучин → урт, төвөгтэй</li>
-    <li>Шинэ → цэвэр, хурдан, ойлгомжтой</li>
-  </ul>
-
-</section>
-
-
-
-<!-- PRACTICE -->
-<section class="p-6 bg-white mt-6 max-w-6xl mx-auto rounded shadow">
-  <h2 class="text-2xl font-bold mb-4">Practice</h2>
-
-  <p class="text-gray-700 mb-4">
-    Доорх JSON-г UI дээр харуул:
-  </p>
-
-  <div class="code-box">
-const products = [<br/>
-&nbsp;&nbsp;{ name: "iPhone", price: 1000 },<br/>
-&nbsp;&nbsp;{ name: "Laptop", price: 2000 }<br/>
-];
-  </div>
-</section>
-
-<footer class="bg-gray-900 text-white text-center p-4 mt-10">
-© 2026 JSON Lesson
-</footer>
-
-<script>
-const users = [
+  <!-- JSON гэж юу вэ -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">JSON гэж юу вэ?</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-3">JSON нь өгөгдлийг хадгалах, дамжуулах зориулалттай стандарт формат юм.</p>
+    <div class="code-box mb-3">Backend → JSON → Frontend</div>
+    <p class="text-sm text-gray-600">JSON нь backend-ээс ирсэн мэдээллийг frontend дээр ашиглахад хэрэглэгддэг.</p>
+  </section>
+
+  <!-- Array гэж юу вэ -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Array гэж юу вэ?</h3>
+    </div>
+    <div class="code-box mb-3">const names = ["Bat", "Anu", "Bold"];</div>
+    <p class="text-sm text-gray-600">Array = олон өгөгдөл хадгалах жагсаалт.</p>
+  </section>
+
+  <!-- Array Methods -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Array Methods</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-4">Array дотор өгөгдөлтэй ажиллах чухал функцүүд.</p>
+    <div class="code-box mb-3">const numbers = [1, 2, 3, 4, 5];</div>
+
+    <div class="space-y-4">
+      <div>
+        <p class="text-sm font-semibold text-gray-700 mb-1">1. map() — бүх элемент дээр нэг үйлдэл хийнэ</p>
+        <div class="code-box mb-1">numbers.map(n => n * 2);
+// → [2, 4, 6, 8, 10]</div>
+      </div>
+      <div>
+        <p class="text-sm font-semibold text-gray-700 mb-1">2. filter() — нөхцөл хангасан элементүүдийг буцаана</p>
+        <div class="code-box mb-1">numbers.filter(n => n > 2);
+// → [3, 4, 5]</div>
+      </div>
+      <div>
+        <p class="text-sm font-semibold text-gray-700 mb-1">3. find() — эхний тохирсон утгыг буцаана</p>
+        <div class="code-box mb-1">numbers.find(n => n === 3);
+// → 3</div>
+      </div>
+      <div>
+        <p class="text-sm font-semibold text-gray-700 mb-1">4. reduce() — бүх утгыг нэгтгэнэ</p>
+        <div class="code-box mb-1">numbers.reduce((sum, n) => sum + n, 0);
+// → 15</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JSON бүтэц -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">JSON бүтэц</h3>
+    </div>
+    <div class="code-box mb-3">{
+  "name": "Dorj",
+  "age": 18,
+  "city": "Ulaanbaatar"
+}</div>
+    <ul class="text-sm text-gray-600 space-y-1">
+      <li><strong>Key</strong> → "name" (заавал " " дотор бичигдэнэ)</li>
+      <li><strong>Value</strong> → утга (string, number, boolean, array)</li>
+      <li><strong>Object</strong> → { }</li>
+    </ul>
+  </section>
+
+  <!-- JSON өгөгдлийн төрөл -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">JSON өгөгдлийн төрөл</h3>
+    </div>
+    <div class="code-box mb-3">{
+  "name": "Dorj",       <span style="color:#6b7280">// String</span>
+  "age": 18,            <span style="color:#6b7280">// Number</span>
+  "isStudent": true,    <span style="color:#6b7280">// Boolean</span>
+  "skills": ["JS", "HTML"],  <span style="color:#6b7280">// Array</span>
+  "address": { "city": "UB" } <span style="color:#6b7280">// Object</span>
+}</div>
+  </section>
+
+  <!-- Object vs Array -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Object vs Array ялгаа</h3>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-4 mb-3">
+      <div>
+        <p class="text-xs font-medium text-gray-500 mb-1 uppercase tracking-wide">Object — нэг зүйл</p>
+        <div class="code-box">{
+  "name": "Bat",
+  "age": 18
+}</div>
+      </div>
+      <div>
+        <p class="text-xs font-medium text-gray-500 mb-1 uppercase tracking-wide">Array — олон зүйл</p>
+        <div class="code-box">[
+  { "name": "Bat" },
+  { "name": "Anu" }
+]</div>
+      </div>
+    </div>
+    <div class="bg-blue-50 border border-blue-100 rounded-lg p-3 text-sm text-blue-800">
+      Object → нэг хүн (user)<br>
+      Array → олон хүн (users) — ихэнх API array буцаадаг!
+    </div>
+  </section>
+
+  <!-- JSON дүрэм -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">JSON бичих дүрэм</h3>
+    </div>
+    <ul class="text-sm text-gray-600 space-y-1 mb-3">
+      <li>✗ Key заавал "double quote" дотор байна</li>
+      <li>✗ Сүүлийн элементэд comma (,) тавихгүй</li>
+      <li>✗ Function бичиж болохгүй</li>
+    </ul>
+    <div class="code-box">❌ Буруу: { name: "Bat" }
+✅ Зөв:   { "name": "Bat" }</div>
+  </section>
+
+  <!-- map() ашиглах -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">JSON → UI (map ашиглах)</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-3">Array дотор өгөгдлийг HTML дээр нэг нэгээр нь харуулах.</p>
+    <div class="code-box mb-3">const users = [
   { name: "Bat" },
-  { name: "Anu" },
-  { name: "Bold" }
+  { name: "Anu" }
 ];
 
 const list = document.getElementById("list");
@@ -450,8 +216,62 @@ users.map(user => {
   const li = document.createElement("li");
   li.innerText = user.name;
   list.appendChild(li);
-});
-</script>
+});</div>
+    <ol class="text-sm text-gray-600 space-y-1 list-decimal pl-5">
+      <li>users array дотор нэг хүн (user) авна</li>
+      <li>li гэсэн шинэ HTML элемент үүсгэнэ</li>
+      <li>li дотор тухайн хүний нэрийг бичнэ</li>
+      <li>HTML list дотор нэмнэ (харагдуулна)</li>
+    </ol>
+  </section>
+
+  <!-- Template String -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Template String — <code class="text-pink-600">${ }</code></h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-3">Текст болон өгөгдлийг хялбараар холбох арга.</p>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div>
+        <p class="text-xs text-gray-400 mb-1">Хуучин арга (+)</p>
+        <div class="code-box">"Нэр: " + name +
+" нас: " + age</div>
+      </div>
+      <div>
+        <p class="text-xs text-gray-400 mb-1">Шинэ арга (template string)</p>
+        <div class="code-box">`Нэр: ${name}
+нас: ${age}`</div>
+      </div>
+    </div>
+    <div class="mt-3 code-box">li.innerHTML = `&lt;div&gt;${user.name}&lt;/div&gt;`;</div>
+  </section>
+
+  <!-- Practice -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487 18.1 3.25a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Дадлага</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-3">Доорх JSON-г UI дээр харуул:</p>
+    <div class="code-box">const products = [
+  { name: "iPhone", price: 1000 },
+  { name: "Laptop", price: 2000 }
+];
+
+<span style="color:#6b7280">// map ашиглан бүтээгдэхүүн бүрийг
+// div болгон харуул</span></div>
+  </section>
+
+</main>
+
+<footer class="text-center text-xs text-gray-400 py-8">
+  Веб Хөгжүүлэлтийн Хичээл — 2026
+</footer>
 
 </body>
 </html>

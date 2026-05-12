@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Next.js — Суулгах & Төсөл хийх</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+.code-box {
+  background: #0f172a;
+  color: #22c55e;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  overflow-x: auto;
+  font-family: monospace;
+  line-height: 1.8;
+  white-space: pre;
+}
+.code-comment { color: #6b7280; }
+.code-purple { color: #a78bfa; }
+.code-blue { color: #60a5fa; }
+.code-yellow { color: #fbbf24; }
+.code-white { color: #f8fafc; }
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+</style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+<header class="bg-white border-b border-gray-200 px-6 py-4">
+  <div class="max-w-3xl mx-auto flex justify-between items-center">
+    <h1 class="text-lg font-bold text-gray-900">Веб Хөгжүүлэлт</h1>
+    <div class="flex gap-6 text-sm">
+      <a href="../../" class="text-gray-500 hover:text-blue-600">Нүүр</a>
+      <a href="../../homework/" class="text-gray-500 hover:text-blue-600">Даалгавар</a>
+      <a href="../../contact/" class="text-gray-500 hover:text-blue-600">Холбоо барих</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-6 py-10">
+
+  <a href="../" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline mb-6">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
+    </svg>
+    Буцах
+  </a>
+
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-2">
+      <svg class="w-7 h-7 text-indigo-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z"/>
+      </svg>
+      <h2 class="text-2xl font-bold text-gray-900">Next.js — Суулгах & Төсөл</h2>
+    </div>
+    <p class="text-gray-500 text-sm">Component, Layout, файлын бүтэц — алхам алхмаар суулгаж, Header + Footer + олон хуудастай сайт хийх.</p>
+  </div>
+
+
+  <!-- ─── COMPONENT ─────────────────────────────── -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6H21m0 0-3.75-3.75M21 6l-3.75 3.75m-6.75 5.25H3m0 0 3.75 3.75M3 11.25l3.75-3.75"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Component гэж юу вэ?</h3>
+    </div>
+
+    <p class="text-sm text-gray-600 mb-4">Component бол <strong>дахин ашиглагдах UI блок</strong>. Нэг удаа бичиж, хаана ч ашиглана.</p>
+
+    <div class="bg-gray-50 border border-gray-100 rounded-lg p-4 mb-4">
+      <p class="text-xs text-gray-400 uppercase font-medium tracking-wide mb-3">Жишээ — вэбсайтыг блокуудад хуваах</p>
+      <div class="space-y-2">
+        <div class="bg-indigo-100 border border-indigo-200 rounded p-2 text-center text-sm font-medium text-indigo-700">&lt;Header /&gt;</div>
+        <div class="grid grid-cols-3 gap-2">
+          <div class="bg-green-100 border border-green-200 rounded p-2 text-center text-xs text-green-700">&lt;Card /&gt;</div>
+          <div class="bg-green-100 border border-green-200 rounded p-2 text-center text-xs text-green-700">&lt;Card /&gt;</div>
+          <div class="bg-green-100 border border-green-200 rounded p-2 text-center text-xs text-green-700">&lt;Card /&gt;</div>
+        </div>
+        <div class="bg-blue-100 border border-blue-200 rounded p-2 text-center text-xs text-blue-700">&lt;Button /&gt; &lt;Button /&gt;</div>
+        <div class="bg-indigo-100 border border-indigo-200 rounded p-2 text-center text-sm font-medium text-indigo-700">&lt;Footer /&gt;</div>
+      </div>
+    </div>
+
+    <p class="text-sm font-medium text-gray-700 mb-2">Component код хэрхэн харагдах вэ:</p>
+    <div class="code-box mb-4"><span class="code-comment">// components/Button.tsx</span>
+<span class="code-purple">export default function</span> <span class="code-blue">Button</span>({ text }) {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">button</span> className=<span class="code-white">"bg-blue-500 text-white px-4 py-2 rounded"</span>&gt;
+      {text}
+    &lt;/<span class="code-yellow">button</span>&gt;
+  )
+}</div>
+
+    <p class="text-sm font-medium text-gray-700 mb-2">Бусад хуудсанд ашиглах:</p>
+    <div class="code-box"><span class="code-purple">import</span> Button <span class="code-purple">from</span> <span class="code-white">"@/components/Button"</span>
+
+<span class="code-purple">export default function</span> <span class="code-blue">HomePage</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">div</span>&gt;
+      &lt;<span class="code-blue">Button</span> text=<span class="code-white">"Нэвтрэх"</span> /&gt;
+      &lt;<span class="code-blue">Button</span> text=<span class="code-white">"Бүртгүүлэх"</span> /&gt;
+    &lt;/<span class="code-yellow">div</span>&gt;
+  )
+}</div>
+
+    <div class="mt-4 bg-blue-50 border border-blue-100 rounded-lg p-3 text-sm text-blue-800">
+      Component нэг удаа бичнэ → хаана ч хэдэн ч удаа ашиглана. Засвар хийхэд нэг газар засахад бүх хуудсанд нэгэн зэрэг өөрчлөгддөг.
+    </div>
+  </section>
+
+
+  <!-- ─── LAYOUT ─────────────────────────────────── -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Layout гэж юу вэ?</h3>
+    </div>
+
+    <p class="text-sm text-gray-600 mb-4">Layout бол <strong>бүх хуудасд ортсон нийтлэг бүтэц</strong>. Header, Footer гэх мэт хэрэгслүүдийг layout-д бичвэл дахин давтах шаардлагагүй болно.</p>
+
+    <div class="bg-gray-50 border border-gray-100 rounded-lg p-4 mb-4">
+      <p class="text-xs text-gray-400 uppercase font-medium tracking-wide mb-3">Layout хэрхэн ажилладаг</p>
+      <div class="space-y-1 text-sm">
+        <div class="bg-indigo-100 rounded p-2 text-center text-indigo-700 font-medium text-xs">Header (layout.tsx дотор — бүх хуудсанд харагдана)</div>
+        <div class="flex items-center gap-1 text-xs text-gray-400 justify-center py-1">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"/></svg>
+          {children} — дотор хуудас солигдоно
+        </div>
+        <div class="grid grid-cols-3 gap-1 text-xs">
+          <div class="bg-white border border-gray-200 rounded p-2 text-center text-gray-600">Нүүр<br/>(page.tsx)</div>
+          <div class="bg-white border border-gray-200 rounded p-2 text-center text-gray-600">Тухай<br/>(about)</div>
+          <div class="bg-white border border-gray-200 rounded p-2 text-center text-gray-600">Холбоо<br/>(contact)</div>
+        </div>
+        <div class="flex items-center gap-1 text-xs text-gray-400 justify-center py-1">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"/></svg>
+        </div>
+        <div class="bg-indigo-100 rounded p-2 text-center text-indigo-700 font-medium text-xs">Footer (layout.tsx дотор — бүх хуудсанд харагдана)</div>
+      </div>
+    </div>
+
+    <p class="text-sm font-medium text-gray-700 mb-2">layout.tsx код:</p>
+    <div class="code-box"><span class="code-comment">// app/layout.tsx</span>
+<span class="code-purple">import</span> Header <span class="code-purple">from</span> <span class="code-white">"@/components/Header"</span>
+<span class="code-purple">import</span> Footer <span class="code-purple">from</span> <span class="code-white">"@/components/Footer"</span>
+
+<span class="code-purple">export default function</span> <span class="code-blue">RootLayout</span>({ children }) {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">html</span> lang=<span class="code-white">"mn"</span>&gt;
+      &lt;<span class="code-yellow">body</span>&gt;
+        &lt;<span class="code-blue">Header</span> /&gt;        <span class="code-comment">← бүх хуудсанд</span>
+        &lt;<span class="code-yellow">main</span>&gt;{children}&lt;/<span class="code-yellow">main</span>&gt;  <span class="code-comment">← хуудас солигдоно</span>
+        &lt;<span class="code-blue">Footer</span> /&gt;        <span class="code-comment">← бүх хуудсанд</span>
+      &lt;/<span class="code-yellow">body</span>&gt;
+    &lt;/<span class="code-yellow">html</span>&gt;
+  )
+}</div>
+  </section>
+
+
+  <!-- ─── INSTALLATION ──────────────────────────── -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-5">
+      <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Next.js суулгах — алхам алхмаар</h3>
+    </div>
+
+    <div class="space-y-6">
+
+      <!-- Step 1 -->
+      <div class="flex gap-4">
+        <div class="step-num">1</div>
+        <div class="flex-1">
+          <p class="font-semibold text-sm text-gray-800 mb-1">Node.js суулгах</p>
+          <p class="text-sm text-gray-500 mb-2">Эхлээд Node.js суулгасан эсэхийг шалгана. Terminal-д доорх командыг бичнэ:</p>
+          <div class="code-box">node --version</div>
+          <p class="text-xs text-gray-400 mt-2">Хэрэв тоо (жнь: v20.0.0) гарвал Node.js байна. Хэрэв алдаа гарвал <span class="text-blue-600">nodejs.org</span>-оос суулгана.</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flex gap-4">
+        <div class="step-num">2</div>
+        <div class="flex-1">
+          <p class="font-semibold text-sm text-gray-800 mb-1">Шинэ Next.js төсөл үүсгэх</p>
+          <p class="text-sm text-gray-500 mb-2">Terminal нээж, төсөлөө байрлуулах хавтас руу ороод доорх командыг ажиллуулна:</p>
+          <div class="code-box">npx create-next-app@latest my-website</div>
+          <p class="text-xs text-gray-400 mt-2"><span class="font-medium text-gray-600">my-website</span> = өөрийн төслийн нэр (латин, зай байхгүй)</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flex gap-4">
+        <div class="step-num">3</div>
+        <div class="flex-1">
+          <p class="font-semibold text-sm text-gray-800 mb-1">Асуултуудад хариулах</p>
+          <p class="text-sm text-gray-500 mb-3">Terminal дараах асуултуудыг нэг нэгээр асуух болно. Доорх заавраар хариулна:</p>
+
+          <div class="space-y-3">
+
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <div class="bg-gray-900 px-4 py-2 flex justify-between items-center">
+                <code class="text-green-400 text-xs">Would you like to use TypeScript?</code>
+                <span class="text-xs bg-green-700 text-green-100 px-2 py-0.5 rounded font-medium">Yes →</span>
+              </div>
+              <div class="px-4 py-3 text-sm text-gray-600">
+                <strong>TypeScript</strong> бол JavaScript-ийн дэвшилтэт хувилбар. Кодлох үед алдааг <strong>бичих явцдаа</strong> илрүүлдэг тул хөгжүүлэхэд илүү хялбар байдаг.
+                <div class="mt-2 bg-gray-50 rounded p-2 text-xs text-gray-500 font-mono">
+                  <span class="text-red-500">JavaScript:</span> const age = "25" + 5  <span class="text-gray-400">→ алдаагүй боловч "255" болно</span><br>
+                  <span class="text-green-600">TypeScript:</span> const age: number = "25"  <span class="text-gray-400">→ шууд алдаа харуулна</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <div class="bg-gray-900 px-4 py-2 flex justify-between items-center">
+                <code class="text-green-400 text-xs">Would you like to use ESLint?</code>
+                <span class="text-xs bg-green-700 text-green-100 px-2 py-0.5 rounded font-medium">Yes →</span>
+              </div>
+              <div class="px-4 py-3 text-sm text-gray-600">
+                <strong>ESLint</strong> бол кодын чанарыг шалгадаг хэрэгсэл. Хэрэглэгдэхгүй хувьсагч, мартагдсан import зэрэг алдааг автоматаар тэмдэглэж өгдөг.
+              </div>
+            </div>
+
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <div class="bg-gray-900 px-4 py-2 flex justify-between items-center">
+                <code class="text-green-400 text-xs">Would you like to use Tailwind CSS?</code>
+                <span class="text-xs bg-green-700 text-green-100 px-2 py-0.5 rounded font-medium">Yes →</span>
+              </div>
+              <div class="px-4 py-3 text-sm text-gray-600">
+                Бид аль хэдийн ашиглаж байсан <strong>Tailwind CSS</strong> — Next.js дотор ч мөн адил className ашиглан хэрэглэнэ. Бэлэн суулгагдана.
+              </div>
+            </div>
+
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <div class="bg-gray-900 px-4 py-2 flex justify-between items-center">
+                <code class="text-green-400 text-xs">Would you like your code inside a `src/` directory?</code>
+                <span class="text-xs bg-red-700 text-red-100 px-2 py-0.5 rounded font-medium">No →</span>
+              </div>
+              <div class="px-4 py-3 text-sm text-gray-600">
+                <code class="bg-gray-100 px-1 rounded">src/</code> хавтас нэмэлт давхарга үүсгэдэг. <strong>No</strong> сонгосноор <code>app/</code> хавтас шууд гадна талд байх тул хялбар байна.
+                <div class="mt-2 grid grid-cols-2 gap-2 text-xs font-mono">
+                  <div class="bg-red-50 rounded p-2 text-red-700">
+                    <div class="font-semibold mb-1">src/ Yes (илүү гүн)</div>
+                    <div>src/app/page.tsx</div>
+                    <div>src/components/</div>
+                  </div>
+                  <div class="bg-green-50 rounded p-2 text-green-700">
+                    <div class="font-semibold mb-1">src/ No (энгийн)</div>
+                    <div>app/page.tsx</div>
+                    <div>components/</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <div class="bg-gray-900 px-4 py-2 flex justify-between items-center">
+                <code class="text-green-400 text-xs">Would you like to use App Router?</code>
+                <span class="text-xs bg-green-700 text-green-100 px-2 py-0.5 rounded font-medium">Yes →</span>
+              </div>
+              <div class="px-4 py-3 text-sm text-gray-600">
+                Next.js-д routing-ийн хоёр хувилбар байдаг. <strong>App Router</strong> бол шинэ буюу одоо ашиглагддаг стандарт хувилбар. Бид <code>app/</code> хавтас ашиглан хуудас хийнэ.
+                <div class="mt-2 bg-amber-50 border border-amber-100 rounded p-2 text-xs text-amber-700">
+                  Pages Router (хуучин) → pages/ хавтас<br>
+                  App Router (шинэ) → app/ хавтас ← бид энийг сонгоно
+                </div>
+              </div>
+            </div>
+
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <div class="bg-gray-900 px-4 py-2 flex justify-between items-center">
+                <code class="text-green-400 text-xs">Would you like to customize the import alias?</code>
+                <span class="text-xs bg-red-700 text-red-100 px-2 py-0.5 rounded font-medium">No →</span>
+              </div>
+              <div class="px-4 py-3 text-sm text-gray-600">
+                Import alias бол файл оруулах товчлол. <strong>No</strong> сонгоход анхны тохируулгаар <code class="bg-gray-100 px-1 rounded">@/</code> товчлол автоматаар тохируулагдана.
+                <div class="mt-2 bg-gray-50 rounded p-2 text-xs text-gray-500 font-mono">
+                  <span class="text-gray-400">Урт зам:</span>  import Button from "../../../components/Button"<br>
+                  <span class="text-green-600">@/ ашиглан:</span> import Button from "@/components/Button"
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="flex gap-4">
+        <div class="step-num">4</div>
+        <div class="flex-1">
+          <p class="font-semibold text-sm text-gray-800 mb-1">Төсөл рүү орох</p>
+          <div class="code-box">cd my-website</div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="flex gap-4">
+        <div class="step-num">5</div>
+        <div class="flex-1">
+          <p class="font-semibold text-sm text-gray-800 mb-1">Хөгжүүлэлтийн серверийг эхлүүлэх</p>
+          <div class="code-box">npm run dev</div>
+          <p class="text-xs text-gray-400 mt-2">Terminal-д <span class="text-green-600">localhost:3000</span> гэж харагдах болно.</p>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="flex gap-4">
+        <div class="step-num">6</div>
+        <div class="flex-1">
+          <p class="font-semibold text-sm text-gray-800 mb-1">Browser-т нээх</p>
+          <div class="code-box">http://localhost:3000</div>
+          <div class="mt-3 bg-green-50 border border-green-100 rounded-lg p-3 text-sm text-green-700">
+            Next.js-ийн тавтай морилно уу хуудас харагдвал амжилттай суулгагдсан!
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ─── PROJECT STRUCTURE ─────────────────────── -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Бидний хийх төслийн бүтэц</h3>
+    </div>
+
+    <p class="text-sm text-gray-600 mb-4">Header + Footer + Нүүр + Тухай + Холбоо барих хуудастай сайт хийнэ.</p>
+
+    <div class="code-box mb-4">my-website/
+├── <span class="code-blue">app/</span>
+│   ├── <span class="code-yellow">layout.tsx</span>       <span class="code-comment">← Header & Footer энд</span>
+│   ├── <span class="code-yellow">page.tsx</span>         <span class="code-comment">← / (нүүр хуудас)</span>
+│   ├── <span class="code-blue">about/</span>
+│   │   └── <span class="code-yellow">page.tsx</span>     <span class="code-comment">← /about</span>
+│   └── <span class="code-blue">contact/</span>
+│       └── <span class="code-yellow">page.tsx</span>     <span class="code-comment">← /contact</span>
+├── <span class="code-blue">components/</span>
+│   ├── <span class="code-yellow">Header.tsx</span>       <span class="code-comment">← навигаци</span>
+│   └── <span class="code-yellow">Footer.tsx</span>       <span class="code-comment">← footer</span>
+└── <span class="code-blue">public/</span>            <span class="code-comment">← зураг, файлууд</span></div>
+
+    <div class="grid sm:grid-cols-3 gap-3 text-sm">
+      <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-3">
+        <p class="font-semibold text-indigo-700 mb-1">app/</p>
+        <p class="text-xs text-gray-500">Хуудас бүгд энд. Файл нэр → URL болно.</p>
+      </div>
+      <div class="bg-green-50 border border-green-100 rounded-lg p-3">
+        <p class="font-semibold text-green-700 mb-1">components/</p>
+        <p class="text-xs text-gray-500">Дахин ашиглагдах хэсгүүд. Header, Footer гэх мэт.</p>
+      </div>
+      <div class="bg-blue-50 border border-blue-100 rounded-lg p-3">
+        <p class="font-semibold text-blue-700 mb-1">public/</p>
+        <p class="text-xs text-gray-500">Зураг болон статик файлууд.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── CODE: HEADER ──────────────────────────── -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">1. Header Component хийх</h3>
+    </div>
+    <p class="text-sm text-gray-400 mb-2">Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">components/Header.tsx</code></p>
+    <div class="code-box"><span class="code-comment">// components/Header.tsx</span>
+<span class="code-purple">import</span> Link <span class="code-purple">from</span> <span class="code-white">"next/link"</span>
+
+<span class="code-purple">export default function</span> <span class="code-blue">Header</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">header</span> className=<span class="code-white">"bg-white border-b border-gray-200 px-6 py-4"</span>&gt;
+      &lt;<span class="code-yellow">div</span> className=<span class="code-white">"max-w-3xl mx-auto flex justify-between items-center"</span>&gt;
+        &lt;<span class="code-blue">Link</span> href=<span class="code-white">"/"</span> className=<span class="code-white">"text-lg font-bold text-gray-900"</span>&gt;
+          Миний сайт
+        &lt;/<span class="code-blue">Link</span>&gt;
+
+        &lt;<span class="code-yellow">nav</span> className=<span class="code-white">"flex gap-6 text-sm"</span>&gt;
+          &lt;<span class="code-blue">Link</span> href=<span class="code-white">"/"</span> className=<span class="code-white">"text-gray-500 hover:text-blue-600"</span>&gt;Нүүр&lt;/<span class="code-blue">Link</span>&gt;
+          &lt;<span class="code-blue">Link</span> href=<span class="code-white">"/about"</span> className=<span class="code-white">"text-gray-500 hover:text-blue-600"</span>&gt;Тухай&lt;/<span class="code-blue">Link</span>&gt;
+          &lt;<span class="code-blue">Link</span> href=<span class="code-white">"/contact"</span> className=<span class="code-white">"text-gray-500 hover:text-blue-600"</span>&gt;Холбоо&lt;/<span class="code-blue">Link</span>&gt;
+        &lt;/<span class="code-yellow">nav</span>&gt;
+      &lt;/<span class="code-yellow">div</span>&gt;
+    &lt;/<span class="code-yellow">header</span>&gt;
+  )
+}</div>
+
+    <div class="mt-3 bg-amber-50 border border-amber-100 rounded-lg p-3 text-sm text-amber-800">
+      <strong>Link</strong> vs <strong>&lt;a&gt;</strong> — Next.js-д хуудас шилжихдээ <code>&lt;a&gt;</code>-н оронд <code>&lt;Link&gt;</code> ашиглана. Хуудасны эхнээс дахин ачааллахгүйгээр шуурхай шилждэг.
+    </div>
+  </section>
+
+
+  <!-- ─── CODE: FOOTER ──────────────────────────── -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">2. Footer Component хийх</h3>
+    </div>
+    <p class="text-sm text-gray-400 mb-2">Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">components/Footer.tsx</code></p>
+    <div class="code-box"><span class="code-comment">// components/Footer.tsx</span>
+<span class="code-purple">export default function</span> <span class="code-blue">Footer</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">footer</span> className=<span class="code-white">"border-t border-gray-200 py-8 mt-10"</span>&gt;
+      &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-center text-xs text-gray-400"</span>&gt;
+        © 2026 Миний сайт
+      &lt;/<span class="code-yellow">p</span>&gt;
+    &lt;/<span class="code-yellow">footer</span>&gt;
+  )
+}</div>
+  </section>
+
+
+  <!-- ─── CODE: LAYOUT ──────────────────────────── -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">3. Layout — Header & Footer бүх хуудсанд</h3>
+    </div>
+    <p class="text-sm text-gray-400 mb-2">Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">app/layout.tsx</code></p>
+    <div class="code-box"><span class="code-comment">// app/layout.tsx</span>
+<span class="code-purple">import</span> Header <span class="code-purple">from</span> <span class="code-white">"@/components/Header"</span>
+<span class="code-purple">import</span> Footer <span class="code-purple">from</span> <span class="code-white">"@/components/Footer"</span>
+<span class="code-purple">import</span> <span class="code-white">"./globals.css"</span>
+
+<span class="code-purple">export default function</span> <span class="code-blue">RootLayout</span>({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">html</span> lang=<span class="code-white">"mn"</span>&gt;
+      &lt;<span class="code-yellow">body</span> className=<span class="code-white">"bg-gray-50 text-gray-800"</span>&gt;
+        &lt;<span class="code-blue">Header</span> /&gt;
+        &lt;<span class="code-yellow">main</span>&gt;{children}&lt;/<span class="code-yellow">main</span>&gt;
+        &lt;<span class="code-blue">Footer</span> /&gt;
+      &lt;/<span class="code-yellow">body</span>&gt;
+    &lt;/<span class="code-yellow">html</span>&gt;
+  )
+}</div>
+
+    <div class="mt-3 bg-blue-50 border border-blue-100 rounded-lg p-3 text-sm text-blue-800">
+      <code>{children}</code> — хуудас солигдох газар. Нүүр хуудас үзэхэд <code>app/page.tsx</code>, /about руу ороход <code>app/about/page.tsx</code> орж ирдэг.
+    </div>
+  </section>
+
+
+  <!-- ─── CODE: PAGES ───────────────────────────── -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">4. Хуудас бүр тусдаа файл</h3>
+    </div>
+
+    <!-- Home -->
+    <p class="text-sm font-medium text-gray-700 mb-1">Нүүр хуудас</p>
+    <p class="text-sm text-gray-400 mb-2">Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">app/page.tsx</code> → хаяг: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">/</code></p>
+    <div class="code-box mb-5"><span class="code-purple">export default function</span> <span class="code-blue">HomePage</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">div</span> className=<span class="code-white">"max-w-3xl mx-auto px-6 py-16 text-center"</span>&gt;
+      &lt;<span class="code-yellow">h1</span> className=<span class="code-white">"text-4xl font-bold mb-4"</span>&gt;
+        Тавтай морилно уу!
+      &lt;/<span class="code-yellow">h1</span>&gt;
+      &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-gray-500"</span>&gt;
+        Энэ бол миний Next.js сайт.
+      &lt;/<span class="code-yellow">p</span>&gt;
+    &lt;/<span class="code-yellow">div</span>&gt;
+  )
+}</div>
+
+    <!-- About -->
+    <p class="text-sm font-medium text-gray-700 mb-1">Тухай хуудас</p>
+    <p class="text-sm text-gray-400 mb-2">Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">app/about/page.tsx</code> → хаяг: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">/about</code></p>
+    <div class="code-box mb-5"><span class="code-purple">export default function</span> <span class="code-blue">AboutPage</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">div</span> className=<span class="code-white">"max-w-3xl mx-auto px-6 py-10"</span>&gt;
+      &lt;<span class="code-yellow">h1</span> className=<span class="code-white">"text-2xl font-bold mb-4"</span>&gt;Бидний тухай&lt;/<span class="code-yellow">h1</span>&gt;
+      &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-gray-600"</span>&gt;
+        Бид веб хөгжүүлэлт заадаг.
+      &lt;/<span class="code-yellow">p</span>&gt;
+    &lt;/<span class="code-yellow">div</span>&gt;
+  )
+}</div>
+
+    <!-- Contact -->
+    <p class="text-sm font-medium text-gray-700 mb-1">Холбоо барих хуудас</p>
+    <p class="text-sm text-gray-400 mb-2">Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">app/contact/page.tsx</code> → хаяг: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">/contact</code></p>
+    <div class="code-box"><span class="code-purple">export default function</span> <span class="code-blue">ContactPage</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">div</span> className=<span class="code-white">"max-w-3xl mx-auto px-6 py-10"</span>&gt;
+      &lt;<span class="code-yellow">h1</span> className=<span class="code-white">"text-2xl font-bold mb-6"</span>&gt;Холбоо барих&lt;/<span class="code-yellow">h1</span>&gt;
+      &lt;<span class="code-yellow">input</span>
+        className=<span class="code-white">"w-full border rounded-lg p-2 mb-3"</span>
+        placeholder=<span class="code-white">"Нэр"</span>
+      /&gt;
+      &lt;<span class="code-yellow">textarea</span>
+        className=<span class="code-white">"w-full border rounded-lg p-2 mb-3"</span>
+        placeholder=<span class="code-white">"Мэдэгдэл"</span>
+      /&gt;
+      &lt;<span class="code-yellow">button</span> className=<span class="code-white">"bg-blue-500 text-white px-6 py-2 rounded-lg"</span>&gt;
+        Илгээх
+      &lt;/<span class="code-yellow">button</span>&gt;
+    &lt;/<span class="code-yellow">div</span>&gt;
+  )
+}</div>
+  </section>
+
+
+  <!-- ─── SUMMARY ───────────────────────────────── -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Товчлол — юу хийснийг санах</h3>
+    </div>
+
+    <div class="space-y-3">
+      <div class="flex items-start gap-3 text-sm">
+        <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-1 rounded flex-shrink-0">1</span>
+        <div>
+          <p class="font-medium text-gray-800">Component = дахин ашиглагдах UI блок</p>
+          <p class="text-gray-500 text-xs">Header, Footer, Button — нэг удаа бичиж, олон газар ашиглана</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 text-sm">
+        <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-1 rounded flex-shrink-0">2</span>
+        <div>
+          <p class="font-medium text-gray-800">Layout = бүх хуудасд нийтлэг бүтэц</p>
+          <p class="text-gray-500 text-xs">app/layout.tsx — Header, Footer нэг газарт</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 text-sm">
+        <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-1 rounded flex-shrink-0">3</span>
+        <div>
+          <p class="font-medium text-gray-800">Routing = файл нь хуудас болдог</p>
+          <p class="text-gray-500 text-xs">app/about/page.tsx → /about автоматаар</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 text-sm">
+        <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-1 rounded flex-shrink-0">4</span>
+        <div>
+          <p class="font-medium text-gray-800">Link = хуудас хооронд шилжих</p>
+          <p class="text-gray-500 text-xs">&lt;a&gt;-н оронд &lt;Link href="/about"&gt; ашиглана</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 bg-indigo-50 border border-indigo-100 rounded-lg p-4 text-sm text-indigo-800">
+      <p class="font-semibold mb-1">Дараагийн алхам:</p>
+      <p>Энэ бүтцийг ашиглаж өөрийн сайт хийгээрэй. Header, Footer хийж, дор хаяж 3 хуудас нэмж үзэх.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="text-center text-xs text-gray-400 py-8">
+  Веб Хөгжүүлэлтийн Хичээл — 2026
+</footer>
+
+</body>
+</html>

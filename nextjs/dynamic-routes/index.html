@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Next.js — Хөгжимний Апп</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+.code-box {
+  background: #0f172a;
+  color: #22c55e;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  overflow-x: auto;
+  font-family: monospace;
+  line-height: 1.8;
+  white-space: pre;
+}
+.code-comment { color: #6b7280; }
+.code-purple  { color: #a78bfa; }
+.code-blue    { color: #60a5fa; }
+.code-yellow  { color: #fbbf24; }
+.code-white   { color: #f8fafc; }
+.code-orange  { color: #fb923c; }
+.code-red     { color: #f87171; }
+.code-green   { color: #4ade80; }
+.step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.step-num.dynamic { background: #6366f1; }
+</style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+<header class="bg-white border-b border-gray-200 px-6 py-4">
+  <div class="max-w-3xl mx-auto flex justify-between items-center">
+    <h1 class="text-lg font-bold text-gray-900">Веб Хөгжүүлэлт</h1>
+    <div class="flex gap-6 text-sm">
+      <a href="../../" class="text-gray-500 hover:text-blue-600">Нүүр</a>
+      <a href="../../homework/" class="text-gray-500 hover:text-blue-600">Даалгавар</a>
+      <a href="../../contact/" class="text-gray-500 hover:text-blue-600">Холбоо барих</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-6 py-10">
+
+  <a href="../" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline mb-6">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
+    </svg>
+    Буцах
+  </a>
+
+  <!-- Title -->
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-2">
+      <svg class="w-8 h-8 text-indigo-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z"/>
+      </svg>
+      <h2 class="text-2xl font-bold text-gray-900">Хөгжимний Апп — алхам алхмаар</h2>
+    </div>
+    <p class="text-gray-500 text-sm">Next.js суулгахаас эхлээд статик хуудас хийж, дараа нь динамик route руу шилжих.</p>
+  </div>
+
+
+  <!-- ─── ЮУГ ХИЙХ ВЭ ──────────────────────────── -->
+  <div class="grid sm:grid-cols-2 gap-4 mb-6">
+
+    <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-5 text-white">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xs font-bold bg-white/20 px-2 py-1 rounded-full">Хичээл</span>
+      </div>
+      <p class="font-bold text-lg mb-1">Статик Route</p>
+      <p class="text-blue-100 text-xs mb-4">Уран бүтээлч бүрт тусдаа хавтас + файл. JSON өгөгдлөөс карт харуулна.</p>
+      <div class="bg-white/15 rounded-xl p-3 text-xs font-mono space-y-1">
+        <div class="text-white/70">artists/ <span class="text-yellow-300">← хавтас</span></div>
+        <div class="pl-3">nene/page.tsx</div>
+        <div class="pl-3">nmn/page.tsx</div>
+        <div class="pl-3">rokitbay/page.tsx</div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-5 text-white">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xs font-bold bg-white/20 px-2 py-1 rounded-full">Даалгавар</span>
+      </div>
+      <p class="font-bold text-lg mb-1">Динамик Route</p>
+      <p class="text-indigo-100 text-xs mb-4">Нэг файл — мянган уран бүтээлчийг хариуцна. Бодит дэлхийн арга.</p>
+      <div class="bg-white/15 rounded-xl p-3 text-xs font-mono space-y-1">
+        <div class="text-white/70">artist/ <span class="text-yellow-300">← хавтас</span></div>
+        <div class="pl-3 font-bold text-yellow-300">[name]/page.tsx</div>
+        <div class="pl-3 text-white/60">↳ /artist/nene</div>
+        <div class="pl-3 text-white/60">↳ /artist/anyone...</div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       ХЭСЭГ 1 — СТАТИК
+  ════════════════════════════════════════════════ -->
+  <div class="flex items-center gap-3 mb-5">
+    <div class="flex-1 h-px bg-blue-200"></div>
+    <span class="text-xs font-bold text-blue-600 uppercase tracking-wide px-2">Хэсэг 1 — Статик Route</span>
+    <div class="flex-1 h-px bg-blue-200"></div>
+  </div>
+
+
+  <!-- Step 1: Create project -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex gap-4">
+      <div class="step-num">1</div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 mb-1">Next.js төсөл үүсгэх</p>
+        <p class="text-sm text-gray-500 mb-3">Terminal нээж доорхийг ажиллуул. Асуулт бүрт Enter дарна.</p>
+        <div class="code-box">npx create-next-app@latest music-app</div>
+        <div class="mt-3 bg-gray-50 border border-gray-200 rounded-lg overflow-hidden text-xs">
+          <div class="grid grid-cols-2 divide-x divide-gray-200">
+            <div class="px-3 py-2 font-mono text-gray-500">TypeScript?</div>
+            <div class="px-3 py-2 font-bold text-green-600">Yes</div>
+          </div>
+          <div class="grid grid-cols-2 divide-x divide-gray-200 border-t border-gray-200">
+            <div class="px-3 py-2 font-mono text-gray-500">ESLint?</div>
+            <div class="px-3 py-2 font-bold text-green-600">Yes</div>
+          </div>
+          <div class="grid grid-cols-2 divide-x divide-gray-200 border-t border-gray-200">
+            <div class="px-3 py-2 font-mono text-gray-500">Tailwind CSS?</div>
+            <div class="px-3 py-2 font-bold text-green-600">Yes</div>
+          </div>
+          <div class="grid grid-cols-2 divide-x divide-gray-200 border-t border-gray-200">
+            <div class="px-3 py-2 font-mono text-gray-500">src/ directory?</div>
+            <div class="px-3 py-2 font-bold text-red-500">No</div>
+          </div>
+          <div class="grid grid-cols-2 divide-x divide-gray-200 border-t border-gray-200">
+            <div class="px-3 py-2 font-mono text-gray-500">App Router?</div>
+            <div class="px-3 py-2 font-bold text-green-600">Yes</div>
+          </div>
+          <div class="grid grid-cols-2 divide-x divide-gray-200 border-t border-gray-200">
+            <div class="px-3 py-2 font-mono text-gray-500">import alias?</div>
+            <div class="px-3 py-2 font-bold text-red-500">No</div>
+          </div>
+        </div>
+        <div class="code-box mt-3">cd music-app
+npm run dev</div>
+        <p class="text-xs text-gray-400 mt-2">Browser-д <code class="bg-gray-100 px-1 rounded">localhost:3000</code> нээгээд Next.js хуудас харагдвал болсон.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Step 2: Folder structure -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex gap-4">
+      <div class="step-num">2</div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 mb-1">Файлын бүтэц — статик</p>
+        <p class="text-sm text-gray-500 mb-3">Дараах хавтас болон файлуудыг үүсгэнэ. Уран бүтээлч бүрт тусдаа хавтас.</p>
+        <div class="code-box">music-app/
+├── app/
+│   ├── <span class="code-blue">artists/</span>
+│   │   ├── <span class="code-yellow">nene/</span>
+│   │   │   └── page.tsx      <span class="code-comment">← /artists/nene</span>
+│   │   ├── <span class="code-yellow">nmn/</span>
+│   │   │   └── page.tsx      <span class="code-comment">← /artists/nmn</span>
+│   │   └── <span class="code-yellow">rokitbay/</span>
+│   │       └── page.tsx      <span class="code-comment">← /artists/rokitbay</span>
+│   ├── layout.tsx
+│   └── page.tsx
+└── components/
+    ├── Header.tsx
+    └── Footer.tsx</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Step 3: Header -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex gap-4">
+      <div class="step-num">3</div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 mb-1">Header хийх</p>
+        <p class="text-sm text-gray-400 mb-3">Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded">components/Header.tsx</code></p>
+        <div class="code-box"><span class="code-purple">import</span> Link <span class="code-purple">from</span> <span class="code-white">"next/link"</span>
+
+<span class="code-purple">export default function</span> <span class="code-blue">Header</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">header</span> className=<span class="code-white">"bg-white border-b px-6 py-4"</span>&gt;
+      &lt;<span class="code-yellow">div</span> className=<span class="code-white">"max-w-3xl mx-auto flex justify-between"</span>&gt;
+        &lt;<span class="code-blue">Link</span> href=<span class="code-white">"/"</span> className=<span class="code-white">"font-bold text-lg"</span>&gt;
+          🎵 Music App
+        &lt;/<span class="code-blue">Link</span>&gt;
+        &lt;<span class="code-blue">Link</span> href=<span class="code-white">"/"</span> className=<span class="code-white">"text-sm text-gray-500"</span>&gt;
+          Нүүр
+        &lt;/<span class="code-blue">Link</span>&gt;
+      &lt;/<span class="code-yellow">div</span>&gt;
+    &lt;/<span class="code-yellow">header</span>&gt;
+  )
+}</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Step 4: Layout -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex gap-4">
+      <div class="step-num">4</div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 mb-1">Layout — Header бүх хуудсанд</p>
+        <p class="text-sm text-gray-400 mb-3">Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded">app/layout.tsx</code></p>
+        <div class="code-box"><span class="code-purple">import</span> Header <span class="code-purple">from</span> <span class="code-white">"@/components/Header"</span>
+<span class="code-purple">import</span> <span class="code-white">"./globals.css"</span>
+
+<span class="code-purple">export default function</span> <span class="code-blue">RootLayout</span>({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">html</span> lang=<span class="code-white">"mn"</span>&gt;
+      &lt;<span class="code-yellow">body</span> className=<span class="code-white">"bg-gray-50"</span>&gt;
+        &lt;<span class="code-blue">Header</span> /&gt;
+        &lt;<span class="code-yellow">main</span>&gt;{children}&lt;/<span class="code-yellow">main</span>&gt;
+      &lt;/<span class="code-yellow">body</span>&gt;
+    &lt;/<span class="code-yellow">html</span>&gt;
+  )
+}</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Step 5: Home page -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex gap-4">
+      <div class="step-num">5</div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 mb-1">Нүүр хуудас — уран бүтээлчдийн жагсаалт</p>
+        <p class="text-sm text-gray-400 mb-3">Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded">app/page.tsx</code></p>
+        <div class="code-box"><span class="code-purple">import</span> Link <span class="code-purple">from</span> <span class="code-white">"next/link"</span>
+
+<span class="code-purple">export default function</span> <span class="code-blue">HomePage</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">div</span> className=<span class="code-white">"max-w-3xl mx-auto px-6 py-10"</span>&gt;
+      &lt;<span class="code-yellow">h1</span> className=<span class="code-white">"text-2xl font-bold mb-6"</span>&gt;
+        Уран бүтээлчид
+      &lt;/<span class="code-yellow">h1</span>&gt;
+
+      &lt;<span class="code-yellow">div</span> className=<span class="code-white">"grid sm:grid-cols-3 gap-4"</span>&gt;
+
+        &lt;<span class="code-blue">Link</span> href=<span class="code-white">"/artists/nene"</span>
+          className=<span class="code-white">"bg-white border rounded-xl p-5 hover:shadow-sm"</span>&gt;
+          &lt;<span class="code-yellow">p</span> className=<span class="code-white">"font-bold"</span>&gt;Nene&lt;/<span class="code-yellow">p</span>&gt;
+          &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-sm text-gray-500"</span>&gt;R&amp;B&lt;/<span class="code-yellow">p</span>&gt;
+        &lt;/<span class="code-blue">Link</span>&gt;
+
+        &lt;<span class="code-blue">Link</span> href=<span class="code-white">"/artists/nmn"</span>
+          className=<span class="code-white">"bg-white border rounded-xl p-5 hover:shadow-sm"</span>&gt;
+          &lt;<span class="code-yellow">p</span> className=<span class="code-white">"font-bold"</span>&gt;NMN&lt;/<span class="code-yellow">p</span>&gt;
+          &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-sm text-gray-500"</span>&gt;Хип-хоп&lt;/<span class="code-yellow">p</span>&gt;
+        &lt;/<span class="code-blue">Link</span>&gt;
+
+        &lt;<span class="code-blue">Link</span> href=<span class="code-white">"/artists/rokitbay"</span>
+          className=<span class="code-white">"bg-white border rounded-xl p-5 hover:shadow-sm"</span>&gt;
+          &lt;<span class="code-yellow">p</span> className=<span class="code-white">"font-bold"</span>&gt;Rokitbay&lt;/<span class="code-yellow">p</span>&gt;
+          &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-sm text-gray-500"</span>&gt;Электрон&lt;/<span class="code-yellow">p</span>&gt;
+        &lt;/<span class="code-blue">Link</span>&gt;
+
+      &lt;/<span class="code-yellow">div</span>&gt;
+    &lt;/<span class="code-yellow">div</span>&gt;
+  )
+}</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Step 6: Static artist pages -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex gap-4">
+      <div class="step-num">6</div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 mb-1">Уран бүтээлч бүрт тусдаа хуудас</p>
+        <p class="text-sm text-gray-500 mb-3">Нэг нэгэн файл үүсгэнэ — гурван файл бүгд ижил бүтэцтэй, зөвхөн нэр нь өөр.</p>
+
+        <p class="text-xs text-gray-400 mb-2">Файл: <code class="bg-gray-100 px-1 rounded">app/artists/nene/page.tsx</code></p>
+        <div class="code-box mb-4"><span class="code-purple">export default function</span> <span class="code-blue">NenePage</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">div</span> className=<span class="code-white">"max-w-3xl mx-auto px-6 py-10"</span>&gt;
+      &lt;<span class="code-yellow">h1</span> className=<span class="code-white">"text-3xl font-bold mb-2"</span>&gt;Nene&lt;/<span class="code-yellow">h1</span>&gt;
+      &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-gray-500 mb-4"</span>&gt;R&amp;B дуучин&lt;/<span class="code-yellow">p</span>&gt;
+      &lt;<span class="code-yellow">img</span> src=<span class="code-white">"/nene.jpg"</span> className=<span class="code-white">"w-48 rounded-xl"</span> /&gt;
+    &lt;/<span class="code-yellow">div</span>&gt;
+  )
+}</div>
+
+        <p class="text-xs text-gray-400 mb-2">Файл: <code class="bg-gray-100 px-1 rounded">app/artists/nmn/page.tsx</code></p>
+        <div class="code-box mb-4"><span class="code-purple">export default function</span> <span class="code-blue">NmnPage</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">div</span> className=<span class="code-white">"max-w-3xl mx-auto px-6 py-10"</span>&gt;
+      &lt;<span class="code-yellow">h1</span> className=<span class="code-white">"text-3xl font-bold mb-2"</span>&gt;NMN&lt;/<span class="code-yellow">h1</span>&gt;
+      &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-gray-500 mb-4"</span>&gt;Хип-хоп&lt;/<span class="code-yellow">p</span>&gt;
+      &lt;<span class="code-yellow">img</span> src=<span class="code-white">"/nmn.jpg"</span> className=<span class="code-white">"w-48 rounded-xl"</span> /&gt;
+    &lt;/<span class="code-yellow">div</span>&gt;
+  )
+}</div>
+
+        <p class="text-xs text-gray-400 mb-2">Файл: <code class="bg-gray-100 px-1 rounded">app/artists/rokitbay/page.tsx</code></p>
+        <div class="code-box"><span class="code-purple">export default function</span> <span class="code-blue">RokitbayPage</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">div</span> className=<span class="code-white">"max-w-3xl mx-auto px-6 py-10"</span>&gt;
+      &lt;<span class="code-yellow">h1</span> className=<span class="code-white">"text-3xl font-bold mb-2"</span>&gt;Rokitbay&lt;/<span class="code-yellow">h1</span>&gt;
+      &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-gray-500 mb-4"</span>&gt;Электрон&lt;/<span class="code-yellow">p</span>&gt;
+      &lt;<span class="code-yellow">img</span> src=<span class="code-white">"/rokit.jpg"</span> className=<span class="code-white">"w-48 rounded-xl"</span> /&gt;
+    &lt;/<span class="code-yellow">div</span>&gt;
+  )
+}</div>
+
+        <div class="mt-4 bg-amber-50 border border-amber-100 rounded-lg p-3 text-sm text-amber-800">
+          Анхаараарай: Гурван файл бараг <strong>ижилхэн код</strong>. Зөвхөн нэр, жанр, зураг өөр. Энэ нь давтагдсан байгаа — үүнийг дараа шийдэх болно.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 flex items-start gap-3">
+    <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+    </svg>
+    <div>
+      <p class="font-semibold text-blue-800 text-sm">Статик хэсэг дууслаа</p>
+      <p class="text-blue-700 text-sm">Одоо <code>localhost:3000</code>-д нүүр хуудас, <code>/artists/nene</code>, <code>/artists/nmn</code>, <code>/artists/rokitbay</code> — бүгд ажиллаж байх ёстой.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       ХЭСЭГ 2 — ДИНАМИК
+  ════════════════════════════════════════════════ -->
+  <div class="flex items-center gap-3 mb-5">
+    <div class="flex-1 h-px bg-indigo-200"></div>
+    <span class="text-xs font-bold text-indigo-600 uppercase tracking-wide px-2">Хэсэг 2 — Динамик Route</span>
+    <div class="flex-1 h-px bg-indigo-200"></div>
+  </div>
+
+  <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-4 mb-6 text-sm text-indigo-800">
+    <p class="font-semibold mb-1">Яагаад динамик руу шилжих вэ?</p>
+    <p>Дөнгөж 3 уран бүтээлчид 3 файл хийлээ. Хэрэв 10 болвол 10 файл. 100 болвол 100 файл — мөн бүгд ижил бүтэцтэй. Динамик route ашиглавал <strong>нэг файлаар бүгдийг хариуцна</strong>.</p>
+  </div>
+
+
+  <!-- Step 7: What changes -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex gap-4">
+      <div class="step-num" style="background:#6366f1">7</div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 mb-1">Файлын бүтэц өөрчлөгдөнө</p>
+        <p class="text-sm text-gray-500 mb-3">Гурван <code>artists/nene</code>, <code>artists/nmn</code>, <code>artists/rokitbay</code> хавтасны оронд — нэг <code>artist/[name]</code> хавтас.</p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <p class="text-xs font-medium text-red-600 mb-2">Устгах зүйл</p>
+            <div class="code-box text-xs"><span class="code-red">app/artists/nene/page.tsx</span>
+<span class="code-red">app/artists/nmn/page.tsx</span>
+<span class="code-red">app/artists/rokitbay/page.tsx</span></div>
+          </div>
+          <div>
+            <p class="text-xs font-medium text-green-600 mb-2">Нэмэх зүйл</p>
+            <div class="code-box text-xs"><span class="code-green">app/artist/[name]/page.tsx</span>
+<span class="code-comment">← нэг файл бүгдийг хариуцна</span>
+
+<span class="code-green">data/artists.ts</span>
+<span class="code-comment">← өгөгдөл нэг газарт</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Step 8: data file -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex gap-4">
+      <div class="step-num" style="background:#6366f1">8</div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 mb-1">Өгөгдлийн файл үүсгэх</p>
+        <p class="text-sm text-gray-500 mb-3">Уран бүтээлчдийн мэдээллийг нэг файлд хадгална. Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded">data/artists.ts</code></p>
+        <div class="code-box"><span class="code-purple">export const</span> artists = [
+  {
+    name:  <span class="code-white">"nene"</span>,        <span class="code-comment">← URL дахь нэр</span>
+    title: <span class="code-white">"Nene"</span>,       <span class="code-comment">← харуулах нэр</span>
+    genre: <span class="code-white">"R&amp;B"</span>,
+    image: <span class="code-white">"/nene.jpg"</span>,
+    bio:   <span class="code-white">"Монголын тэргүүлэх R&amp;B дуучин."</span>,
+  },
+  {
+    name:  <span class="code-white">"nmn"</span>,
+    title: <span class="code-white">"NMN"</span>,
+    genre: <span class="code-white">"Хип-хоп"</span>,
+    image: <span class="code-white">"/nmn.jpg"</span>,
+    bio:   <span class="code-white">"Монголын хамгийн нэр хүнд хип-хоп уран бүтээлч."</span>,
+  },
+  {
+    name:  <span class="code-white">"rokitbay"</span>,
+    title: <span class="code-white">"Rokitbay"</span>,
+    genre: <span class="code-white">"Электрон"</span>,
+    image: <span class="code-white">"/rokit.jpg"</span>,
+    bio:   <span class="code-white">"DJ болон электрон хөгжимч."</span>,
+  },
+]</div>
+        <div class="mt-3 bg-green-50 border border-green-100 rounded-lg p-3 text-sm text-green-700">
+          Шинэ уран бүтээлч нэмэхэд <strong>зөвхөн энд нэг блок нэмнэ</strong>. Өөр файл огт засахгүй.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Step 9: dynamic page -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex gap-4">
+      <div class="step-num" style="background:#6366f1">9</div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 mb-1">Динамик хуудас үүсгэх</p>
+        <p class="text-sm text-gray-500 mb-3">Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded">app/artist/[name]/page.tsx</code> — энэ нэг файл <strong>бүх</strong> уран бүтээлчийн хуудсыг хариуцна.</p>
+        <div class="code-box"><span class="code-purple">import</span> { artists } <span class="code-purple">from</span> <span class="code-white">"@/data/artists"</span>
+
+<span class="code-purple">export default function</span> <span class="code-blue">ArtistPage</span>({
+  params,
+}: {
+  params: { name: <span class="code-yellow">string</span> }
+}) {
+  <span class="code-comment">// URL-ийн [name]-г ашиглаж өгөгдлөөс олно</span>
+  <span class="code-purple">const</span> artist = artists.find(
+    (a) =&gt; a.name === params.name
+  )
+
+  <span class="code-comment">// Олдоогүй бол мэдэгдэл харуулна</span>
+  <span class="code-purple">if</span> (!artist) {
+    <span class="code-purple">return</span> &lt;<span class="code-yellow">p</span> className=<span class="code-white">"p-10"</span>&gt;Уран бүтээлч олдсонгүй.&lt;/<span class="code-yellow">p</span>&gt;
+  }
+
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">div</span> className=<span class="code-white">"max-w-3xl mx-auto px-6 py-10"</span>&gt;
+      &lt;<span class="code-yellow">img</span>
+        src={artist.image}
+        className=<span class="code-white">"w-48 h-48 rounded-xl object-cover mb-6"</span>
+      /&gt;
+      &lt;<span class="code-yellow">h1</span> className=<span class="code-white">"text-3xl font-bold mb-1"</span>&gt;
+        {artist.title}
+      &lt;/<span class="code-yellow">h1</span>&gt;
+      &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-indigo-500 font-medium mb-3"</span>&gt;
+        {artist.genre}
+      &lt;/<span class="code-yellow">p</span>&gt;
+      &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-gray-600"</span>&gt;
+        {artist.bio}
+      &lt;/<span class="code-yellow">p</span>&gt;
+    &lt;/<span class="code-yellow">div</span>&gt;
+  )
+}</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Step 10: Update home page -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex gap-4">
+      <div class="step-num" style="background:#6366f1">10</div>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 mb-1">Нүүр хуудсыг шинэчлэх</p>
+        <p class="text-sm text-gray-500 mb-3">Хатуу бичсэн гурван картны оронд <code>artists</code> өгөгдлөөс <code>map</code> ашиглан автоматаар үүсгэнэ. Файл: <code class="bg-gray-100 px-1.5 py-0.5 rounded">app/page.tsx</code></p>
+        <div class="code-box"><span class="code-purple">import</span> Link <span class="code-purple">from</span> <span class="code-white">"next/link"</span>
+<span class="code-purple">import</span> { artists } <span class="code-purple">from</span> <span class="code-white">"@/data/artists"</span>
+
+<span class="code-purple">export default function</span> <span class="code-blue">HomePage</span>() {
+  <span class="code-purple">return</span> (
+    &lt;<span class="code-yellow">div</span> className=<span class="code-white">"max-w-3xl mx-auto px-6 py-10"</span>&gt;
+      &lt;<span class="code-yellow">h1</span> className=<span class="code-white">"text-2xl font-bold mb-6"</span>&gt;
+        Уран бүтээлчид
+      &lt;/<span class="code-yellow">h1</span>&gt;
+
+      &lt;<span class="code-yellow">div</span> className=<span class="code-white">"grid sm:grid-cols-3 gap-4"</span>&gt;
+        {artists.map((artist) =&gt; (
+          &lt;<span class="code-blue">Link</span>
+            key={artist.name}
+            href={<span class="code-white">`/artist/${artist.name}`</span>}
+            className=<span class="code-white">"bg-white border rounded-xl p-5 hover:shadow-sm"</span>
+          &gt;
+            &lt;<span class="code-yellow">p</span> className=<span class="code-white">"font-bold"</span>&gt;{artist.title}&lt;/<span class="code-yellow">p</span>&gt;
+            &lt;<span class="code-yellow">p</span> className=<span class="code-white">"text-sm text-gray-500"</span>&gt;{artist.genre}&lt;/<span class="code-yellow">p</span>&gt;
+          &lt;/<span class="code-blue">Link</span>&gt;
+        ))}
+      &lt;/<span class="code-yellow">div</span>&gt;
+    &lt;/<span class="code-yellow">div</span>&gt;
+  )
+}</div>
+        <div class="mt-3 bg-indigo-50 border border-indigo-100 rounded-lg p-3 text-sm text-indigo-800">
+          <code>artists.map()</code> — <code>data/artists.ts</code>-д байгаа уран бүтээлч бүрийг картаар харуулна. Нэмэх бүрт карт автоматаар нэмэгдэнэ.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Done -->
+  <div class="bg-green-50 border border-green-200 rounded-xl p-5 mb-8 flex items-start gap-3">
+    <svg class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+    </svg>
+    <div>
+      <p class="font-bold text-green-800">Дууслаа!</p>
+      <p class="text-green-700 text-sm mt-1"><code>/artist/nene</code>, <code>/artist/nmn</code>, <code>/artist/rokitbay</code> — бүгд нэг <code>[name]/page.tsx</code> файлаар ажиллана. <code>data/artists.ts</code>-д шинэ уран бүтээлч нэмэхэд URL автоматаар үүснэ.</p>
+    </div>
+  </div>
+
+
+  <!-- Link to homework -->
+  <a href="../../homework/week-16/" class="block bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl p-5 transition group">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-indigo-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487 18.1 3.25a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z"/>
+        </svg>
+        <div>
+          <p class="font-bold text-sm">16-р долоо хоногийн даалгавар →</p>
+          <p class="text-indigo-200 text-xs mt-0.5">Динамик routing ашиглан өөрийн хөгжимний апп хийх</p>
+        </div>
+      </div>
+      <svg class="w-5 h-5 text-indigo-300 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+      </svg>
+    </div>
+  </a>
+
+</main>
+
+<footer class="text-center text-xs text-gray-400 py-8">
+  Веб Хөгжүүлэлтийн Хичээл — 2026
+</footer>
+
+</body>
+</html>

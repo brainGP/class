@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Roadmap — SPOJ Эхлэл</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg:        #0b0f14;
+    --bg-2:      #11171f;
+    --card:      #161d27;
+    --card-2:    #1c2531;
+    --line:      #243043;
+    --line-soft: #1b2433;
+    --text:      #e6edf6;
+    --text-dim:  #93a3b8;
+    --text-mute: #5e6e85;
+    --java:      #ED8B00;
+    --java-soft: rgba(237,139,0,.12);
+    --accent:    #4fd1c5;
+    --pink:      #ff6b9d;
+    --green:     #5dffaf;
+    --yellow:    #ffd866;
+    --purple:    #b794f6;
+    --red:       #ff7373;
+
+    --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+    --serif: 'Instrument Serif', Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+        radial-gradient(ellipse at top left, rgba(237,139,0,0.08), transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(79,209,197,0.06), transparent 50%);
+    background-attachment: fixed;
+}
+
+/* ============ TOP BAR ============ */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(11,15,20,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+}
+.topbar-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.logo {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.logo-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--java);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--java);
+}
+.progress-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 360px;
+    margin-left: auto;
+}
+.progress-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    white-space: nowrap;
+}
+.progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--line-soft);
+    border-radius: 99px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--java), var(--accent));
+    border-radius: 99px;
+    transition: width .4s ease;
+}
+.reset-btn {
+    background: transparent;
+    color: var(--text-mute);
+    border: 1px solid var(--line);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all .2s;
+}
+.reset-btn:hover { color: var(--red); border-color: var(--red); }
+
+/* ============ HERO ============ */
+.hero {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 24px 40px;
+    text-align: center;
+}
+.hero-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--java);
+    background: var(--java-soft);
+    padding: 6px 14px;
+    border-radius: 99px;
+    border: 1px solid rgba(237,139,0,0.2);
+    margin-bottom: 24px;
+}
+.hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(40px, 7vw, 88px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin: 0 0 20px;
+}
+.hero h1 em {
+    color: var(--java);
+    font-style: italic;
+}
+.hero-sub {
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 560px;
+    margin: 0 auto;
+}
+.hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 40px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-mute);
+}
+.hero-meta span b {
+    color: var(--text);
+    font-weight: 500;
+    margin-right: 6px;
+}
+
+/* ============ LAYOUT ============ */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 24px 80px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 40px;
+}
+
+/* ============ SIDEBAR ============ */
+.sidebar {
+    position: sticky;
+    top: 80px;
+    align-self: start;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding-right: 8px;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+
+.nav-group { margin-bottom: 24px; }
+.nav-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-mute);
+    margin: 0 0 8px;
+    padding: 0 12px;
+}
+.nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    margin: 2px 0;
+    text-decoration: none;
+    color: var(--text-dim);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all .15s;
+    border-left: 2px solid transparent;
+}
+.nav a:hover {
+    background: var(--card);
+    color: var(--text);
+}
+.nav a.active {
+    background: var(--java-soft);
+    color: var(--java);
+    border-left-color: var(--java);
+}
+.nav-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-mute);
+    width: 18px;
+}
+
+/* ============ CONTENT ============ */
+.content { min-width: 0; }
+
+.section {
+    margin-bottom: 60px;
+    scroll-margin-top: 80px;
+}
+.section-head {
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--line-soft);
+    padding-bottom: 20px;
+}
+.section-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--java);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+}
+.section h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 42px);
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+.section-sub {
+    color: var(--text-dim);
+    font-size: 15px;
+    margin: 0;
+}
+
+/* ============ CARDS ============ */
+.card {
+    background: var(--card);
+    border: 1px solid var(--line-soft);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 18px;
+    transition: border-color .2s;
+}
+.card:hover { border-color: var(--line); }
+
+.card h3 {
+    margin: 0 0 6px;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+.card-lead {
+    color: var(--text-dim);
+    margin: 0 0 16px;
+    font-size: 14px;
+}
+
+/* code blocks */
+pre {
+    background: var(--bg-2);
+    border: 1px solid var(--line-soft);
+    color: var(--text);
+    padding: 16px 18px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.65;
+    margin: 12px 0;
+}
+pre::-webkit-scrollbar { height: 6px; }
+pre::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+code {
+    font-family: var(--mono);
+    font-size: 0.9em;
+    background: var(--bg-2);
+    color: var(--java);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--line-soft);
+}
+
+/* syntax tokens (manual) */
+.tk-k { color: var(--pink); }     /* keyword */
+.tk-s { color: var(--green); }    /* string */
+.tk-c { color: var(--text-mute); font-style: italic; } /* comment */
+.tk-n { color: var(--yellow); }   /* number */
+.tk-t { color: var(--accent); }   /* type */
+.tk-f { color: var(--purple); }   /* function */
+
+/* tag pills */
+.tag {
+    display: inline-block;
+    background: var(--java-soft);
+    color: var(--java);
+    padding: 3px 9px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-family: var(--mono);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-right: 6px;
+    border: 1px solid rgba(237,139,0,0.2);
+}
+.tag.green  { background: rgba(93,255,175,.08); color: var(--green); border-color: rgba(93,255,175,.15);}
+.tag.blue   { background: rgba(79,209,197,.08); color: var(--accent); border-color: rgba(79,209,197,.15);}
+.tag.pink   { background: rgba(255,107,157,.08); color: var(--pink); border-color: rgba(255,107,157,.15);}
+.tag.purple { background: rgba(183,148,246,.08); color: var(--purple); border-color: rgba(183,148,246,.15);}
+
+/* ============ NOTE / TIP ============ */
+.note {
+    border-left: 3px solid var(--java);
+    background: var(--java-soft);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: 14px;
+}
+.note b { color: var(--java); }
+
+/* ============ PROBLEM GRID ============ */
+.problems {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+}
+.prob {
+    background: var(--card);
+    border: 1px solid var(--line-soft);
+    border-radius: 10px;
+    padding: 14px 16px;
+    transition: all .2s;
+    position: relative;
+}
+.prob:hover {
+    border-color: var(--java);
+    transform: translateY(-2px);
+}
+.prob-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+.prob-code {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-mute);
+    letter-spacing: 0.05em;
+}
+.prob-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text);
+}
+.prob-hint {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--accent);
+    margin-top: 6px;
+    background: rgba(79,209,197,0.06);
+    padding: 6px 8px;
+    border-radius: 5px;
+    border: 1px dashed rgba(79,209,197,0.18);
+}
+.prob-check {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--line);
+    border-radius: 5px;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    transition: all .15s;
+    background: var(--bg-2);
+}
+.prob-check:hover { border-color: var(--java); }
+.prob-check:checked {
+    background: var(--java);
+    border-color: var(--java);
+}
+.prob-check:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.prob.done {
+    opacity: 0.55;
+    border-style: dashed;
+}
+.prob.done .prob-title { text-decoration: line-through; }
+
+/* show solution toggle */
+.solve-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--line);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-family: var(--mono);
+    font-size: 11px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all .15s;
+}
+.solve-btn:hover { color: var(--java); border-color: var(--java); }
+.solve-body {
+    display: none;
+    margin-top: 8px;
+}
+.solve-body.open { display: block; }
+
+/* ============ SUB GROUP ============ */
+.sub-group {
+    margin: 28px 0 8px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+.sub-group h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    font-family: var(--mono);
+    letter-spacing: -0.01em;
+}
+.sub-group .line {
+    flex: 1;
+    height: 1px;
+    background: var(--line-soft);
+}
+.sub-group .count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-mute);
+}
+
+/* ============ FOOTER ============ */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid var(--line-soft);
+    color: var(--text-mute);
+    font-family: var(--mono);
+    font-size: 12px;
+}
+footer b { color: var(--java); }
+
+/* ============ MOBILE ============ */
+@media (max-width: 900px) {
+    .container { grid-template-columns: 1fr; gap: 20px; padding: 16px; }
+    .sidebar {
+        position: relative; top: 0;
+        max-height: 300px;
+        background: var(--card);
+        border-radius: 12px;
+        padding: 16px;
+    }
+    .hero { padding: 40px 16px 20px; }
+    .hero-meta { flex-wrap: wrap; gap: 16px; }
+    .problems { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========== TOP BAR ========== -->
+<div class="topbar">
+    <div class="topbar-inner">
+        <div class="logo">
+            <span class="logo-dot"></span>
+            Java<span style="color:var(--text-mute)">/</span>Roadmap
+        </div>
+        <div class="progress-wrap">
+            <span class="progress-label">Ахиц</span>
+            <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+            <span class="progress-label" id="progText">0 / 0</span>
+        </div>
+        <button class="reset-btn" onclick="resetProgress()">Цэвэрлэх</button>
+    </div>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+    <span class="hero-tag">SPOJ Beginner Path</span>
+    <h1>Java-аар <em>бодлого</em> бодож сурах<br>хамгийн товч зам.</h1>
+    <p class="hero-sub">Үндсэн ойлголтууд → жижиг бодлогууд → SPOJ-д бэлэн. Бүх жишээг <code>Main.java</code> загвараар бодсон.</p>
+    <div class="hero-meta">
+        <span><b>6</b>сэдэв</span>
+        <span><b>60+</b>бодлого</span>
+        <span><b>1</b>загвар</span>
+    </div>
+</section>
+
+<!-- ========== LAYOUT ========== -->
+<div class="container">
+
+<!-- ========== SIDEBAR ========== -->
+<aside class="sidebar nav">
+    <div class="nav-group">
+        <p class="nav-title">Үндэс</p>
+        <a href="#intro"><span class="nav-num">01</span> Java танилцуулга</a>
+        <a href="#structure"><span class="nav-num">02</span> Програмын бүтэц</a>
+        <a href="#io"><span class="nav-num">03</span> Input / Output</a>
+        <a href="#vars"><span class="nav-num">04</span> Хувьсагч &amp; үйлдэл</a>
+    </div>
+    <div class="nav-group">
+        <p class="nav-title">Логик</p>
+        <a href="#if"><span class="nav-num">05</span> Нөхцөл (if)</a>
+        <a href="#loop"><span class="nav-num">06</span> Давталт (for/while)</a>
+        <a href="#array"><span class="nav-num">07</span> Массив</a>
+        <a href="#func"><span class="nav-num">08</span> Функц</a>
+    </div>
+    <div class="nav-group">
+        <p class="nav-title">Бодлогын сан</p>
+        <a href="#p-math"><span class="nav-num">09</span> Геометр &amp; математик</a>
+        <a href="#p-digit"><span class="nav-num">10</span> Цифр салгах</a>
+        <a href="#p-time"><span class="nav-num">11</span> Цаг хөрвүүлэх</a>
+        <a href="#p-cmp"><span class="nav-num">12</span> Их / бага</a>
+        <a href="#p-div"><span class="nav-num">13</span> Тэгш сондгой / хуваагдал</a>
+        <a href="#p-cat"><span class="nav-num">14</span> Ангилал</a>
+        <a href="#p-loop"><span class="nav-num">15</span> Давталтын бодлого</a>
+    </div>
+    <div class="nav-group">
+        <p class="nav-title">Эцэст нь</p>
+        <a href="#template"><span class="nav-num">16</span> SPOJ шаблон</a>
+    </div>
+</aside>
+
+<!-- ========== CONTENT ========== -->
+<main class="content">
+
+<!-- ========== 01. INTRO ========== -->
+<section class="section" id="intro">
+    <div class="section-head">
+        <div class="section-num">// 01</div>
+        <h2>Java танилцуулга</h2>
+        <p class="section-sub">Юу нь чухал юм бэ? Эхлэхээсээ өмнө 30 секунд.</p>
+    </div>
+    <div class="card">
+        <span class="tag">INTRO</span>
+        <h3>Java бол яагаад SPOJ-д тохиромжтой вэ?</h3>
+        <p class="card-lead">Java бол хатуу типтэй, өргөн дэмжигдсэн хэл. SPOJ-д хурд хангалттай, жишээ маш олон, алдаа мэдэгдэх нь тодорхой.</p>
+        <ul style="color:var(--text-dim); font-size:14px;">
+            <li><b style="color:var(--text)">Хатуу тип:</b> <code>int</code>, <code>double</code>, <code>String</code> зэргийг хольж болохгүй</li>
+            <li><b style="color:var(--text)">Class бүтэц:</b> Бүх код <code>class</code> дотор</li>
+            <li><b style="color:var(--text)">Main:</b> Програм заавал <code>main()</code> функцээс эхэлнэ</li>
+        </ul>
+        <div class="note"><b>Зөвлөгөө:</b> SPOJ-д file нэр заавал <code>Main.java</code>, class нэр заавал <code>Main</code> байх ёстой.</div>
+    </div>
+</section>
+
+<!-- ========== 02. STRUCTURE ========== -->
+<section class="section" id="structure">
+    <div class="section-head">
+        <div class="section-num">// 02</div>
+        <h2>Програмын бүтэц</h2>
+        <p class="section-sub">Class дотор Main, Main дотор код. Бүгд адил эхэлдэг.</p>
+    </div>
+    <div class="card">
+        <span class="tag">BASIC</span>
+        <h3>Хамгийн бага Java програм</h3>
+<pre><span class="tk-k">public class</span> <span class="tk-t">Main</span> {
+    <span class="tk-k">public static void</span> <span class="tk-f">main</span>(<span class="tk-t">String</span>[] args) {
+        <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"Hello SPOJ"</span>);
+    }
+}</pre>
+        <p class="card-lead" style="margin-top:14px;">3 давхар хайрцаг гэж бод:</p>
+        <ul style="color:var(--text-dim); font-size:14px;">
+            <li><code>class Main</code> — гадна хайрцаг (заавал)</li>
+            <li><code>main()</code> — дотор хайрцаг (эхлэх цэг)</li>
+            <li>Код — хамгийн дотор</li>
+        </ul>
+        <div class="note"><b>Анхаар:</b> <code>println</code> — мөр алгасна. <code>print</code> — алгасахгүй.</div>
+    </div>
+</section>
+
+<!-- ========== 03. IO ========== -->
+<section class="section" id="io">
+    <div class="section-head">
+        <div class="section-num">// 03</div>
+        <h2>Input / Output</h2>
+        <p class="section-sub">Scanner унш → бод → хэвлэ. Бүх бодлогын суурь.</p>
+    </div>
+    <div class="card">
+        <span class="tag blue">IO</span>
+        <h3>Scanner ашиглах</h3>
+<pre><span class="tk-k">import</span> java.util.Scanner;
+
+<span class="tk-k">public class</span> <span class="tk-t">Main</span> {
+    <span class="tk-k">public static void</span> <span class="tk-f">main</span>(<span class="tk-t">String</span>[] args) {
+        <span class="tk-t">Scanner</span> sc = <span class="tk-k">new</span> <span class="tk-t">Scanner</span>(<span class="tk-t">System</span>.in);
+        <span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+        <span class="tk-t">int</span> b = sc.<span class="tk-f">nextInt</span>();
+        <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a + b);
+    }
+}</pre>
+        <p class="card-lead" style="margin-top:14px;">Хэрэглэх метод:</p>
+        <ul style="color:var(--text-dim); font-size:14px;">
+            <li><code>nextInt()</code> — бүхэл тоо</li>
+            <li><code>nextDouble()</code> — бутархай</li>
+            <li><code>next()</code> — нэг үг</li>
+            <li><code>nextLine()</code> — бүтэн мөр</li>
+        </ul>
+        <div class="note"><b>SPOJ дүрэм:</b> Input-ын форматыг яг тэр чигээр нь унш. Илүү хоосон зай хэвлэхгүй.</div>
+    </div>
+</section>
+
+<!-- ========== 04. VARS ========== -->
+<section class="section" id="vars">
+    <div class="section-head">
+        <div class="section-num">// 04</div>
+        <h2>Хувьсагч &amp; үйлдэл</h2>
+        <p class="section-sub">Тоо хадгал, нэм, хас, хуваа.</p>
+    </div>
+    <div class="card">
+        <span class="tag green">DATA</span>
+        <h3>Үндсэн типүүд</h3>
+<pre><span class="tk-t">int</span> a = <span class="tk-n">5</span>;            <span class="tk-c">// бүхэл тоо</span>
+<span class="tk-t">double</span> pi = <span class="tk-n">3.14</span>;    <span class="tk-c">// бутархай</span>
+<span class="tk-t">String</span> s = <span class="tk-s">"Java"</span>;   <span class="tk-c">// текст</span>
+<span class="tk-t">boolean</span> ok = <span class="tk-k">true</span>;  <span class="tk-c">// үнэн/худал</span></pre>
+        <h3 style="margin-top:20px;">Арифметик үйлдлүүд</h3>
+<pre>a + b      <span class="tk-c">// нийлбэр</span>
+a - b      <span class="tk-c">// ялгавар</span>
+a * b      <span class="tk-c">// үржвэр</span>
+a / b      <span class="tk-c">// ноогдвор (int / int = int!)</span>
+a % b      <span class="tk-c">// үлдэгдэл (modulo)</span></pre>
+        <div class="note"><b>Маш чухал:</b> <code>7 / 2 = 3</code> (бүхэл хэсэг), харин <code>7 % 2 = 1</code> (үлдэгдэл). Энэ 2 үйлдэл бараг бүх бодлогод хэрэгтэй.</div>
+    </div>
+</section>
+
+<!-- ========== 05. IF ========== -->
+<section class="section" id="if">
+    <div class="section-head">
+        <div class="section-num">// 05</div>
+        <h2>Нөхцөл (if / else)</h2>
+        <p class="section-sub">Шалга, шийдвэрлэ.</p>
+    </div>
+    <div class="card">
+        <span class="tag pink">LOGIC</span>
+        <h3>Энгийн if</h3>
+<pre><span class="tk-k">if</span> (a &gt; b) {
+    <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a);
+} <span class="tk-k">else</span> {
+    <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(b);
+}</pre>
+        <h3 style="margin-top:20px;">Олон сонголт (else if)</h3>
+<pre><span class="tk-k">if</span> (x &gt; <span class="tk-n">90</span>)      <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"A"</span>);
+<span class="tk-k">else if</span> (x &gt; <span class="tk-n">80</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"B"</span>);
+<span class="tk-k">else if</span> (x &gt; <span class="tk-n">70</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"C"</span>);
+<span class="tk-k">else</span>              <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"F"</span>);</pre>
+        <p class="card-lead" style="margin-top:14px;">Харьцуулах тэмдэгтүүд: <code>==</code> <code>!=</code> <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code></p>
+        <p class="card-lead">Логик: <code>&amp;&amp;</code> (ба) — <code>||</code> (эсвэл) — <code>!</code> (биш)</p>
+    </div>
+</section>
+
+<!-- ========== 06. LOOP ========== -->
+<section class="section" id="loop">
+    <div class="section-head">
+        <div class="section-num">// 06</div>
+        <h2>Давталт (for / while)</h2>
+        <p class="section-sub">N удаа давтах, нийлбэр олох, үржвэр олох.</p>
+    </div>
+    <div class="card">
+        <span class="tag purple">LOOP</span>
+        <h3>for давталт</h3>
+<pre><span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">0</span>; i &lt; n; i++) {
+    <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(i);
+}</pre>
+        <h3 style="margin-top:20px;">while давталт</h3>
+<pre><span class="tk-k">while</span> (n &gt; <span class="tk-n">0</span>) {
+    n--;
+}</pre>
+        <h3 style="margin-top:20px;">Нийлбэр олох загвар</h3>
+<pre><span class="tk-t">int</span> sum = <span class="tk-n">0</span>;
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">1</span>; i &lt;= n; i++) {
+    sum += i;
+}</pre>
+        <div class="note"><b>Pattern:</b> Нийлбэр → 0-оос эхэл. Үржвэр → 1-ээс эхэл. Тоолох → 0-оос эхэл.</div>
+    </div>
+</section>
+
+<!-- ========== 07. ARRAY ========== -->
+<section class="section" id="array">
+    <div class="section-head">
+        <div class="section-num">// 07</div>
+        <h2>Массив</h2>
+        <p class="section-sub">Олон тоог цуглуулж хадгална.</p>
+    </div>
+    <div class="card">
+        <span class="tag green">DATA</span>
+        <h3>Массив зарлах, дүүргэх</h3>
+<pre><span class="tk-t">int</span>[] arr = <span class="tk-k">new</span> <span class="tk-t">int</span>[n];
+
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">0</span>; i &lt; n; i++) {
+    arr[i] = sc.<span class="tk-f">nextInt</span>();
+}</pre>
+        <h3 style="margin-top:20px;">Хамгийн их утга олох</h3>
+<pre><span class="tk-t">int</span> max = arr[<span class="tk-n">0</span>];
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">1</span>; i &lt; n; i++) {
+    <span class="tk-k">if</span> (arr[i] &gt; max) max = arr[i];
+}</pre>
+        <div class="note"><b>Индекс:</b> Массив <code>0</code>-оос эхэлнэ. <code>arr.length</code> нь массивын урт.</div>
+    </div>
+</section>
+
+<!-- ========== 08. FUNCTION ========== -->
+<section class="section" id="func">
+    <div class="section-head">
+        <div class="section-num">// 08</div>
+        <h2>Функц</h2>
+        <p class="section-sub">Кодыг таслан хувааж дахин ашиглах.</p>
+    </div>
+    <div class="card">
+        <span class="tag">ADVANCED</span>
+        <h3>Энгийн функц</h3>
+<pre><span class="tk-k">static int</span> <span class="tk-f">max</span>(<span class="tk-t">int</span> a, <span class="tk-t">int</span> b) {
+    <span class="tk-k">if</span> (a &gt; b) <span class="tk-k">return</span> a;
+    <span class="tk-k">return</span> b;
+}</pre>
+        <h3 style="margin-top:20px;">Рекурс (GCD)</h3>
+<pre><span class="tk-k">static int</span> <span class="tk-f">gcd</span>(<span class="tk-t">int</span> a, <span class="tk-t">int</span> b) {
+    <span class="tk-k">if</span> (b == <span class="tk-n">0</span>) <span class="tk-k">return</span> a;
+    <span class="tk-k">return</span> <span class="tk-f">gcd</span>(b, a % b);
+}</pre>
+        <div class="note"><b>Дүрэм:</b> <code>main</code>-аас гадуур, <code>class</code>-ын дотор зарлана. Заавал <code>static</code>.</div>
+    </div>
+</section>
+
+<!-- ========== 09. GEOMETRY & MATH ========== -->
+<section class="section" id="p-math">
+    <div class="section-head">
+        <div class="section-num">// 09 — БОДЛОГЫН САН</div>
+        <h2>Геометр &amp; математик</h2>
+        <p class="section-sub">RGB7001–7006 · Анхны зургаан бодлого. Input → томьёо → Output.</p>
+    </div>
+
+    <div class="problems">
+        <!-- 7001 -->
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7001</span><h3 class="prob-title">2 тооны нийлбэр</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7001">
+        </div>
+        <div class="prob-hint">a + b → хэвлэ</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> b = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a + b);</pre></div>
+        </div>
+
+        <!-- 7002 -->
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7002</span><h3 class="prob-title">Гурвалжин</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7002">
+        </div>
+        <div class="prob-hint">талбай = (суурь × өндөр) / 2</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">double</span> a = sc.<span class="tk-f">nextDouble</span>();
+<span class="tk-t">double</span> h = sc.<span class="tk-f">nextDouble</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a * h / <span class="tk-n">2</span>);</pre></div>
+        </div>
+
+        <!-- 7003 -->
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7003</span><h3 class="prob-title">Тэгш өнцөгт</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7003">
+        </div>
+        <div class="prob-hint">талбай = a × b</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> b = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a * b);</pre></div>
+        </div>
+
+        <!-- 7004 -->
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7004</span><h3 class="prob-title">Куб</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7004">
+        </div>
+        <div class="prob-hint">эзлэхүүн = a × a × a</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a * a * a);</pre></div>
+        </div>
+
+        <!-- 7005 -->
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7005</span><h3 class="prob-title">Функц 1</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7005">
+        </div>
+        <div class="prob-hint">f(x) = өгсөн томьёог тооцоол</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-c">// жишээ: f(x) = 2x + 3</span>
+<span class="tk-t">int</span> x = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-n">2</span> * x + <span class="tk-n">3</span>);</pre></div>
+        </div>
+
+        <!-- 7006 -->
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7006</span><h3 class="prob-title">Функц 2</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7006">
+        </div>
+        <div class="prob-hint">илүү нийлмэл томьёо (квадрат, хуваагдал)</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-c">// жишээ: f(x) = x*x + 2*x + 1</span>
+<span class="tk-t">int</span> x = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(x*x + <span class="tk-n">2</span>*x + <span class="tk-n">1</span>);</pre></div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 10. DIGIT ========== -->
+<section class="section" id="p-digit">
+    <div class="section-head">
+        <div class="section-num">// 10</div>
+        <h2>Цифр салгах</h2>
+        <p class="section-sub">RGB7007–7010 · <code>%</code> ба <code>/</code>-ийн ид шид.</p>
+    </div>
+
+    <div class="note">
+        <b>Алтан дүрэм:</b> <code>n % 10</code> = сүүлийн цифр · <code>n / 10</code> = сүүлчийн цифрийг таслав
+    </div>
+
+    <div class="problems">
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7007</span><h3 class="prob-title">Сүүлийн цифр</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7007">
+        </div>
+        <div class="prob-hint">n % 10</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> n = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(n % <span class="tk-n">10</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7008</span><h3 class="prob-title">Аравтын орны цифр</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7008">
+        </div>
+        <div class="prob-hint">(n / 10) % 10</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> n = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>((n / <span class="tk-n">10</span>) % <span class="tk-n">10</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7009</span><h3 class="prob-title">2 оронтой тоо</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7009">
+        </div>
+        <div class="prob-hint">2 цифр → нэг тоо: a*10 + b</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> b = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a * <span class="tk-n">10</span> + b);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7010</span><h3 class="prob-title">3 оронтой тоо</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7010">
+        </div>
+        <div class="prob-hint">a*100 + b*10 + c</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> b = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> c = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a*<span class="tk-n">100</span> + b*<span class="tk-n">10</span> + c);</pre></div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 11. TIME ========== -->
+<section class="section" id="p-time">
+    <div class="section-head">
+        <div class="section-num">// 11</div>
+        <h2>Цаг хөрвүүлэх</h2>
+        <p class="section-sub">RGB7011–7018 · 2 чиглэлд хөрвүүлж сурна.</p>
+    </div>
+
+    <div class="note">
+        <b>Хоёр чиглэл:</b><br>
+        ⬅ <b>Том → жижиг:</b> үлдэгдэл (%) ба ноогдвор (/)<br>
+        ➡ <b>Жижиг → том:</b> үржүүлж нэмэх
+    </div>
+
+    <div class="sub-group"><h4># Том → жижиг</h4><div class="line"></div><span class="count">4 бодлого</span></div>
+    <div class="problems">
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7011</span><h3 class="prob-title">Минут → Минут, секунд</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7011">
+        </div>
+        <div class="prob-hint">сек өгөгдөнө → мин = sec/60, сек = sec%60</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> s = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>((s / <span class="tk-n">60</span>) + <span class="tk-s">" "</span> + (s % <span class="tk-n">60</span>));</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7012</span><h3 class="prob-title">Сек → Цаг, мин, сек</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7012">
+        </div>
+        <div class="prob-hint">h=s/3600, m=(s/60)%60, sec=s%60</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> s = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> h = s / <span class="tk-n">3600</span>;
+<span class="tk-t">int</span> m = (s / <span class="tk-n">60</span>) % <span class="tk-n">60</span>;
+<span class="tk-t">int</span> sec = s % <span class="tk-n">60</span>;
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(h + <span class="tk-s">" "</span> + m + <span class="tk-s">" "</span> + sec);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7015</span><h3 class="prob-title">Цаг → Хоног, цаг</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7015">
+        </div>
+        <div class="prob-hint">d = h/24, ц = h%24</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> h = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>((h / <span class="tk-n">24</span>) + <span class="tk-s">" "</span> + (h % <span class="tk-n">24</span>));</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7017</span><h3 class="prob-title">Сар → Жил, сар</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7017">
+        </div>
+        <div class="prob-hint">y = m/12, сар = m%12</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> m = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>((m / <span class="tk-n">12</span>) + <span class="tk-s">" "</span> + (m % <span class="tk-n">12</span>));</pre></div>
+        </div>
+    </div>
+
+    <div class="sub-group"><h4># Жижиг → том</h4><div class="line"></div><span class="count">4 бодлого</span></div>
+    <div class="problems">
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7013</span><h3 class="prob-title">Мин, сек → Сек</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7013">
+        </div>
+        <div class="prob-hint">m*60 + s</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> m = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> s = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(m * <span class="tk-n">60</span> + s);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7014</span><h3 class="prob-title">Цаг, мин, сек → Сек</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7014">
+        </div>
+        <div class="prob-hint">h*3600 + m*60 + s</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> h = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> m = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> s = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(h*<span class="tk-n">3600</span> + m*<span class="tk-n">60</span> + s);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7016</span><h3 class="prob-title">Хоног, цаг → Цаг</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7016">
+        </div>
+        <div class="prob-hint">d*24 + h</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> d = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> h = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(d * <span class="tk-n">24</span> + h);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7018</span><h3 class="prob-title">Жил, сар → Сар</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7018">
+        </div>
+        <div class="prob-hint">y*12 + m</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> y = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> m = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(y * <span class="tk-n">12</span> + m);</pre></div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 12. COMPARISON ========== -->
+<section class="section" id="p-cmp">
+    <div class="section-head">
+        <div class="section-num">// 12</div>
+        <h2>Их / бага</h2>
+        <p class="section-sub">RGB7101–7106 · if ашиглаж томыг буюу бага сонгох.</p>
+    </div>
+
+    <div class="problems">
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7101</span><h3 class="prob-title">2 тооны их</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7101">
+        </div>
+        <div class="prob-hint">if (a&gt;b) a else b</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>(), b = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a &gt; b ? a : b);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7102</span><h3 class="prob-title">2 тооны бага</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7102">
+        </div>
+        <div class="prob-hint">if (a&lt;b) a else b</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>(), b = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a &lt; b ? a : b);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7103</span><h3 class="prob-title">3 тооны их</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7103">
+        </div>
+        <div class="prob-hint">Math.max(a, Math.max(b,c))</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>(), b = sc.<span class="tk-f">nextInt</span>(), c = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> max = <span class="tk-t">Math</span>.<span class="tk-f">max</span>(a, <span class="tk-t">Math</span>.<span class="tk-f">max</span>(b, c));
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(max);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7104</span><h3 class="prob-title">4 тооны бага</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7104">
+        </div>
+        <div class="prob-hint">Math.min(...) гогцоо</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> min = <span class="tk-t">Integer</span>.MAX_VALUE;
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">0</span>; i &lt; <span class="tk-n">4</span>; i++) {
+    <span class="tk-t">int</span> x = sc.<span class="tk-f">nextInt</span>();
+    <span class="tk-k">if</span> (x &lt; min) min = x;
+}
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(min);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7105</span><h3 class="prob-title">Нийлбэр 80</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7105">
+        </div>
+        <div class="prob-hint">if (a+b == 80) YES else NO</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>(), b = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a + b == <span class="tk-n">80</span> ? <span class="tk-s">"YES"</span> : <span class="tk-s">"NO"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7106</span><h3 class="prob-title">Үржвэр 5</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7106">
+        </div>
+        <div class="prob-hint">if (a*b == 5)</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>(), b = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a * b == <span class="tk-n">5</span> ? <span class="tk-s">"YES"</span> : <span class="tk-s">"NO"</span>);</pre></div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 13. EVEN/ODD & DIVISIBILITY ========== -->
+<section class="section" id="p-div">
+    <div class="section-head">
+        <div class="section-num">// 13</div>
+        <h2>Тэгш сондгой · хуваагдал</h2>
+        <p class="section-sub">RGB7107–7114 · <code>%</code> үлдэгдэл бүх зүйлийг шийднэ.</p>
+    </div>
+
+    <div class="note">
+        <code>x % 2 == 0</code> → тэгш<br>
+        <code>x % 2 == 1</code> → сондгой<br>
+        <code>x % k == 0</code> → k-д хуваагдана
+    </div>
+
+    <div class="problems">
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7107</span><h3 class="prob-title">Тэгш тоонуудын нийлбэр</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7107">
+        </div>
+        <div class="prob-hint">давталт + if (i%2==0) sum+=i</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> n = sc.<span class="tk-f">nextInt</span>(), sum = <span class="tk-n">0</span>;
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">1</span>; i &lt;= n; i++) {
+    <span class="tk-k">if</span> (i % <span class="tk-n">2</span> == <span class="tk-n">0</span>) sum += i;
+}
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(sum);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7108</span><h3 class="prob-title">Сондгой тоонуудын үржвэр</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7108">
+        </div>
+        <div class="prob-hint">prod=1, if (i%2==1) prod*=i</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> n = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">long</span> prod = <span class="tk-n">1</span>;
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">1</span>; i &lt;= n; i++) {
+    <span class="tk-k">if</span> (i % <span class="tk-n">2</span> == <span class="tk-n">1</span>) prod *= i;
+}
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(prod);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7109</span><h3 class="prob-title">Тэнцүү 5</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7109">
+        </div>
+        <div class="prob-hint">if (a == 5) YES</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a == <span class="tk-n">5</span> ? <span class="tk-s">"YES"</span> : <span class="tk-s">"NO"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7110</span><h3 class="prob-title">3-д хуваагдах</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7110">
+        </div>
+        <div class="prob-hint">a % 3 == 0</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a % <span class="tk-n">3</span> == <span class="tk-n">0</span> ? <span class="tk-s">"YES"</span> : <span class="tk-s">"NO"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7111</span><h3 class="prob-title">11-д хуваагддаггүй</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7111">
+        </div>
+        <div class="prob-hint">a % 11 != 0</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a % <span class="tk-n">11</span> != <span class="tk-n">0</span> ? <span class="tk-s">"YES"</span> : <span class="tk-s">"NO"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7112</span><h3 class="prob-title">10-аас их</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7112">
+        </div>
+        <div class="prob-hint">a &gt; 10</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a &gt; <span class="tk-n">10</span> ? <span class="tk-s">"YES"</span> : <span class="tk-s">"NO"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7113</span><h3 class="prob-title">5-аас бага</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7113">
+        </div>
+        <div class="prob-hint">a &lt; 5</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a &lt; <span class="tk-n">5</span> ? <span class="tk-s">"YES"</span> : <span class="tk-s">"NO"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7114</span><h3 class="prob-title">Тэгш тоонууд YES</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7114">
+        </div>
+        <div class="prob-hint">a%2==0 → YES</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a % <span class="tk-n">2</span> == <span class="tk-n">0</span> ? <span class="tk-s">"YES"</span> : <span class="tk-s">"NO"</span>);</pre></div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 14. CATEGORY ========== -->
+<section class="section" id="p-cat">
+    <div class="section-head">
+        <div class="section-num">// 14</div>
+        <h2>Ангилал (else if хэлхээ)</h2>
+        <p class="section-sub">RGB7115–7120 · Утга → Анги.</p>
+    </div>
+
+    <div class="problems">
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7115</span><h3 class="prob-title">Тэнцсэн, унасан</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7115">
+        </div>
+        <div class="prob-hint">оноо ≥ 60 → тэнцсэн</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> x = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(x &gt;= <span class="tk-n">60</span> ? <span class="tk-s">"Тэнцсэн"</span> : <span class="tk-s">"Унасан"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7116</span><h3 class="prob-title">5-аас онц руу</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7116">
+        </div>
+        <div class="prob-hint">5→A, 4→B, 3→C, 2→D, 1→F</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> x = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-k">if</span> (x == <span class="tk-n">5</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"A"</span>);
+<span class="tk-k">else if</span> (x == <span class="tk-n">4</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"B"</span>);
+<span class="tk-k">else if</span> (x == <span class="tk-n">3</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"C"</span>);
+<span class="tk-k">else if</span> (x == <span class="tk-n">2</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"D"</span>);
+<span class="tk-k">else</span> <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"F"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7117</span><h3 class="prob-title">Тоон үнэлгээ → үсэг</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7117">
+        </div>
+        <div class="prob-hint">муж шалга: ≥90 A, ≥80 B...</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> x = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-k">if</span> (x &gt;= <span class="tk-n">90</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"A"</span>);
+<span class="tk-k">else if</span> (x &gt;= <span class="tk-n">80</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"B"</span>);
+<span class="tk-k">else if</span> (x &gt;= <span class="tk-n">70</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"C"</span>);
+<span class="tk-k">else if</span> (x &gt;= <span class="tk-n">60</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"D"</span>);
+<span class="tk-k">else</span> <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"F"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7118</span><h3 class="prob-title">Гараг</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7118">
+        </div>
+        <div class="prob-hint">1→Даваа, 2→Мягмар, …</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> x = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">String</span>[] d = {<span class="tk-s">""</span>,<span class="tk-s">"Даваа"</span>,<span class="tk-s">"Мягмар"</span>,<span class="tk-s">"Лхагва"</span>,
+                <span class="tk-s">"Пүрэв"</span>,<span class="tk-s">"Баасан"</span>,<span class="tk-s">"Бямба"</span>,<span class="tk-s">"Ням"</span>};
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(d[x]);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7119</span><h3 class="prob-title">Улирал</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7119">
+        </div>
+        <div class="prob-hint">сар → улирал (3,4,5→хавар…)</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> m = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-k">if</span> (m &gt;= <span class="tk-n">3</span> &amp;&amp; m &lt;= <span class="tk-n">5</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"Хавар"</span>);
+<span class="tk-k">else if</span> (m &gt;= <span class="tk-n">6</span> &amp;&amp; m &lt;= <span class="tk-n">8</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"Зун"</span>);
+<span class="tk-k">else if</span> (m &gt;= <span class="tk-n">9</span> &amp;&amp; m &lt;= <span class="tk-n">11</span>) <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"Намар"</span>);
+<span class="tk-k">else</span> <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"Өвөл"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7120</span><h3 class="prob-title">Гурвалжин эсэх</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7120">
+        </div>
+        <div class="prob-hint">2 талын нийлбэр &gt; 3-р тал</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>(), b = sc.<span class="tk-f">nextInt</span>(), c = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-k">boolean</span> ok = (a+b &gt; c) &amp;&amp; (b+c &gt; a) &amp;&amp; (a+c &gt; b);
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(ok ? <span class="tk-s">"YES"</span> : <span class="tk-s">"NO"</span>);</pre></div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 15. LOOP PROBLEMS ========== -->
+<section class="section" id="p-loop">
+    <div class="section-head">
+        <div class="section-num">// 15</div>
+        <h2>Давталтын бодлого</h2>
+        <p class="section-sub">RGB7201–7211 · for-ийн төрлүүд.</p>
+    </div>
+
+    <div class="problems">
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7201</span><h3 class="prob-title">IOI</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7201">
+        </div>
+        <div class="prob-hint">"IOI" хэвлэ</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"IOI"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7202</span><h3 class="prob-title">IOI 3 удаа</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7202">
+        </div>
+        <div class="prob-hint">for i 1..3</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">0</span>; i &lt; <span class="tk-n">3</span>; i++)
+    <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"IOI"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7203</span><h3 class="prob-title">IOI n удаа</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7203">
+        </div>
+        <div class="prob-hint">n унш → for i 1..n</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> n = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">0</span>; i &lt; n; i++)
+    <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(<span class="tk-s">"IOI"</span>);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7204</span><h3 class="prob-title">Эхний n тооны нийлбэр</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7204">
+        </div>
+        <div class="prob-hint">sum += i loop</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> n = sc.<span class="tk-f">nextInt</span>(), sum = <span class="tk-n">0</span>;
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">1</span>; i &lt;= n; i++) sum += i;
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(sum);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7205</span><h3 class="prob-title">n!</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7205">
+        </div>
+        <div class="prob-hint">prod *= i (1-ээс эхэл!)</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> n = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">long</span> f = <span class="tk-n">1</span>;
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">1</span>; i &lt;= n; i++) f *= i;
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(f);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7206</span><h3 class="prob-title">100-г n удаа нэм</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7206">
+        </div>
+        <div class="prob-hint">sum += 100, n удаа</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> n = sc.<span class="tk-f">nextInt</span>(), sum = <span class="tk-n">0</span>;
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">0</span>; i &lt; n; i++) sum += <span class="tk-n">100</span>;
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(sum);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7207</span><h3 class="prob-title">a тоог n удаа нэм</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7207">
+        </div>
+        <div class="prob-hint">үндсэндээ a*n</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>(), n = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">int</span> sum = <span class="tk-n">0</span>;
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">0</span>; i &lt; n; i++) sum += a;
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(sum);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7208</span><h3 class="prob-title">2-ын n зэрэг</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7208">
+        </div>
+        <div class="prob-hint">prod *= 2, n удаа</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> n = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">long</span> p = <span class="tk-n">1</span>;
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">0</span>; i &lt; n; i++) p *= <span class="tk-n">2</span>;
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(p);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7209</span><h3 class="prob-title">a тооны n зэрэг</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7209">
+        </div>
+        <div class="prob-hint">prod *= a, n удаа</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>(), n = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">long</span> p = <span class="tk-n">1</span>;
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">0</span>; i &lt; n; i++) p *= a;
+<span class="tk-t">System</span>.out.<span class="tk-f">println</span>(p);</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7210</span><h3 class="prob-title">Тооны хүрд</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7210">
+        </div>
+        <div class="prob-hint">a*1, a*2, ..., a*9 хэвлэ</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">1</span>; i &lt;= <span class="tk-n">9</span>; i++)
+    <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a + <span class="tk-s">" * "</span> + i + <span class="tk-s">" = "</span> + (a*i));</pre></div>
+        </div>
+
+        <div class="prob"><div class="prob-top">
+            <div><span class="prob-code">RGB7211</span><h3 class="prob-title">Тооны зэргийн хүрд</h3></div>
+            <input type="checkbox" class="prob-check" data-id="7211">
+        </div>
+        <div class="prob-hint">a^1, a^2, ..., a^9</div>
+        <button class="solve-btn" onclick="tog(this)">▸ Шийдэл</button>
+        <div class="solve-body"><pre><span class="tk-t">int</span> a = sc.<span class="tk-f">nextInt</span>();
+<span class="tk-t">long</span> p = <span class="tk-n">1</span>;
+<span class="tk-k">for</span> (<span class="tk-t">int</span> i = <span class="tk-n">1</span>; i &lt;= <span class="tk-n">9</span>; i++) {
+    p *= a;
+    <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(a + <span class="tk-s">" ^ "</span> + i + <span class="tk-s">" = "</span> + p);
+}</pre></div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 16. TEMPLATE ========== -->
+<section class="section" id="template">
+    <div class="section-head">
+        <div class="section-num">// 16 — Эцэст нь</div>
+        <h2>SPOJ шаблон</h2>
+        <p class="section-sub">Бүх бодлого энэ загвар дотор багтана. Copy → paste → unsh → bod → khevle.</p>
+    </div>
+    <div class="card">
+        <span class="tag">TEMPLATE</span>
+        <h3>Main.java — universal</h3>
+<pre><span class="tk-k">import</span> java.util.Scanner;
+
+<span class="tk-k">public class</span> <span class="tk-t">Main</span> {
+    <span class="tk-k">public static void</span> <span class="tk-f">main</span>(<span class="tk-t">String</span>[] args) {
+        <span class="tk-t">Scanner</span> sc = <span class="tk-k">new</span> <span class="tk-t">Scanner</span>(<span class="tk-t">System</span>.in);
+
+        <span class="tk-c">// 1. INPUT</span>
+        <span class="tk-t">int</span> n = sc.<span class="tk-f">nextInt</span>();
+
+        <span class="tk-c">// 2. LOGIC</span>
+        <span class="tk-t">int</span> result = n;
+
+        <span class="tk-c">// 3. OUTPUT</span>
+        <span class="tk-t">System</span>.out.<span class="tk-f">println</span>(result);
+    }
+}</pre>
+        <div class="note">
+            <b>Сүүлийн зөвлөгөө:</b><br>
+            ① Бодлогын input/output форматыг сайн уншиж ой.<br>
+            ② Эхлээд цаасан дээр томьёогоо бич.<br>
+            ③ Бодлогыг шийдсэний дараа жижиг жишээн дээр шалга.<br>
+            ④ <code>long</code> хэрэглэ хэрэв тоо том бол (n! гэх мэт).
+        </div>
+    </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+    Java Roadmap · 47 бодлого · <b>SPOJ → AC</b>
+</footer>
+
+<script>
+/* ====== SOLUTION TOGGLE ====== */
+function tog(btn) {
+    const body = btn.nextElementSibling;
+    body.classList.toggle('open');
+    btn.textContent = body.classList.contains('open') ? '▾ Хаах' : '▸ Шийдэл';
+}
+
+/* ====== PROGRESS TRACKER (localStorage) ====== */
+const STORAGE_KEY = 'java-roadmap-progress-v1';
+
+function loadProgress() {
+    try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    } catch { return {}; }
+}
+function saveProgress(p) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+}
+function updateProgressBar() {
+    const checks = document.querySelectorAll('.prob-check');
+    const done = document.querySelectorAll('.prob-check:checked').length;
+    const pct = checks.length ? (done / checks.length) * 100 : 0;
+    document.getElementById('progFill').style.width = pct + '%';
+    document.getElementById('progText').textContent = `${done} / ${checks.length}`;
+}
+function resetProgress() {
+    if (!confirm('Бүх ахицыг устгах уу?')) return;
+    saveProgress({});
+    document.querySelectorAll('.prob-check').forEach(cb => {
+        cb.checked = false;
+        cb.closest('.prob').classList.remove('done');
+    });
+    updateProgressBar();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const progress = loadProgress();
+
+    document.querySelectorAll('.prob-check').forEach(cb => {
+        const id = cb.dataset.id;
+        if (progress[id]) {
+            cb.checked = true;
+            cb.closest('.prob').classList.add('done');
+        }
+        cb.addEventListener('change', () => {
+            const p = loadProgress();
+            if (cb.checked) p[id] = true;
+            else delete p[id];
+            saveProgress(p);
+            cb.closest('.prob').classList.toggle('done', cb.checked);
+            updateProgressBar();
+        });
+    });
+    updateProgressBar();
+
+    /* ====== SCROLL SPY ====== */
+    const navLinks = document.querySelectorAll('.nav a');
+    const sections = Array.from(navLinks).map(a => {
+        return document.querySelector(a.getAttribute('href'));
+    }).filter(Boolean);
+
+    const setActive = () => {
+        const scrollPos = window.scrollY + 120;
+        let active = null;
+        for (const s of sections) {
+            if (s.offsetTop <= scrollPos) active = s;
+        }
+        navLinks.forEach(a => {
+            const targetId = a.getAttribute('href').slice(1);
+            a.classList.toggle('active', active && active.id === targetId);
+        });
+    };
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+});
+</script>
+
+</body>
+</html>

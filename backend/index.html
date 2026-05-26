@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backend — Веб Хөгжүүлэлт</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+.code-box {
+  background: #0f172a;
+  color: #22c55e;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  overflow-x: auto;
+  font-family: monospace;
+  line-height: 1.9;
+  white-space: pre;
+}
+.cmd-box {
+  background: #0f172a;
+  color: #f0fdf4;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: monospace;
+  line-height: 1.8;
+  white-space: pre;
+  border-left: 3px solid #22c55e;
+  overflow-x: auto;
+}
+.c  { color: #6b7280; }
+.kw { color: #93c5fd; }
+.st { color: #fde68a; }
+.fn { color: #c4b5fd; }
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #16a34a;
+  color: white;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+</style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+<header class="bg-white border-b border-gray-200 px-6 py-4">
+  <div class="max-w-3xl mx-auto flex justify-between items-center">
+    <h1 class="text-lg font-bold text-gray-900">Веб Хөгжүүлэлт</h1>
+    <div class="flex gap-6 text-sm">
+      <a href="../" class="text-gray-500 hover:text-blue-600">Нүүр</a>
+      <a href="../homework/" class="text-gray-500 hover:text-blue-600">Даалгавар</a>
+      <a href="../contact/" class="text-gray-500 hover:text-blue-600">Холбоо барих</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-6 py-10">
+
+  <a href="../" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline mb-6">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
+    </svg>
+    Буцах
+  </a>
+
+  <!-- Title -->
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-1">
+      <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3m-9 3v-9m3 9V6m3 3h2.25M12 3l-4.5 4.5M12 3l4.5 4.5"/>
+      </svg>
+      <h2 class="text-2xl font-bold text-gray-900">Node.js + Express + MongoDB</h2>
+    </div>
+  
+  </div>
+
+  <!-- Intro: юу барих вэ -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Бид юу барих вэ?</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-3">
+      Энэ хичээлд <strong>"Дуртай дуунуудын API"</strong> барина. Яагаад дуу? — Хялбар, ойлгомжтой, бодит!
+    </p>
+    <div class="code-box mb-4">GET  /songs        ← бүх дуу харах
+POST /songs        ← шинэ дуу нэмэх
+DELETE /songs/:id  ← дуу устгах</div>
+    <p class="text-sm text-gray-600 mb-2">Яагаад backend хэрэгтэй вэ? Энгийнээр:</p>
+    <div class="bg-green-50 border border-green-100 rounded-lg p-4 text-sm text-green-800 space-y-1">
+      <p>Чи Spotify дотор дуу хайхад — тэр дуунуудыг <strong>сервер</strong> хадгалж байна.</p>
+      <p>Чи Instagram дотор зураг нийтлэхэд — тэр зургийг <strong>сервер</strong> хүлээн авдаг.</p>
+      <p>Чи хоол захиалахад — захиалгыг <strong>сервер</strong> боловсруулдаг.</p>
+      <p class="font-semibold mt-2">→ Бид тэр серверийг өөрсдөө бичиж сурна.</p>
+    </div>
+  </section>
+
+  <!-- Шаардлага -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Эхлэхийн өмнө — суулгасан байх зүйлс</h3>
+    </div>
+    <div class="space-y-3 text-sm text-gray-600">
+      <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+        <span class="text-green-600 font-bold mt-0.5">1</span>
+        <div>
+          <p class="font-semibold text-gray-800">Node.js суулгах</p>
+          <p class="text-gray-500">nodejs.org → LTS хувилбар татаж суулга</p>
+          <div class="cmd-box mt-2">node --version
+<span class="c">→ v20.x.x гэж гарвал зөв</span></div>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+        <span class="text-green-600 font-bold mt-0.5">2</span>
+        <div>
+          <p class="font-semibold text-gray-800">VS Code суулгах</p>
+          <p class="text-gray-500">code.visualstudio.com → татаж суулга</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+        <span class="text-green-600 font-bold mt-0.5">3</span>
+        <div>
+          <p class="font-semibold text-gray-800">Thunder Client суулга (VS Code extension)</p>
+          <p class="text-gray-500">VS Code → Extensions → "Thunder Client" хайж суулга → API тест хийхэд ашиглана</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- АЛХАМ 1 -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="step-badge">1</span>
+      <h3 class="font-bold text-gray-900 text-lg">Хавтас үүсгэж VS Code-д нээх</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-3">
+      Компьютер дотроо шинэ хавтас үүсгэнэ. Нэрийг хялбархан тавь — зай, монгол үсэг болохгүй.
+    </p>
+    <p class="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">Терминалд бич:</p>
+    <div class="cmd-box mb-3">mkdir my-songs-api
+cd my-songs-api
+code .</div>
+    <div class="bg-blue-50 border border-blue-100 rounded-lg p-3 text-sm text-blue-800">
+      <strong>code .</strong> = "одоо байгаа хавтасыг VS Code-д нээ" гэсэн утгатай.
+    </div>
+  </section>
+
+  <!-- АЛХАМ 2 -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="step-badge">2</span>
+      <h3 class="font-bold text-gray-900 text-lg">npm init — төслийг танилцуулах</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-3">
+      <strong>npm</strong> нь Node.js-н "дэлгүүр" — бусад хүмүүсийн бичсэн кодыг татаж авах хэрэгсэл.<br>
+      <strong>npm init</strong> нь чиний төслийн "паспорт" болох <code class="bg-gray-100 px-1 rounded text-pink-600">package.json</code> файлыг үүсгэнэ.
+    </p>
+    <p class="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">VS Code терминалд бич (Ctrl+`):</p>
+    <div class="cmd-box mb-4">npm init -y</div>
+    <p class="text-sm text-gray-600 mb-2">Дараа нь <strong>package.json</strong> файл үүснэ — яг ингэж харагдана:</p>
+    <div class="code-box mb-3">{
+  <span class="st">"name"</span>: <span class="st">"my-songs-api"</span>,
+  <span class="st">"version"</span>: <span class="st">"1.0.0"</span>,
+  <span class="st">"main"</span>: <span class="st">"index.js"</span>,
+  <span class="st">"scripts"</span>: {
+    <span class="st">"start"</span>: <span class="st">"node index.js"</span>
+  }
+}</div>
+    <div class="grid sm:grid-cols-2 gap-3 text-sm">
+      <div class="bg-gray-50 rounded-lg p-3">
+        <p class="font-semibold text-gray-700 mb-1">"name"</p>
+        <p class="text-gray-500">Чиний төслийн нэр</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3">
+        <p class="font-semibold text-gray-700 mb-1">"main": "index.js"</p>
+        <p class="text-gray-500">Сервер эхэлдэг файл</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3">
+        <p class="font-semibold text-gray-700 mb-1">"scripts"</p>
+        <p class="text-gray-500"><code class="text-xs bg-white border rounded px-1">npm start</code> гэхэд юу ажиллуулах вэ</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3">
+        <p class="font-semibold text-gray-700 mb-1">-y гэж юу вэ?</p>
+        <p class="text-gray-500">Бүх асуултад автоматаар "тийм" хэлнэ</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- АЛХАМ 3 -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="step-badge">3</span>
+      <h3 class="font-bold text-gray-900 text-lg">Package татах — express, mongoose, dotenv</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-4">
+      3 package татна. Нэг л мөр бичихэд болно:
+    </p>
+    <div class="cmd-box mb-4">npm install express mongoose dotenv</div>
+
+    <div class="space-y-3 text-sm">
+      <div class="border border-gray-100 rounded-lg p-4">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="bg-green-100 text-green-700 text-xs font-mono px-2 py-0.5 rounded">express</span>
+          <span class="font-semibold text-gray-800">Веб сервер барих framework</span>
+        </div>
+        <p class="text-gray-500">"/songs" хуудас нээхэд яах вэ гэдгийг зааж өгдөг. Гэргийн хаалга шиг — хэн орж ирвэл юу хийх.</p>
+      </div>
+      <div class="border border-gray-100 rounded-lg p-4">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="bg-purple-100 text-purple-700 text-xs font-mono px-2 py-0.5 rounded">mongoose</span>
+          <span class="font-semibold text-gray-800">MongoDB-тай ярих хэрэгсэл</span>
+        </div>
+        <p class="text-gray-500">MongoDB (өгөгдлийн сан) руу хялбараар өгөгдөл хийж, гаргаж авах боломж. Mongoose байхгүй бол MongoDB-тай ярих маш хэцүү.</p>
+      </div>
+      <div class="border border-gray-100 rounded-lg p-4">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="bg-yellow-100 text-yellow-700 text-xs font-mono px-2 py-0.5 rounded">dotenv</span>
+          <span class="font-semibold text-gray-800">Нууц мэдээлэл унших хэрэгсэл</span>
+        </div>
+        <p class="text-gray-500">MongoDB-н нууц үгийг кодод шууд бичиж болохгүй. .env файлд хийж, dotenv ашиглан уншдаг.</p>
+      </div>
+    </div>
+
+    <div class="mt-4 bg-gray-50 rounded-lg p-3 text-sm text-gray-600">
+      Суулгасны дараа <strong>node_modules</strong> хавтас үүснэ — тэнд бүх tataj авсан код байна. Git-д оруулахгүй.
+    </div>
+  </section>
+
+  <!-- АЛХАМ 4 -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="step-badge">4</span>
+      <h3 class="font-bold text-gray-900 text-lg">MongoDB Atlas — үнэгүй өгөгдлийн сан</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-4">
+      MongoDB Atlas нь үнэгүй cloud database. Дуунуудаа тэнд хадгална.
+    </p>
+    <ol class="space-y-3 text-sm text-gray-600 list-decimal pl-5 mb-4">
+      <li><strong>mongodb.com/atlas</strong> → бүртгэл үүсгэ (Google-ээр нэвтрэж болно)</li>
+      <li><strong>"Build a Database"</strong> → <strong>Free / M0</strong> сонго</li>
+      <li>Cluster нэр: <code class="bg-gray-100 px-1 rounded text-pink-600">Cluster0</code> (өөрчлөхгүй байж болно)</li>
+      <li><strong>Username & Password</strong> үүсгэ — санаж авч байгаарай!</li>
+      <li><strong>Network Access</strong> → <strong>"Allow access from anywhere"</strong> → <code class="bg-gray-100 px-1 rounded">0.0.0.0/0</code></li>
+      <li><strong>Connect</strong> → <strong>"Drivers"</strong> → connection string хуулж ав</li>
+    </ol>
+    <p class="text-sm font-semibold text-gray-700 mb-1">Connection string иймэрхүү харагдана:</p>
+    <div class="code-box">mongodb+srv://<span class="kw">username</span>:<span class="st">password</span>@cluster.xxxxx.mongodb.net/<span class="st">DatabaseName</span></div>
+    <p class="text-xs text-gray-400 mt-2">← username, password = чиний үүсгэсэн хэрэглэгч, DatabaseName = database нэр</p>
+    <div class="mt-3 bg-green-50 border border-green-200 rounded-lg p-3 text-sm text-green-800">
+      <strong>Энэ хичээлд ашиглах бэлэн DB:</strong>
+      <div class="cmd-box mt-2">MONGO_URL=mongodb+srv://brianerdenebold_db_user:LR54yZ2vQfEOvsTD@projects.xml7qah.mongodb.net/Songs</div>
+      <p class="text-xs mt-1 text-green-700">Өөрийн Atlas үүсгэж чадахгүй бол энэ URL-г ашиглаж болно.</p>
+    </div>
+  </section>
+
+  <!-- АЛХАМ 5 -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="step-badge">5</span>
+      <h3 class="font-bold text-gray-900 text-lg">.env болон .gitignore файл үүсгэх</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-3">
+      MongoDB connection string дотор нууц үг байгаа тул кодод шууд бичиж болохгүй. <strong>.env</strong> файлд хийнэ.
+    </p>
+
+    <p class="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">VS Code дотор шинэ файл үүсгэ: <span class="text-gray-600 normal-case">.env</span></p>
+    <div class="cmd-box mb-4">MONGO_URL=mongodb+srv://brianerdenebold_db_user:LR54yZ2vQfEOvsTD@projects.xml7qah.mongodb.net/Songs</div>
+
+    <p class="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">Шинэ файл үүсгэ: <span class="text-gray-600 normal-case">.gitignore</span></p>
+    <div class="cmd-box mb-4">node_modules
+.env</div>
+
+    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
+      <strong>.gitignore</strong> = GitHub дээр оруулахгүй файлуудын жагсаалт.<br>
+      <strong>.env</strong> нууц үгтэй тул заавал оруулахгүй байна — мэдэгдвэл хэн ч чиний database-д орж болно!
+    </div>
+  </section>
+
+  <!-- АЛХАМ 6 -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="step-badge">6</span>
+      <h3 class="font-bold text-gray-900 text-lg">index.js — бүх код энэ нэг файлд</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-4">
+      VS Code дотор <strong>index.js</strong> файл үүсгэж доорх кодыг хуулаад нааж тавь. Мөр бүрийг ойлгуулна:
+    </p>
+
+    <!-- Part A -->
+    <div class="mb-4">
+      <p class="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">А хэсэг — package-уудыг дуудах</p>
+      <div class="code-box mb-2"><span class="fn">require</span>(<span class="st">'dotenv'</span>).<span class="fn">config</span>();           <span class="c">← .env файлыг унш</span>
+<span class="kw">const</span> express  = <span class="fn">require</span>(<span class="st">'express'</span>);  <span class="c">← express-г авчир</span>
+<span class="kw">const</span> mongoose = <span class="fn">require</span>(<span class="st">'mongoose'</span>); <span class="c">← mongoose-г авчир</span></div>
+      <p class="text-xs text-gray-500">require() = "энэ package-г ашиглах гэж байна" гэж зарлах.</p>
+    </div>
+
+    <!-- Part B -->
+    <div class="mb-4">
+      <p class="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">Б хэсэг — сервер үүсгэж MongoDB холбох</p>
+      <div class="code-box mb-2"><span class="kw">const</span> app = <span class="fn">express</span>();        <span class="c">← "app" нэртэй сервер үүсгэнэ</span>
+app.<span class="fn">use</span>(express.<span class="fn">json</span>());    <span class="c">← JSON өгөгдөл хүлээн авч чадна болно</span>
+
+mongoose.<span class="fn">connect</span>(process.env.MONGO_URL)
+  .<span class="fn">then</span>(() => console.<span class="fn">log</span>(<span class="st">'MongoDB холбогдлоо ✓'</span>))
+  .<span class="fn">catch</span>(err => console.<span class="fn">log</span>(<span class="st">'Алдаа:'</span>, err));</div>
+      <p class="text-xs text-gray-500">process.env.MONGO_URL = .env файлаас MONGO_URL-г авна.</p>
+    </div>
+
+    <!-- Part C -->
+    <div class="mb-4">
+      <p class="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">В хэсэг — Schema болон Model үүсгэх</p>
+      <div class="code-box mb-2"><span class="kw">const</span> songSchema = <span class="kw">new</span> mongoose.<span class="fn">Schema</span>({
+  title:  { type: String, required: <span class="kw">true</span>  }, <span class="c">← дуу нэр (заавал)</span>
+  artist: { type: String, required: <span class="kw">true</span>  }, <span class="c">← дуучин (заавал)</span>
+  genre:  { type: String, default: <span class="st">'Pop'</span>  }  <span class="c">← төрөл (заавал биш)</span>
+});
+
+<span class="kw">const</span> Song = mongoose.<span class="fn">model</span>(<span class="st">'Song'</span>, songSchema);</div>
+      <div class="grid sm:grid-cols-2 gap-3 text-xs mt-2">
+        <div class="bg-gray-50 rounded p-2">
+          <strong class="text-gray-700">Schema</strong> = загвар / хэлбэр<br>
+          <span class="text-gray-500">"Дуу гэдэг нь title, artist, genre-тэй байна" гэдгийг тодорхойлно</span>
+        </div>
+        <div class="bg-gray-50 rounded p-2">
+          <strong class="text-gray-700">Model</strong> = MongoDB-тай ярих хэрэгсэл<br>
+          <span class="text-gray-500">Song.find(), Song.create() гэж ашиглана</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part D -->
+    <div class="mb-4">
+      <p class="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">Г хэсэг — Routes (хаяг бүр дээр яах вэ)</p>
+      <div class="code-box mb-2"><span class="c">// GET /songs → бүх дуу авах</span>
+app.<span class="fn">get</span>(<span class="st">'/songs'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">const</span> songs = <span class="kw">await</span> Song.<span class="fn">find</span>();
+  res.<span class="fn">json</span>(songs);
+});
+
+<span class="c">// POST /songs → шинэ дуу нэмэх</span>
+app.<span class="fn">post</span>(<span class="st">'/songs'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">const</span> song = <span class="kw">await</span> Song.<span class="fn">create</span>(req.body);
+  res.<span class="fn">json</span>(song);
+});
+
+<span class="c">// DELETE /songs/:id → ID-аар устгах</span>
+app.<span class="fn">delete</span>(<span class="st">'/songs/:id'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">await</span> Song.<span class="fn">findByIdAndDelete</span>(req.params.id);
+  res.<span class="fn">json</span>({ message: <span class="st">'Устгагдлаа'</span> });
+});</div>
+
+      <div class="space-y-2 text-xs text-gray-600 mt-2">
+        <div class="flex gap-2 items-start">
+          <span class="bg-blue-100 text-blue-700 font-mono px-2 py-0.5 rounded mt-0.5">req</span>
+          <span>request — хэрэглэгч илгээсэн зүйл. <code class="bg-gray-100 rounded px-1">req.body</code> нь POST-ын мэдээлэл.</span>
+        </div>
+        <div class="flex gap-2 items-start">
+          <span class="bg-purple-100 text-purple-700 font-mono px-2 py-0.5 rounded mt-0.5">res</span>
+          <span>response — сервер буцаах хариу. <code class="bg-gray-100 rounded px-1">res.json()</code> нь JSON болгоно.</span>
+        </div>
+        <div class="flex gap-2 items-start">
+          <span class="bg-green-100 text-green-700 font-mono px-2 py-0.5 rounded mt-0.5">async/await</span>
+          <span>MongoDB-с өгөгдөл авахад хугацаа хэрэгтэй. await = "дуусаад ирэх хүртэл хүлээ".</span>
+        </div>
+        <div class="flex gap-2 items-start">
+          <span class="bg-yellow-100 text-yellow-700 font-mono px-2 py-0.5 rounded mt-0.5">:id</span>
+          <span>URL дотор хувьсагч. <code class="bg-gray-100 rounded px-1">/songs/abc123</code> гэвэл req.params.id = "abc123".</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part E -->
+    <div class="mb-2">
+      <p class="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">Д хэсэг — Сервер эхлүүлэх</p>
+      <div class="code-box"><span class="kw">const</span> PORT = process.env.PORT || 3000;
+app.<span class="fn">listen</span>(PORT, () => {
+  console.<span class="fn">log</span>(`Сервер port ${PORT} дээр ажиллаж байна`);
+});</div>
+      <p class="text-xs text-gray-500 mt-1">|| 3000 = "PORT байхгүй бол 3000 ашиглана" (Render deploy хийхэд PORT өөрөө тавьдаг).</p>
+    </div>
+  </section>
+
+  <!-- Бүтэн файл хамт харуулах -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Бүтэн index.js — хуулж нааж тавь</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-3">Дээрх бүх хэсгийг нэгтгэсэн бүтэн файл:</p>
+    <div class="code-box"><span class="fn">require</span>(<span class="st">'dotenv'</span>).<span class="fn">config</span>();
+<span class="kw">const</span> express  = <span class="fn">require</span>(<span class="st">'express'</span>);
+<span class="kw">const</span> mongoose = <span class="fn">require</span>(<span class="st">'mongoose'</span>);
+
+<span class="kw">const</span> app = <span class="fn">express</span>();
+app.<span class="fn">use</span>(express.<span class="fn">json</span>());
+
+mongoose.<span class="fn">connect</span>(process.env.MONGO_URL)
+  .<span class="fn">then</span>(() => console.<span class="fn">log</span>(<span class="st">'MongoDB холбогдлоо ✓'</span>))
+  .<span class="fn">catch</span>(err => console.<span class="fn">log</span>(<span class="st">'Алдаа:'</span>, err));
+
+<span class="kw">const</span> songSchema = <span class="kw">new</span> mongoose.<span class="fn">Schema</span>({
+  title:  { type: String, required: <span class="kw">true</span> },
+  artist: { type: String, required: <span class="kw">true</span> },
+  genre:  { type: String, default: <span class="st">'Pop'</span> }
+});
+<span class="kw">const</span> Song = mongoose.<span class="fn">model</span>(<span class="st">'Song'</span>, songSchema);
+
+app.<span class="fn">get</span>(<span class="st">'/songs'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">const</span> songs = <span class="kw">await</span> Song.<span class="fn">find</span>();
+  res.<span class="fn">json</span>(songs);
+});
+
+app.<span class="fn">post</span>(<span class="st">'/songs'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">const</span> song = <span class="kw">await</span> Song.<span class="fn">create</span>(req.body);
+  res.<span class="fn">json</span>(song);
+});
+
+app.<span class="fn">delete</span>(<span class="st">'/songs/:id'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">await</span> Song.<span class="fn">findByIdAndDelete</span>(req.params.id);
+  res.<span class="fn">json</span>({ message: <span class="st">'Устгагдлаа'</span> });
+});
+
+<span class="kw">const</span> PORT = process.env.PORT || 3000;
+app.<span class="fn">listen</span>(PORT, () => console.<span class="fn">log</span>(`Port ${PORT}`));</div>
+  </section>
+
+  <!-- АЛХАМ 7 -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="step-badge">7</span>
+      <h3 class="font-bold text-gray-900 text-lg">Файлын бүтэц шалгах</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-3">Энэ үед чиний хавтас яг ингэж харагдах ёстой:</p>
+    <div class="code-box mb-3">my-songs-api/
+├── index.js       <span class="c">← бүх код</span>
+├── .env           <span class="c">← MONGO_URL (нууц!)</span>
+├── .gitignore     <span class="c">← node_modules, .env</span>
+├── package.json   <span class="c">← автоматаар үүссэн</span>
+└── node_modules/  <span class="c">← автоматаар үүссэн</span></div>
+    <div class="bg-orange-50 border border-orange-100 rounded-lg p-3 text-sm text-orange-800">
+      <strong>5 файл байх ёстой.</strong> .env эсвэл .gitignore байхгүй бол дахин үүсгэ.
+    </div>
+  </section>
+
+  <!-- АЛХАМ 8 -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="step-badge">8</span>
+      <h3 class="font-bold text-gray-900 text-lg">Ажиллуулж тест хийх</h3>
+    </div>
+
+    <p class="text-sm font-semibold text-gray-700 mb-1">Терминалд ажиллуул:</p>
+    <div class="cmd-box mb-4">node index.js</div>
+    <p class="text-sm text-gray-600 mb-4">Ингэж харагдвал зөв:</p>
+    <div class="code-box mb-5"><span class="c">MongoDB холбогдлоо ✓
+Port 3000 дээр ажиллаж байна</span></div>
+
+    <div class="space-y-4">
+
+      <div>
+        <p class="text-sm font-semibold text-gray-700 mb-1">GET тест — Browser дотор нээ:</p>
+        <div class="cmd-box mb-1">http://localhost:3000/songs</div>
+        <p class="text-xs text-gray-500">Хоосон array [ ] харагдана — өгөгдөл байхгүй учраас зөв.</p>
+      </div>
+
+      <div>
+        <p class="text-sm font-semibold text-gray-700 mb-2">POST тест — Thunder Client ашиглах:</p>
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm space-y-2">
+          <div class="flex gap-2">
+            <span class="bg-green-100 text-green-700 text-xs font-mono px-2 py-1 rounded font-bold">POST</span>
+            <code class="text-gray-700">http://localhost:3000/songs</code>
+          </div>
+          <p class="text-gray-500 text-xs">Body → JSON сонго — эдгээр дуунуудыг нэг нэгээр нэм:</p>
+          <div class="code-box mb-2"><span class="c">// 1-р дуу</span>
+{
+  <span class="st">"title"</span>: <span class="st">"Blinding Lights"</span>,
+  <span class="st">"artist"</span>: <span class="st">"The Weeknd"</span>,
+  <span class="st">"genre"</span>: <span class="st">"Pop"</span>
+}</div>
+          <div class="code-box mb-2"><span class="c">// 2-р дуу</span>
+{
+  <span class="st">"title"</span>: <span class="st">"Dynamite"</span>,
+  <span class="st">"artist"</span>: <span class="st">"BTS"</span>,
+  <span class="st">"genre"</span>: <span class="st">"K-pop"</span>
+}</div>
+          <div class="code-box mb-2"><span class="c">// 3-р дуу</span>
+{
+  <span class="st">"title"</span>: <span class="st">"As It Was"</span>,
+  <span class="st">"artist"</span>: <span class="st">"Harry Styles"</span>,
+  <span class="st">"genre"</span>: <span class="st">"Pop"</span>
+}</div>
+          <p class="text-xs text-gray-500 mt-1">Нэмсний дараа GET /songs дуудвал яг ингэж харагдана:</p>
+          <div class="code-box">[
+  { <span class="st">"_id"</span>: <span class="st">"abc1..."</span>, <span class="st">"title"</span>: <span class="st">"Blinding Lights"</span>, <span class="st">"artist"</span>: <span class="st">"The Weeknd"</span>, <span class="st">"genre"</span>: <span class="st">"Pop"</span> },
+  { <span class="st">"_id"</span>: <span class="st">"abc2..."</span>, <span class="st">"title"</span>: <span class="st">"Dynamite"</span>,        <span class="st">"artist"</span>: <span class="st">"BTS"</span>,          <span class="st">"genre"</span>: <span class="st">"K-pop"</span> },
+  { <span class="st">"_id"</span>: <span class="st">"abc3..."</span>, <span class="st">"title"</span>: <span class="st">"As It Was"</span>,        <span class="st">"artist"</span>: <span class="st">"Harry Styles"</span>, <span class="st">"genre"</span>: <span class="st">"Pop"</span> }
+]</div>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-sm font-semibold text-gray-700 mb-2">DELETE тест:</p>
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm">
+          <div class="flex gap-2 mb-1">
+            <span class="bg-red-100 text-red-700 text-xs font-mono px-2 py-1 rounded font-bold">DELETE</span>
+            <code class="text-gray-700">http://localhost:3000/songs/&lt;id&gt;</code>
+          </div>
+          <p class="text-xs text-gray-500">GET-ийн хариуд байгаа "_id" утгыг хуулж тав.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- АЛХАМ 9 -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="step-badge">9</span>
+      <h3 class="font-bold text-gray-900 text-lg">GitHub → Render — интернетэд гаргах</h3>
+    </div>
+
+    <p class="text-sm text-gray-600 mb-4">
+      Одоо сервер чиний компьютер дотор л ажиллаж байна. Render.com-д deploy хийвэл интернетэд бүх хүн ашиглаж болно.
+    </p>
+
+    <div class="space-y-4">
+
+      <div>
+        <p class="text-sm font-semibold text-gray-700 mb-2">Эхлээд GitHub-т хий:</p>
+        <div class="cmd-box">git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/чиний-нэр/my-songs-api.git
+git push -u origin main</div>
+        <div class="mt-2 bg-yellow-50 border border-yellow-100 rounded-lg p-2 text-xs text-yellow-800">
+          <strong>Анхааруулга:</strong> .gitignore зөв байвал .env GitHub-д орохгүй — нууц аюулгүй.
+        </div>
+      </div>
+
+      <div>
+        <p class="text-sm font-semibold text-gray-700 mb-2">Render.com дээр:</p>
+        <ol class="text-sm text-gray-600 space-y-2 list-decimal pl-5">
+          <li><strong>render.com</strong> нэвтэрч → <strong>"New +"</strong> → <strong>"Web Service"</strong></li>
+          <li>GitHub холбоод чиний repo сонго</li>
+          <li>
+            Доорх мэдээлэл оруул:
+            <div class="cmd-box mt-1">Build Command:  npm install
+Start Command:  node index.js</div>
+          </li>
+          <li>
+            <strong>Environment Variables</strong> хэсэгт нэм:
+            <div class="cmd-box mt-1">MONGO_URL = mongodb+srv://brianerdenebold_db_user:LR54yZ2vQfEOvsTD@projects.xml7qah.mongodb.net/Songs</div>
+          </li>
+          <li><strong>"Create Web Service"</strong> дарна → 2-3 минут хүлээ</li>
+        </ol>
+      </div>
+
+      <div class="bg-green-50 border border-green-200 rounded-lg p-3 text-sm text-green-800">
+        Дуусаад URL авна:
+        <div class="cmd-box mt-2">https://my-songs-api.onrender.com/songs</div>
+        Энэ URL-г Next.js frontend-дээ ашиглана!
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Хуримтлуулсан мэдлэг -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Энэ хичээлээс юу сурсан бэ?</h3>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-3 text-sm">
+      <div class="bg-gray-50 rounded-lg p-3">
+        <p class="font-semibold text-gray-700 mb-1">Node.js</p>
+        <p class="text-gray-500">JavaScript-г компьютер/сервер дээр ажиллуулах</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3">
+        <p class="font-semibold text-gray-700 mb-1">npm init & install</p>
+        <p class="text-gray-500">Төсөл эхлүүлж, package татах</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3">
+        <p class="font-semibold text-gray-700 mb-1">Express</p>
+        <p class="text-gray-500">GET, POST, DELETE routes бичих</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3">
+        <p class="font-semibold text-gray-700 mb-1">Mongoose + MongoDB</p>
+        <p class="text-gray-500">Schema, Model, find, create, delete</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3">
+        <p class="font-semibold text-gray-700 mb-1">.env файл</p>
+        <p class="text-gray-500">Нууц мэдээллийг аюулгүй хадгалах</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-3">
+        <p class="font-semibold text-gray-700 mb-1">Render deploy</p>
+        <p class="text-gray-500">Интернетэд хүртэл гаргах</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Дадлага -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-5">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487 18.1 3.25a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z"/>
+      </svg>
+      <h3 class="font-bold text-gray-900">Дадлага — өөрөө хийж үз</h3>
+    </div>
+    <p class="text-sm text-gray-600 mb-3">Дуунуудын API-г дуурайлган <strong>хоолны API</strong> бар:</p>
+    <div class="code-box mb-3"><span class="c">// 1. Шинэ хавтас үүсгэ: my-food-api</span>
+<span class="c">// 2. Schema иймэрхүү байна:</span>
+{
+  name:     String  <span class="c">← "Хуушуур"</span>
+  price:    Number  <span class="c">← 3500</span>
+  category: String  <span class="c">← "Мах"</span>
+}
+
+<span class="c">// 3. Дараах routes хий:</span>
+GET    /foods          <span class="c">← бүх хоол</span>
+POST   /foods          <span class="c">← шинэ хоол нэмэх</span>
+DELETE /foods/:id      <span class="c">← устгах</span>
+
+<span class="c">// 4. Render дээр deploy хийж URL авах</span></div>
+    <div class="bg-green-50 border border-green-100 rounded-lg p-3 text-sm text-green-800">
+      Render URL-г авсны дараа Next.js-ийн fetch() дотор ашиглаж болно!
+    </div>
+  </section>
+
+</main>
+
+<footer class="text-center text-xs text-gray-400 py-8">
+  Веб Хөгжүүлэлтийн Хичээл — 2026
+</footer>
+
+</body>
+</html>
